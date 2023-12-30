@@ -29,6 +29,7 @@ namespace GManagerial.Products
         private string notes;
         private string barcode;
 
+
         private Image image;
 
         public Product()
