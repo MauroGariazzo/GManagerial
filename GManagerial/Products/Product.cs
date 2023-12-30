@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GManagerial.Products
 {
 
-    internal class Product:IProduct
+    internal class Product: IProduct
     {
         private int idProduct;
         private string productName;
