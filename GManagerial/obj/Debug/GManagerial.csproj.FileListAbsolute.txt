@@ -1,0 +1,135 @@
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GManagerial.exe.config
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GManagerial.exe
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GManagerial.pdb
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\Geo.dll
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GeoAPI.CoordinateSystems.dll
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GeoAPI.dll
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\Nager.Country.dll
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\NGeo.dll
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GeoAPI.xml
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\GeoAPI.CoordinateSystems.xml
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\Nager.Country.xml
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.csproj.AssemblyReference.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.csproj.SuggestedBindingRedirects.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.Docs.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.CustomersForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.Form1.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.AttachmentForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.Warehouse.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.Logo.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.MainForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.Properties.Resources.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.csproj.GenerateResource.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.csproj.CoreCompileInputs.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.csproj.CopyComplete
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.exe
+C:\Users\mauro\Documents\vsc_projects\GManagerial - Copia\GManagerial\obj\Debug\GManagerial.pdb
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.AssemblyReference.cache
+D:\vs\GManagerial\GManagerial\bin\Debug\GManagerial.exe.config
+D:\vs\GManagerial\GManagerial\bin\Debug\GManagerial.exe
+D:\vs\GManagerial\GManagerial\bin\Debug\GManagerial.pdb
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.AttachmentForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.CustomersForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddBrand.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.Brands.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddNewCategory.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddNewSubCategory.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.Categories.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ProductPrices.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ProductsForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.AddNewCustomer.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.QuoteDocForms.ChildForms.AddNewQuote.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.QuoteDoc.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Logo.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.MainForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Properties.Resources.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.GenerateResource.cache
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.CoreCompileInputs.cache
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.CopyComplete
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.exe
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.pdb
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.SupplierForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ImageForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.AssemblyReference.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.SuggestedBindingRedirects.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.AttachmentForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.CustomersForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddBrand.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.Brands.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddNewCategory.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddNewSubCategory.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.Categories.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ImageForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ProductPrices.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ProductsForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.AddNewCustomer.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.QuoteDocForms.ChildForms.AddNewQuote.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.QuoteDoc.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.SupplierForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Logo.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.MainForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Properties.Resources.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.GenerateResource.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.CoreCompileInputs.cache
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\bin\Debug\GManagerial.exe.config
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\bin\Debug\GManagerial.exe
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\bin\Debug\GManagerial.pdb
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.csproj.CopyComplete
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.exe
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.pdb
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ProductPricesForm.AddSupplier.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ProductPricesForm.AddSupplier.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.Warehouse.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.LoadMerchForm.LoadMerchForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.Warehouse.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.LoadMerchForm.LoadMerchForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.AddProduct.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.AddProduct.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.CreateWareHouse.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.CreateWareHouse.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.InsertProdInf.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.InsertProdInf.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.HomeForm.HomeForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.HomeForm.HomeForm.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.LoadMerchForm.EditLoadMerchForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.LoadMerchForm.EditLoadMerchForm.resources
+C:\Users\mauro\Documents\vsc_projects\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.AddSupplier.resources
+D:\vs\GManagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.AddSupplier.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\bin\Debug\GManagerial.exe.config
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\bin\Debug\GManagerial.exe
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\bin\Debug\GManagerial.pdb
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.csproj.AssemblyReference.cache
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.csproj.SuggestedBindingRedirects.cache
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.AttachmentForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.CustomersForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.HomeForm.HomeForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddBrand.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.Brands.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddNewCategory.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.AddNewSubCategory.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.Categories.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ImageForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ProductPricesForm.AddSupplier.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ChildForms.ProductPrices.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Products.ProductsForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.AddNewCustomer.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.QuoteDocForms.ChildForms.AddNewQuote.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.QuoteDoc.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.SupplierForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Logo.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.MainForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.Properties.Resources.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.AddProduct.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.AddSupplier.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.CreateWareHouse.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.InsertProdInf.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.ChildForms.LoadMerchForm.EditLoadMerchForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.LoadMerchForm.LoadMerchForm.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.WareHouse.Warehouse.resources
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.csproj.GenerateResource.cache
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.csproj.CoreCompileInputs.cache
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.csproj.CopyComplete
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.exe
+C:\Users\mauro\Documents\vsc_projects\forms\Gmanagerial\GManagerial\obj\Debug\GManagerial.pdb
