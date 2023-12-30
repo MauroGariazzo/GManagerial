@@ -45,6 +45,8 @@ namespace GManagerial.Products
         private List<object> attachmentRow;  //per copiare gli allegati quando si duplica un prodotto
 
         private bool PriceFormExist;
+
+        private Product newProduct;
         public ProductsForm()
         {
             InitializeComponent();
@@ -71,7 +73,7 @@ namespace GManagerial.Products
 
         private void newBtn_Click(object sender, EventArgs e)
         {
-            this.nec = 'n';
+            /*this.nec = 'n';
 
             ProductsMGM.LoadPowUnityMeasure(powerCB, energy_consCB);
             ProductsMGM.LoadLenUnityMeasure(depthCB, widthCB, heightCB);
@@ -81,7 +83,11 @@ namespace GManagerial.Products
                 ProductTab);
 
             searchBtn.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
-            searchBox.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
+            searchBox.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI*/
+            newProduct = new Product();
+
+          
+        
         }
 
 
@@ -221,20 +227,9 @@ namespace GManagerial.Products
             }
         }
 
-        
+
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            Product newProduct = new Product();
-
-            try
-            {
-                newProduct.ProductName = codArticleTB.Text;
-            }
-
-            catch(ArgumentException ex) 
-            {
-                MessageBox.Show(ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
 
@@ -795,6 +790,11 @@ namespace GManagerial.Products
         private void undStockBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void codArticleTB_Leave(object sender, EventArgs e)
+        {
+            newProduct.ProductName = codArticleTB.Text;
         }
     }
     

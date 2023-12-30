@@ -150,7 +150,7 @@
             this.productsDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.productsDGV.ColumnHeadersHeight = 29;
             this.productsDGV.Location = new System.Drawing.Point(-4, 28);
-            this.productsDGV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productsDGV.Margin = new System.Windows.Forms.Padding(4);
             this.productsDGV.Name = "productsDGV";
             this.productsDGV.ReadOnly = true;
             this.productsDGV.RowHeadersVisible = false;
@@ -175,7 +175,7 @@
             this.bar.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.bar.Location = new System.Drawing.Point(0, 0);
-            this.bar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.bar.Margin = new System.Windows.Forms.Padding(5);
             this.bar.Name = "bar";
             this.bar.Size = new System.Drawing.Size(1585, 27);
             this.bar.TabIndex = 5;
@@ -187,7 +187,7 @@
             this.searchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.searchBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchBtn.Location = new System.Drawing.Point(1213, -1);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(51, 28);
             this.searchBtn.TabIndex = 3;
@@ -217,7 +217,7 @@
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(1271, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 27);
             this.button1.TabIndex = 2;
@@ -231,7 +231,7 @@
             this.searchBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.searchBox.Location = new System.Drawing.Point(1317, 0);
-            this.searchBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(4);
             this.searchBox.Multiline = true;
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(264, 27);
@@ -308,7 +308,7 @@
             // 
             this.selectAllRows.AutoSize = true;
             this.selectAllRows.Location = new System.Drawing.Point(39, 39);
-            this.selectAllRows.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectAllRows.Margin = new System.Windows.Forms.Padding(4);
             this.selectAllRows.Name = "selectAllRows";
             this.selectAllRows.Size = new System.Drawing.Size(18, 17);
             this.selectAllRows.TabIndex = 7;
@@ -332,7 +332,7 @@
             this.searchPanel.Controls.Add(this.subCat);
             this.searchPanel.Controls.Add(this.catLbl);
             this.searchPanel.Location = new System.Drawing.Point(776, 39);
-            this.searchPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchPanel.Margin = new System.Windows.Forms.Padding(4);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(279, 268);
             this.searchPanel.TabIndex = 8;
@@ -352,7 +352,7 @@
             // resetCB
             // 
             this.resetCB.Location = new System.Drawing.Point(193, 209);
-            this.resetCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.resetCB.Margin = new System.Windows.Forms.Padding(4);
             this.resetCB.Name = "resetCB";
             this.resetCB.Size = new System.Drawing.Size(75, 23);
             this.resetCB.TabIndex = 13;
@@ -396,7 +396,7 @@
             this.panel3.Controls.Add(this.searchFor);
             this.panel3.Controls.Add(this.pbSearch);
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(279, 34);
             this.panel3.TabIndex = 9;
@@ -416,7 +416,7 @@
             // 
             this.pbSearch.Image = ((System.Drawing.Image)(resources.GetObject("pbSearch.Image")));
             this.pbSearch.Location = new System.Drawing.Point(95, 6);
-            this.pbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.pbSearch.Name = "pbSearch";
             this.pbSearch.Size = new System.Drawing.Size(35, 25);
             this.pbSearch.TabIndex = 8;
@@ -426,7 +426,7 @@
             // 
             this.separatorPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.separatorPanel.Location = new System.Drawing.Point(8, 37);
-            this.separatorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.separatorPanel.Margin = new System.Windows.Forms.Padding(4);
             this.separatorPanel.Name = "separatorPanel";
             this.separatorPanel.Size = new System.Drawing.Size(267, 1);
             this.separatorPanel.TabIndex = 7;
@@ -436,7 +436,7 @@
             this.brandCBsearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brandCBsearch.FormattingEnabled = true;
             this.brandCBsearch.Location = new System.Drawing.Point(108, 150);
-            this.brandCBsearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.brandCBsearch.Margin = new System.Windows.Forms.Padding(4);
             this.brandCBsearch.Name = "brandCBsearch";
             this.brandCBsearch.Size = new System.Drawing.Size(160, 24);
             this.brandCBsearch.TabIndex = 5;
@@ -449,7 +449,7 @@
             this.subCatCB.Enabled = false;
             this.subCatCB.FormattingEnabled = true;
             this.subCatCB.Location = new System.Drawing.Point(108, 100);
-            this.subCatCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.subCatCB.Margin = new System.Windows.Forms.Padding(4);
             this.subCatCB.Name = "subCatCB";
             this.subCatCB.Size = new System.Drawing.Size(160, 24);
             this.subCatCB.TabIndex = 4;
@@ -461,7 +461,7 @@
             this.catCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.catCB.FormattingEnabled = true;
             this.catCB.Location = new System.Drawing.Point(108, 50);
-            this.catCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.catCB.Margin = new System.Windows.Forms.Padding(4);
             this.catCB.Name = "catCB";
             this.catCB.Size = new System.Drawing.Size(160, 24);
             this.catCB.TabIndex = 3;
@@ -509,7 +509,7 @@
             this.ProductTab.Controls.Add(this.whTP);
             this.ProductTab.Enabled = false;
             this.ProductTab.Location = new System.Drawing.Point(1079, 28);
-            this.ProductTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ProductTab.Margin = new System.Windows.Forms.Padding(4);
             this.ProductTab.Name = "ProductTab";
             this.ProductTab.SelectedIndex = 0;
             this.ProductTab.Size = new System.Drawing.Size(503, 658);
@@ -567,9 +567,9 @@
             this.AnagrPanelTP.Controls.Add(this.descriptionTB);
             this.AnagrPanelTP.Controls.Add(this.codArticleTB);
             this.AnagrPanelTP.Location = new System.Drawing.Point(4, 25);
-            this.AnagrPanelTP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AnagrPanelTP.Margin = new System.Windows.Forms.Padding(4);
             this.AnagrPanelTP.Name = "AnagrPanelTP";
-            this.AnagrPanelTP.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AnagrPanelTP.Padding = new System.Windows.Forms.Padding(4);
             this.AnagrPanelTP.Size = new System.Drawing.Size(495, 629);
             this.AnagrPanelTP.TabIndex = 0;
             this.AnagrPanelTP.Text = "Prodotto";
@@ -580,7 +580,7 @@
             this.ImageBtn.Image = ((System.Drawing.Image)(resources.GetObject("ImageBtn.Image")));
             this.ImageBtn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.ImageBtn.Location = new System.Drawing.Point(395, 548);
-            this.ImageBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ImageBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ImageBtn.Name = "ImageBtn";
             this.ImageBtn.Size = new System.Drawing.Size(73, 54);
             this.ImageBtn.TabIndex = 94;
@@ -596,7 +596,7 @@
             this.barcBtn.Image = ((System.Drawing.Image)(resources.GetObject("barcBtn.Image")));
             this.barcBtn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.barcBtn.Location = new System.Drawing.Point(151, 549);
-            this.barcBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barcBtn.Margin = new System.Windows.Forms.Padding(4);
             this.barcBtn.Name = "barcBtn";
             this.barcBtn.Size = new System.Drawing.Size(73, 54);
             this.barcBtn.TabIndex = 93;
@@ -610,7 +610,7 @@
             this.weightCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.weightCB.FormattingEnabled = true;
             this.weightCB.Location = new System.Drawing.Point(379, 345);
-            this.weightCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.weightCB.Margin = new System.Windows.Forms.Padding(4);
             this.weightCB.Name = "weightCB";
             this.weightCB.Size = new System.Drawing.Size(89, 24);
             this.weightCB.TabIndex = 92;
@@ -621,7 +621,7 @@
             this.depthCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.depthCB.FormattingEnabled = true;
             this.depthCB.Location = new System.Drawing.Point(157, 343);
-            this.depthCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.depthCB.Margin = new System.Windows.Forms.Padding(4);
             this.depthCB.Name = "depthCB";
             this.depthCB.Size = new System.Drawing.Size(68, 24);
             this.depthCB.TabIndex = 91;
@@ -632,7 +632,7 @@
             this.widthCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.widthCB.FormattingEnabled = true;
             this.widthCB.Location = new System.Drawing.Point(379, 297);
-            this.widthCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.widthCB.Margin = new System.Windows.Forms.Padding(4);
             this.widthCB.Name = "widthCB";
             this.widthCB.Size = new System.Drawing.Size(89, 24);
             this.widthCB.TabIndex = 90;
@@ -643,7 +643,7 @@
             this.heightCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.heightCB.FormattingEnabled = true;
             this.heightCB.Location = new System.Drawing.Point(157, 297);
-            this.heightCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.heightCB.Margin = new System.Windows.Forms.Padding(4);
             this.heightCB.Name = "heightCB";
             this.heightCB.Size = new System.Drawing.Size(68, 24);
             this.heightCB.TabIndex = 89;
@@ -652,7 +652,7 @@
             // weightTB
             // 
             this.weightTB.Location = new System.Drawing.Point(235, 345);
-            this.weightTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.weightTB.Margin = new System.Windows.Forms.Padding(4);
             this.weightTB.MaxLength = 8;
             this.weightTB.Name = "weightTB";
             this.weightTB.Size = new System.Drawing.Size(135, 22);
@@ -672,7 +672,7 @@
             // depthTB
             // 
             this.depthTB.Location = new System.Drawing.Point(8, 345);
-            this.depthTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.depthTB.Margin = new System.Windows.Forms.Padding(4);
             this.depthTB.MaxLength = 8;
             this.depthTB.Name = "depthTB";
             this.depthTB.Size = new System.Drawing.Size(140, 22);
@@ -702,7 +702,7 @@
             // widthTB
             // 
             this.widthTB.Location = new System.Drawing.Point(235, 297);
-            this.widthTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.widthTB.Margin = new System.Windows.Forms.Padding(4);
             this.widthTB.MaxLength = 8;
             this.widthTB.Name = "widthTB";
             this.widthTB.Size = new System.Drawing.Size(135, 22);
@@ -712,7 +712,7 @@
             // heightTB
             // 
             this.heightTB.Location = new System.Drawing.Point(7, 297);
-            this.heightTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.heightTB.Margin = new System.Windows.Forms.Padding(4);
             this.heightTB.MaxLength = 8;
             this.heightTB.Name = "heightTB";
             this.heightTB.Size = new System.Drawing.Size(141, 22);
@@ -734,7 +734,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Location = new System.Drawing.Point(7, 268);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(473, 1);
             this.panel1.TabIndex = 66;
@@ -781,7 +781,7 @@
             this.powerCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.powerCB.FormattingEnabled = true;
             this.powerCB.Location = new System.Drawing.Point(413, 386);
-            this.powerCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.powerCB.Margin = new System.Windows.Forms.Padding(4);
             this.powerCB.Name = "powerCB";
             this.powerCB.Size = new System.Drawing.Size(55, 24);
             this.powerCB.TabIndex = 77;
@@ -790,7 +790,7 @@
             // powerTB
             // 
             this.powerTB.Location = new System.Drawing.Point(287, 386);
-            this.powerTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.powerTB.Margin = new System.Windows.Forms.Padding(4);
             this.powerTB.MaxLength = 7;
             this.powerTB.Name = "powerTB";
             this.powerTB.Size = new System.Drawing.Size(117, 22);
@@ -812,7 +812,7 @@
             this.energy_consCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.energy_consCB.FormattingEnabled = true;
             this.energy_consCB.Location = new System.Drawing.Point(287, 423);
-            this.energy_consCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.energy_consCB.Margin = new System.Windows.Forms.Padding(4);
             this.energy_consCB.Name = "energy_consCB";
             this.energy_consCB.Size = new System.Drawing.Size(61, 24);
             this.energy_consCB.TabIndex = 74;
@@ -831,7 +831,7 @@
             // energyConsTB
             // 
             this.energyConsTB.Location = new System.Drawing.Point(145, 425);
-            this.energyConsTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.energyConsTB.Margin = new System.Windows.Forms.Padding(4);
             this.energyConsTB.MaxLength = 8;
             this.energyConsTB.Name = "energyConsTB";
             this.energyConsTB.Size = new System.Drawing.Size(132, 22);
@@ -841,7 +841,7 @@
             // energyTB
             // 
             this.energyTB.Location = new System.Drawing.Point(145, 386);
-            this.energyTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.energyTB.Margin = new System.Windows.Forms.Padding(4);
             this.energyTB.MaxLength = 7;
             this.energyTB.Name = "energyTB";
             this.energyTB.Size = new System.Drawing.Size(63, 22);
@@ -863,7 +863,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.Location = new System.Drawing.Point(-5, 378);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(395, 1);
             this.panel2.TabIndex = 69;
@@ -872,7 +872,7 @@
             // 
             this.BrandBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BrandBtn.Location = new System.Drawing.Point(196, 68);
-            this.BrandBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BrandBtn.Margin = new System.Windows.Forms.Padding(4);
             this.BrandBtn.Name = "BrandBtn";
             this.BrandBtn.Size = new System.Drawing.Size(32, 26);
             this.BrandBtn.TabIndex = 68;
@@ -883,7 +883,7 @@
             // snTB
             // 
             this.snTB.Location = new System.Drawing.Point(235, 21);
-            this.snTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.snTB.Margin = new System.Windows.Forms.Padding(4);
             this.snTB.MaxLength = 98;
             this.snTB.Name = "snTB";
             this.snTB.Size = new System.Drawing.Size(237, 22);
@@ -904,7 +904,7 @@
             this.BrandCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BrandCB.FormattingEnabled = true;
             this.BrandCB.Location = new System.Drawing.Point(11, 69);
-            this.BrandCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BrandCB.Margin = new System.Windows.Forms.Padding(4);
             this.BrandCB.Name = "BrandCB";
             this.BrandCB.Size = new System.Drawing.Size(176, 24);
             this.BrandCB.TabIndex = 64;
@@ -928,7 +928,7 @@
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.cancelBtn.Location = new System.Drawing.Point(80, 575);
-            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(69, 28);
             this.cancelBtn.TabIndex = 62;
@@ -944,7 +944,7 @@
             this.confirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmBtn.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.confirmBtn.Location = new System.Drawing.Point(3, 575);
-            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(87, 28);
             this.confirmBtn.TabIndex = 53;
@@ -959,7 +959,7 @@
             this.subCategoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.subCategoryBtn.Enabled = false;
             this.subCategoryBtn.Location = new System.Drawing.Point(439, 121);
-            this.subCategoryBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.subCategoryBtn.Margin = new System.Windows.Forms.Padding(4);
             this.subCategoryBtn.Name = "subCategoryBtn";
             this.subCategoryBtn.Size = new System.Drawing.Size(32, 26);
             this.subCategoryBtn.TabIndex = 61;
@@ -970,7 +970,7 @@
             // 
             this.categoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.categoryBtn.Location = new System.Drawing.Point(196, 121);
-            this.categoryBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categoryBtn.Margin = new System.Windows.Forms.Padding(4);
             this.categoryBtn.Name = "categoryBtn";
             this.categoryBtn.Size = new System.Drawing.Size(32, 26);
             this.categoryBtn.TabIndex = 60;
@@ -984,7 +984,7 @@
             this.AttachmentsBtn.Image = ((System.Drawing.Image)(resources.GetObject("AttachmentsBtn.Image")));
             this.AttachmentsBtn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.AttachmentsBtn.Location = new System.Drawing.Point(313, 549);
-            this.AttachmentsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AttachmentsBtn.Margin = new System.Windows.Forms.Padding(4);
             this.AttachmentsBtn.Name = "AttachmentsBtn";
             this.AttachmentsBtn.Size = new System.Drawing.Size(73, 54);
             this.AttachmentsBtn.TabIndex = 59;
@@ -1000,7 +1000,7 @@
             this.subCategoryCB.Enabled = false;
             this.subCategoryCB.FormattingEnabled = true;
             this.subCategoryCB.Location = new System.Drawing.Point(233, 121);
-            this.subCategoryCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.subCategoryCB.Margin = new System.Windows.Forms.Padding(4);
             this.subCategoryCB.Name = "subCategoryCB";
             this.subCategoryCB.Size = new System.Drawing.Size(199, 24);
             this.subCategoryCB.TabIndex = 58;
@@ -1012,7 +1012,7 @@
             this.categoryCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryCB.FormattingEnabled = true;
             this.categoryCB.Location = new System.Drawing.Point(9, 119);
-            this.categoryCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categoryCB.Margin = new System.Windows.Forms.Padding(4);
             this.categoryCB.Name = "categoryCB";
             this.categoryCB.Size = new System.Drawing.Size(176, 24);
             this.categoryCB.TabIndex = 57;
@@ -1035,7 +1035,7 @@
             this.notesTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.notesTB.Location = new System.Drawing.Point(59, 465);
-            this.notesTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.notesTB.Margin = new System.Windows.Forms.Padding(4);
             this.notesTB.MaxLength = 498;
             this.notesTB.Multiline = true;
             this.notesTB.Name = "notesTB";
@@ -1086,7 +1086,7 @@
             // descriptionTB
             // 
             this.descriptionTB.Location = new System.Drawing.Point(12, 169);
-            this.descriptionTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.descriptionTB.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionTB.MaxLength = 498;
             this.descriptionTB.Multiline = true;
             this.descriptionTB.Name = "descriptionTB";
@@ -1096,11 +1096,12 @@
             // codArticleTB
             // 
             this.codArticleTB.Location = new System.Drawing.Point(12, 21);
-            this.codArticleTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.codArticleTB.Margin = new System.Windows.Forms.Padding(4);
             this.codArticleTB.MaxLength = 98;
             this.codArticleTB.Name = "codArticleTB";
             this.codArticleTB.Size = new System.Drawing.Size(215, 22);
             this.codArticleTB.TabIndex = 48;
+            this.codArticleTB.Leave += new System.EventHandler(this.codArticleTB_Leave);
             // 
             // whTP
             // 
@@ -1122,9 +1123,9 @@
             this.whTP.Controls.Add(this.WHprodMovements);
             this.whTP.Controls.Add(this.panel4);
             this.whTP.Location = new System.Drawing.Point(4, 25);
-            this.whTP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.whTP.Margin = new System.Windows.Forms.Padding(4);
             this.whTP.Name = "whTP";
-            this.whTP.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.whTP.Padding = new System.Windows.Forms.Padding(4);
             this.whTP.Size = new System.Drawing.Size(495, 629);
             this.whTP.TabIndex = 1;
             this.whTP.Text = "Magazzino";
@@ -1232,7 +1233,7 @@
             // UnlMerchBtn
             // 
             this.UnlMerchBtn.Location = new System.Drawing.Point(119, 7);
-            this.UnlMerchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnlMerchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.UnlMerchBtn.Name = "UnlMerchBtn";
             this.UnlMerchBtn.Size = new System.Drawing.Size(100, 28);
             this.UnlMerchBtn.TabIndex = 80;
@@ -1242,7 +1243,7 @@
             // lMerchBtn
             // 
             this.lMerchBtn.Location = new System.Drawing.Point(11, 7);
-            this.lMerchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lMerchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.lMerchBtn.Name = "lMerchBtn";
             this.lMerchBtn.Size = new System.Drawing.Size(100, 28);
             this.lMerchBtn.TabIndex = 79;
@@ -1257,7 +1258,7 @@
             this.cancelBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.cancelBtn2.Location = new System.Drawing.Point(93, 575);
-            this.cancelBtn2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelBtn2.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn2.Name = "cancelBtn2";
             this.cancelBtn2.Size = new System.Drawing.Size(69, 28);
             this.cancelBtn2.TabIndex = 73;
@@ -1273,7 +1274,7 @@
             this.confirmBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmBtn2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.confirmBtn2.Location = new System.Drawing.Point(3, 575);
-            this.confirmBtn2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmBtn2.Margin = new System.Windows.Forms.Padding(4);
             this.confirmBtn2.Name = "confirmBtn2";
             this.confirmBtn2.Size = new System.Drawing.Size(83, 28);
             this.confirmBtn2.TabIndex = 72;
@@ -1300,7 +1301,7 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel4.Location = new System.Drawing.Point(4, 89);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(473, 1);
             this.panel4.TabIndex = 67;
@@ -1317,7 +1318,7 @@
             this.Controls.Add(this.bar);
             this.Controls.Add(this.productsDGV);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProductsForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.ProductsForm_Load);

@@ -163,6 +163,8 @@
       <DependentUpon>ProductPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\ChildForms\ProductPricesForm\ProductPricesMGM.cs" />
+    <Compile Include="Products\DAOProduct.cs" />
+    <Compile Include="Products\IDAOProduct.cs" />
     <Compile Include="Products\IProduct.cs" />
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductsForm.cs">

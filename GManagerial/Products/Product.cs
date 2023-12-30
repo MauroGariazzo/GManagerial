@@ -30,6 +30,7 @@ namespace GManagerial.Products
         private string barcode;
 
 
+
         private Image image;
 
         public Product()
