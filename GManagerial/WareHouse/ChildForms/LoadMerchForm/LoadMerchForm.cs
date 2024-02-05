@@ -86,7 +86,7 @@ namespace GManagerial.WareHouse.LoadMerchForm
 
         private void LoadMerchForm_Load(object sender, EventArgs e)
         {
-            FormLogicGUI.LoadDGV(LoadMerchDGV);
+            FormLogicGUIObsolete.LoadDGV(LoadMerchDGV);
         }
 
         private void confirmBtn_Click(object sender, EventArgs e)
@@ -114,13 +114,13 @@ namespace GManagerial.WareHouse.LoadMerchForm
 
                 else
                 {
-                    FormLogicGUI.SelectElement("prodotto");
+                    FormLogicGUIObsolete.SelectElement("prodotto");
                 }
             }
 
             catch(System.ArgumentOutOfRangeException)
             {
-                FormLogicGUI.SelectElement("prodotto");
+                FormLogicGUIObsolete.SelectElement("prodotto");
             }
         }
 

@@ -81,10 +81,10 @@ namespace GManagerial.WareHouse
         {
             if(WHname != null && WHname.Text != "")
             {
-                FormLogicGUI.NECCC(anagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn });       
+                FormLogicGUIObsolete.NECCC(anagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn });       
 
                 WarehouseMGM.CreateWareHouseQuery(WHname, regionBox, provBox, municBox, AddressBox, CapBox, nec, ObtainIDWarehouse());
-                FormLogicGUI.DisableAndCleanTextBox(anagrPanel);
+                FormLogicGUIObsolete.DisableAndCleanTextBox(anagrPanel);
                 WarehouseMGM.PhysicalWareHouse_Load(wareHouseLB);
                 WarehouseMGM.LoadWareHouseNamesForComboBox(selectWarehouseCB);
 
@@ -96,14 +96,14 @@ namespace GManagerial.WareHouse
 
             else
             {
-                FormLogicGUI.PrintNotValidNameMessage("magazzino");
+                FormLogicGUIObsolete.PrintNotValidNameMessage("magazzino");
             }
         }
 
         private void newBtn_Click(object sender, EventArgs e)
         {
             nec = 'n';
-            FormLogicGUI.NECCC(anagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn });
+            FormLogicGUIObsolete.NECCC(anagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn });
         }
 
         private void editBtn_Click(object sender, EventArgs e)
@@ -113,14 +113,14 @@ namespace GManagerial.WareHouse
                 if (wareHouseLB.SelectedIndex != -1)
                 {
                     nec = 'e';
-                    FormLogicGUI.NECCC(anagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn });
+                    FormLogicGUIObsolete.NECCC(anagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn });
                     WarehouseMGM.EditWareHouse(WHname, regionBox, provBox, municBox, AddressBox, CapBox, ObtainIDWarehouse());
                     RPMlogicBox.ActDeaPM(regionBox, provBox, provLbl, municBox, municipLbl, CapBox, AddressBox, CapLbl, AddressLbl);
                 }
 
                 else
                 {
-                    FormLogicGUI.SelectElement("prodotto");
+                    FormLogicGUIObsolete.SelectElement("prodotto");
                 }
             }
         }
@@ -158,7 +158,7 @@ namespace GManagerial.WareHouse
 
                 else
                 {
-                    FormLogicGUI.SelectElement("magazzino");
+                    FormLogicGUIObsolete.SelectElement("magazzino");
                 }
             }
 
@@ -166,10 +166,10 @@ namespace GManagerial.WareHouse
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (FormLogicGUI.PrintCancelEdit())
+            if (FormLogicGUIObsolete.PrintCancelEdit())
             {
-                FormLogicGUI.NECCC(anagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn });
-                FormLogicGUI.DisableAndCleanTextBox(anagrPanel);
+                FormLogicGUIObsolete.NECCC(anagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn });
+                FormLogicGUIObsolete.DisableAndCleanTextBox(anagrPanel);
             }
         }
 

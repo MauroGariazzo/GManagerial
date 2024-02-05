@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             this.productsDGV = new System.Windows.Forms.DataGridView();
+            this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Resized_Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.bar = new System.Windows.Forms.Panel();
             this.searchBtn = new System.Windows.Forms.Button();
             this.MenuName = new System.Windows.Forms.Label();
@@ -61,12 +64,14 @@
             this.catLbl = new System.Windows.Forms.Label();
             this.ProductTab = new System.Windows.Forms.TabControl();
             this.AnagrPanelTP = new System.Windows.Forms.TabPage();
+            this.powerUM = new System.Windows.Forms.Label();
+            this.energy_consumptionUM = new System.Windows.Forms.Label();
+            this.weightUM = new System.Windows.Forms.Label();
+            this.widthUM = new System.Windows.Forms.Label();
+            this.depthUM = new System.Windows.Forms.Label();
+            this.heightUM = new System.Windows.Forms.Label();
             this.ImageBtn = new System.Windows.Forms.Button();
             this.barcBtn = new System.Windows.Forms.Button();
-            this.weightCB = new System.Windows.Forms.ComboBox();
-            this.depthCB = new System.Windows.Forms.ComboBox();
-            this.widthCB = new System.Windows.Forms.ComboBox();
-            this.heightCB = new System.Windows.Forms.ComboBox();
             this.weightTB = new System.Windows.Forms.TextBox();
             this.weightLbl = new System.Windows.Forms.Label();
             this.depthTB = new System.Windows.Forms.TextBox();
@@ -79,17 +84,15 @@
             this.priceBtn = new System.Windows.Forms.Button();
             this.manfDateTB = new System.Windows.Forms.TextBox();
             this.manfDateLbl = new System.Windows.Forms.Label();
-            this.powerCB = new System.Windows.Forms.ComboBox();
             this.powerTB = new System.Windows.Forms.TextBox();
             this.powerLbl = new System.Windows.Forms.Label();
-            this.energy_consCB = new System.Windows.Forms.ComboBox();
             this.energyConsLbl = new System.Windows.Forms.Label();
             this.energyConsTB = new System.Windows.Forms.TextBox();
             this.energyTB = new System.Windows.Forms.TextBox();
             this.EnergeticClass = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BrandBtn = new System.Windows.Forms.Button();
-            this.snTB = new System.Windows.Forms.TextBox();
+            this.serialNumberTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BrandCB = new System.Windows.Forms.ComboBox();
             this.BrandLbl = new System.Windows.Forms.Label();
@@ -107,7 +110,7 @@
             this.descriptionLbl = new System.Windows.Forms.Label();
             this.ArticleNameLbl = new System.Windows.Forms.Label();
             this.descriptionTB = new System.Windows.Forms.TextBox();
-            this.codArticleTB = new System.Windows.Forms.TextBox();
+            this.ProductNameTB = new System.Windows.Forms.TextBox();
             this.whTP = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -149,6 +152,10 @@
             this.productsDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.productsDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.productsDGV.ColumnHeadersHeight = 29;
+            this.productsDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Product_ID,
+            this.Product_Name,
+            this.Resized_Image});
             this.productsDGV.Location = new System.Drawing.Point(-4, 28);
             this.productsDGV.Margin = new System.Windows.Forms.Padding(4);
             this.productsDGV.Name = "productsDGV";
@@ -162,6 +169,32 @@
             this.productsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsDGV_CellContentClick);
             this.productsDGV.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.productsDGV_CellFormatting);
             this.productsDGV.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.productsDGV_ColumnWidthChanged);
+            // 
+            // Product_ID
+            // 
+            this.Product_ID.FillWeight = 32.08556F;
+            this.Product_ID.HeaderText = "Id prodotto";
+            this.Product_ID.MinimumWidth = 6;
+            this.Product_ID.Name = "Product_ID";
+            this.Product_ID.ReadOnly = true;
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.FillWeight = 133.9572F;
+            this.Product_Name.HeaderText = "Nome prodotto";
+            this.Product_Name.MinimumWidth = 6;
+            this.Product_Name.Name = "Product_Name";
+            this.Product_Name.ReadOnly = true;
+            // 
+            // Resized_Image
+            // 
+            this.Resized_Image.FillWeight = 133.9572F;
+            this.Resized_Image.HeaderText = "Immagine";
+            this.Resized_Image.MinimumWidth = 6;
+            this.Resized_Image.Name = "Resized_Image";
+            this.Resized_Image.ReadOnly = true;
+            this.Resized_Image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Resized_Image.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // bar
             // 
@@ -307,7 +340,7 @@
             // selectAllRows
             // 
             this.selectAllRows.AutoSize = true;
-            this.selectAllRows.Location = new System.Drawing.Point(39, 39);
+            this.selectAllRows.Location = new System.Drawing.Point(88, 39);
             this.selectAllRows.Margin = new System.Windows.Forms.Padding(4);
             this.selectAllRows.Name = "selectAllRows";
             this.selectAllRows.Size = new System.Drawing.Size(18, 17);
@@ -519,12 +552,14 @@
             // AnagrPanelTP
             // 
             this.AnagrPanelTP.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.AnagrPanelTP.Controls.Add(this.powerUM);
+            this.AnagrPanelTP.Controls.Add(this.energy_consumptionUM);
+            this.AnagrPanelTP.Controls.Add(this.weightUM);
+            this.AnagrPanelTP.Controls.Add(this.widthUM);
+            this.AnagrPanelTP.Controls.Add(this.depthUM);
+            this.AnagrPanelTP.Controls.Add(this.heightUM);
             this.AnagrPanelTP.Controls.Add(this.ImageBtn);
             this.AnagrPanelTP.Controls.Add(this.barcBtn);
-            this.AnagrPanelTP.Controls.Add(this.weightCB);
-            this.AnagrPanelTP.Controls.Add(this.depthCB);
-            this.AnagrPanelTP.Controls.Add(this.widthCB);
-            this.AnagrPanelTP.Controls.Add(this.heightCB);
             this.AnagrPanelTP.Controls.Add(this.weightTB);
             this.AnagrPanelTP.Controls.Add(this.weightLbl);
             this.AnagrPanelTP.Controls.Add(this.depthTB);
@@ -537,17 +572,15 @@
             this.AnagrPanelTP.Controls.Add(this.priceBtn);
             this.AnagrPanelTP.Controls.Add(this.manfDateTB);
             this.AnagrPanelTP.Controls.Add(this.manfDateLbl);
-            this.AnagrPanelTP.Controls.Add(this.powerCB);
             this.AnagrPanelTP.Controls.Add(this.powerTB);
             this.AnagrPanelTP.Controls.Add(this.powerLbl);
-            this.AnagrPanelTP.Controls.Add(this.energy_consCB);
             this.AnagrPanelTP.Controls.Add(this.energyConsLbl);
             this.AnagrPanelTP.Controls.Add(this.energyConsTB);
             this.AnagrPanelTP.Controls.Add(this.energyTB);
             this.AnagrPanelTP.Controls.Add(this.EnergeticClass);
             this.AnagrPanelTP.Controls.Add(this.panel2);
             this.AnagrPanelTP.Controls.Add(this.BrandBtn);
-            this.AnagrPanelTP.Controls.Add(this.snTB);
+            this.AnagrPanelTP.Controls.Add(this.serialNumberTB);
             this.AnagrPanelTP.Controls.Add(this.label2);
             this.AnagrPanelTP.Controls.Add(this.BrandCB);
             this.AnagrPanelTP.Controls.Add(this.BrandLbl);
@@ -565,7 +598,7 @@
             this.AnagrPanelTP.Controls.Add(this.descriptionLbl);
             this.AnagrPanelTP.Controls.Add(this.ArticleNameLbl);
             this.AnagrPanelTP.Controls.Add(this.descriptionTB);
-            this.AnagrPanelTP.Controls.Add(this.codArticleTB);
+            this.AnagrPanelTP.Controls.Add(this.ProductNameTB);
             this.AnagrPanelTP.Location = new System.Drawing.Point(4, 25);
             this.AnagrPanelTP.Margin = new System.Windows.Forms.Padding(4);
             this.AnagrPanelTP.Name = "AnagrPanelTP";
@@ -573,6 +606,66 @@
             this.AnagrPanelTP.Size = new System.Drawing.Size(495, 629);
             this.AnagrPanelTP.TabIndex = 0;
             this.AnagrPanelTP.Text = "Prodotto";
+            // 
+            // powerUM
+            // 
+            this.powerUM.AutoSize = true;
+            this.powerUM.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.powerUM.Location = new System.Drawing.Point(411, 392);
+            this.powerUM.Name = "powerUM";
+            this.powerUM.Size = new System.Drawing.Size(34, 16);
+            this.powerUM.TabIndex = 101;
+            this.powerUM.Text = "kw/h";
+            // 
+            // energy_consumptionUM
+            // 
+            this.energy_consumptionUM.AutoSize = true;
+            this.energy_consumptionUM.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.energy_consumptionUM.Location = new System.Drawing.Point(284, 427);
+            this.energy_consumptionUM.Name = "energy_consumptionUM";
+            this.energy_consumptionUM.Size = new System.Drawing.Size(34, 16);
+            this.energy_consumptionUM.TabIndex = 100;
+            this.energy_consumptionUM.Text = "kw/h";
+            // 
+            // weightUM
+            // 
+            this.weightUM.AutoSize = true;
+            this.weightUM.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.weightUM.Location = new System.Drawing.Point(378, 351);
+            this.weightUM.Name = "weightUM";
+            this.weightUM.Size = new System.Drawing.Size(22, 16);
+            this.weightUM.TabIndex = 99;
+            this.weightUM.Text = "kg";
+            // 
+            // widthUM
+            // 
+            this.widthUM.AutoSize = true;
+            this.widthUM.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.widthUM.Location = new System.Drawing.Point(378, 302);
+            this.widthUM.Name = "widthUM";
+            this.widthUM.Size = new System.Drawing.Size(25, 16);
+            this.widthUM.TabIndex = 98;
+            this.widthUM.Text = "cm";
+            // 
+            // depthUM
+            // 
+            this.depthUM.AutoSize = true;
+            this.depthUM.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.depthUM.Location = new System.Drawing.Point(155, 351);
+            this.depthUM.Name = "depthUM";
+            this.depthUM.Size = new System.Drawing.Size(25, 16);
+            this.depthUM.TabIndex = 97;
+            this.depthUM.Text = "cm";
+            // 
+            // heightUM
+            // 
+            this.heightUM.AutoSize = true;
+            this.heightUM.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.heightUM.Location = new System.Drawing.Point(155, 300);
+            this.heightUM.Name = "heightUM";
+            this.heightUM.Size = new System.Drawing.Size(25, 16);
+            this.heightUM.TabIndex = 96;
+            this.heightUM.Text = "cm";
             // 
             // ImageBtn
             // 
@@ -604,50 +697,6 @@
             this.barcBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.barcBtn.UseVisualStyleBackColor = true;
             this.barcBtn.Visible = false;
-            // 
-            // weightCB
-            // 
-            this.weightCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.weightCB.FormattingEnabled = true;
-            this.weightCB.Location = new System.Drawing.Point(379, 345);
-            this.weightCB.Margin = new System.Windows.Forms.Padding(4);
-            this.weightCB.Name = "weightCB";
-            this.weightCB.Size = new System.Drawing.Size(89, 24);
-            this.weightCB.TabIndex = 92;
-            this.weightCB.SelectedValueChanged += new System.EventHandler(this.weightCB_SelectedValueChanged);
-            // 
-            // depthCB
-            // 
-            this.depthCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.depthCB.FormattingEnabled = true;
-            this.depthCB.Location = new System.Drawing.Point(157, 343);
-            this.depthCB.Margin = new System.Windows.Forms.Padding(4);
-            this.depthCB.Name = "depthCB";
-            this.depthCB.Size = new System.Drawing.Size(68, 24);
-            this.depthCB.TabIndex = 91;
-            this.depthCB.SelectedValueChanged += new System.EventHandler(this.depthCB_SelectedValueChanged);
-            // 
-            // widthCB
-            // 
-            this.widthCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.widthCB.FormattingEnabled = true;
-            this.widthCB.Location = new System.Drawing.Point(379, 297);
-            this.widthCB.Margin = new System.Windows.Forms.Padding(4);
-            this.widthCB.Name = "widthCB";
-            this.widthCB.Size = new System.Drawing.Size(89, 24);
-            this.widthCB.TabIndex = 90;
-            this.widthCB.SelectedValueChanged += new System.EventHandler(this.widthCB_SelectedValueChanged);
-            // 
-            // heightCB
-            // 
-            this.heightCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.heightCB.FormattingEnabled = true;
-            this.heightCB.Location = new System.Drawing.Point(157, 297);
-            this.heightCB.Margin = new System.Windows.Forms.Padding(4);
-            this.heightCB.Name = "heightCB";
-            this.heightCB.Size = new System.Drawing.Size(68, 24);
-            this.heightCB.TabIndex = 89;
-            this.heightCB.SelectedValueChanged += new System.EventHandler(this.heightCB_SelectedValueChanged);
             // 
             // weightTB
             // 
@@ -761,7 +810,7 @@
             this.manfDateTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.manfDateTB.MaxLength = 10;
             this.manfDateTB.Name = "manfDateTB";
-            this.manfDateTB.Size = new System.Drawing.Size(236, 22);
+            this.manfDateTB.Size = new System.Drawing.Size(222, 22);
             this.manfDateTB.TabIndex = 79;
             this.manfDateTB.TextChanged += new System.EventHandler(this.manfDateTB_TextChanged);
             this.manfDateTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.manfDateTB_KeyDown);
@@ -776,17 +825,6 @@
             this.manfDateLbl.TabIndex = 78;
             this.manfDateLbl.Text = "Data fabbric.";
             // 
-            // powerCB
-            // 
-            this.powerCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.powerCB.FormattingEnabled = true;
-            this.powerCB.Location = new System.Drawing.Point(413, 386);
-            this.powerCB.Margin = new System.Windows.Forms.Padding(4);
-            this.powerCB.Name = "powerCB";
-            this.powerCB.Size = new System.Drawing.Size(55, 24);
-            this.powerCB.TabIndex = 77;
-            this.powerCB.SelectedValueChanged += new System.EventHandler(this.powerCB_SelectedValueChanged);
-            // 
             // powerTB
             // 
             this.powerTB.Location = new System.Drawing.Point(287, 386);
@@ -800,23 +838,12 @@
             // powerLbl
             // 
             this.powerLbl.AutoSize = true;
-            this.powerLbl.Location = new System.Drawing.Point(217, 390);
+            this.powerLbl.Location = new System.Drawing.Point(223, 389);
             this.powerLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerLbl.Name = "powerLbl";
             this.powerLbl.Size = new System.Drawing.Size(56, 16);
             this.powerLbl.TabIndex = 75;
             this.powerLbl.Text = "Potenza";
-            // 
-            // energy_consCB
-            // 
-            this.energy_consCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.energy_consCB.FormattingEnabled = true;
-            this.energy_consCB.Location = new System.Drawing.Point(287, 423);
-            this.energy_consCB.Margin = new System.Windows.Forms.Padding(4);
-            this.energy_consCB.Name = "energy_consCB";
-            this.energy_consCB.Size = new System.Drawing.Size(61, 24);
-            this.energy_consCB.TabIndex = 74;
-            this.energy_consCB.SelectedIndexChanged += new System.EventHandler(this.energy_consCB_SelectedIndexChanged);
             // 
             // energyConsLbl
             // 
@@ -880,14 +907,15 @@
             this.BrandBtn.UseVisualStyleBackColor = true;
             this.BrandBtn.Click += new System.EventHandler(this.BrandBtn_Click);
             // 
-            // snTB
+            // serialNumberTB
             // 
-            this.snTB.Location = new System.Drawing.Point(235, 21);
-            this.snTB.Margin = new System.Windows.Forms.Padding(4);
-            this.snTB.MaxLength = 98;
-            this.snTB.Name = "snTB";
-            this.snTB.Size = new System.Drawing.Size(237, 22);
-            this.snTB.TabIndex = 67;
+            this.serialNumberTB.Location = new System.Drawing.Point(235, 21);
+            this.serialNumberTB.Margin = new System.Windows.Forms.Padding(4);
+            this.serialNumberTB.MaxLength = 98;
+            this.serialNumberTB.Name = "serialNumberTB";
+            this.serialNumberTB.Size = new System.Drawing.Size(223, 22);
+            this.serialNumberTB.TabIndex = 67;
+            this.serialNumberTB.Leave += new System.EventHandler(this.serialNumberTB_Leave);
             // 
             // label2
             // 
@@ -908,8 +936,7 @@
             this.BrandCB.Name = "BrandCB";
             this.BrandCB.Size = new System.Drawing.Size(176, 24);
             this.BrandCB.TabIndex = 64;
-            this.BrandCB.SelectedIndexChanged += new System.EventHandler(this.BrandTB_SelectedIndexChanged);
-            this.BrandCB.Click += new System.EventHandler(this.BrandTB_Click);
+            this.BrandCB.SelectedIndexChanged += new System.EventHandler(this.BrandCB_SelectedIndexChanged);
             // 
             // BrandLbl
             // 
@@ -927,10 +954,10 @@
             this.cancelBtn.FlatAppearance.BorderSize = 0;
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.cancelBtn.Location = new System.Drawing.Point(80, 575);
+            this.cancelBtn.Location = new System.Drawing.Point(88, 575);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(69, 28);
+            this.cancelBtn.Size = new System.Drawing.Size(61, 28);
             this.cancelBtn.TabIndex = 62;
             this.cancelBtn.Text = "Annulla";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -946,7 +973,7 @@
             this.confirmBtn.Location = new System.Drawing.Point(3, 575);
             this.confirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(87, 28);
+            this.confirmBtn.Size = new System.Drawing.Size(82, 28);
             this.confirmBtn.TabIndex = 53;
             this.confirmBtn.Text = "Conferma";
             this.confirmBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -958,18 +985,19 @@
             // 
             this.subCategoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.subCategoryBtn.Enabled = false;
-            this.subCategoryBtn.Location = new System.Drawing.Point(439, 121);
+            this.subCategoryBtn.Location = new System.Drawing.Point(426, 119);
             this.subCategoryBtn.Margin = new System.Windows.Forms.Padding(4);
             this.subCategoryBtn.Name = "subCategoryBtn";
-            this.subCategoryBtn.Size = new System.Drawing.Size(32, 26);
+            this.subCategoryBtn.Size = new System.Drawing.Size(31, 26);
             this.subCategoryBtn.TabIndex = 61;
             this.subCategoryBtn.Text = "...";
             this.subCategoryBtn.UseVisualStyleBackColor = true;
+            this.subCategoryBtn.Click += new System.EventHandler(this.subCategoryBtn_Click);
             // 
             // categoryBtn
             // 
             this.categoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.categoryBtn.Location = new System.Drawing.Point(196, 121);
+            this.categoryBtn.Location = new System.Drawing.Point(196, 118);
             this.categoryBtn.Margin = new System.Windows.Forms.Padding(4);
             this.categoryBtn.Name = "categoryBtn";
             this.categoryBtn.Size = new System.Drawing.Size(32, 26);
@@ -999,13 +1027,12 @@
             this.subCategoryCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subCategoryCB.Enabled = false;
             this.subCategoryCB.FormattingEnabled = true;
-            this.subCategoryCB.Location = new System.Drawing.Point(233, 121);
+            this.subCategoryCB.Location = new System.Drawing.Point(233, 118);
             this.subCategoryCB.Margin = new System.Windows.Forms.Padding(4);
             this.subCategoryCB.Name = "subCategoryCB";
-            this.subCategoryCB.Size = new System.Drawing.Size(199, 24);
+            this.subCategoryCB.Size = new System.Drawing.Size(185, 24);
             this.subCategoryCB.TabIndex = 58;
             this.subCategoryCB.SelectedIndexChanged += new System.EventHandler(this.subCategoryCB_SelectedIndexChanged);
-            this.subCategoryCB.Click += new System.EventHandler(this.subCategoryCB_Click);
             // 
             // categoryCB
             // 
@@ -1014,11 +1041,10 @@
             this.categoryCB.Location = new System.Drawing.Point(9, 119);
             this.categoryCB.Margin = new System.Windows.Forms.Padding(4);
             this.categoryCB.Name = "categoryCB";
-            this.categoryCB.Size = new System.Drawing.Size(176, 24);
+            this.categoryCB.Size = new System.Drawing.Size(179, 24);
             this.categoryCB.TabIndex = 57;
             this.categoryCB.SelectedIndexChanged += new System.EventHandler(this.categoryCB_SelectedIndexChanged);
             this.categoryCB.DropDownClosed += new System.EventHandler(this.categoryCB_DropDownClosed);
-            this.categoryCB.Click += new System.EventHandler(this.categoryCB_Click);
             // 
             // notesLbl
             // 
@@ -1090,18 +1116,18 @@
             this.descriptionTB.MaxLength = 498;
             this.descriptionTB.Multiline = true;
             this.descriptionTB.Name = "descriptionTB";
-            this.descriptionTB.Size = new System.Drawing.Size(459, 91);
+            this.descriptionTB.Size = new System.Drawing.Size(445, 91);
             this.descriptionTB.TabIndex = 49;
             // 
-            // codArticleTB
+            // ProductNameTB
             // 
-            this.codArticleTB.Location = new System.Drawing.Point(12, 21);
-            this.codArticleTB.Margin = new System.Windows.Forms.Padding(4);
-            this.codArticleTB.MaxLength = 98;
-            this.codArticleTB.Name = "codArticleTB";
-            this.codArticleTB.Size = new System.Drawing.Size(215, 22);
-            this.codArticleTB.TabIndex = 48;
-            this.codArticleTB.Leave += new System.EventHandler(this.codArticleTB_Leave);
+            this.ProductNameTB.Location = new System.Drawing.Point(12, 21);
+            this.ProductNameTB.Margin = new System.Windows.Forms.Padding(4);
+            this.ProductNameTB.MaxLength = 98;
+            this.ProductNameTB.Name = "ProductNameTB";
+            this.ProductNameTB.Size = new System.Drawing.Size(215, 22);
+            this.ProductNameTB.TabIndex = 48;
+            this.ProductNameTB.Leave += new System.EventHandler(this.codArticleTB_Leave);
             // 
             // whTP
             // 
@@ -1379,10 +1405,6 @@
         private System.Windows.Forms.TabPage whTP;
         private System.Windows.Forms.Button ImageBtn;
         private System.Windows.Forms.Button barcBtn;
-        private System.Windows.Forms.ComboBox weightCB;
-        private System.Windows.Forms.ComboBox depthCB;
-        private System.Windows.Forms.ComboBox widthCB;
-        private System.Windows.Forms.ComboBox heightCB;
         private System.Windows.Forms.TextBox weightTB;
         private System.Windows.Forms.Label weightLbl;
         private System.Windows.Forms.TextBox depthTB;
@@ -1395,17 +1417,15 @@
         private System.Windows.Forms.Button priceBtn;
         private System.Windows.Forms.TextBox manfDateTB;
         private System.Windows.Forms.Label manfDateLbl;
-        private System.Windows.Forms.ComboBox powerCB;
         private System.Windows.Forms.TextBox powerTB;
         private System.Windows.Forms.Label powerLbl;
-        private System.Windows.Forms.ComboBox energy_consCB;
         private System.Windows.Forms.Label energyConsLbl;
         private System.Windows.Forms.TextBox energyConsTB;
         private System.Windows.Forms.TextBox energyTB;
         private System.Windows.Forms.Label EnergeticClass;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button BrandBtn;
-        private System.Windows.Forms.TextBox snTB;
+        private System.Windows.Forms.TextBox serialNumberTB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox BrandCB;
         private System.Windows.Forms.Label BrandLbl;
@@ -1423,7 +1443,7 @@
         private System.Windows.Forms.Label descriptionLbl;
         private System.Windows.Forms.Label ArticleNameLbl;
         private System.Windows.Forms.TextBox descriptionTB;
-        private System.Windows.Forms.TextBox codArticleTB;
+        private System.Windows.Forms.TextBox ProductNameTB;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label WHprodMovements;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -1441,5 +1461,14 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
+        private System.Windows.Forms.DataGridViewImageColumn Resized_Image;
+        private System.Windows.Forms.Label powerUM;
+        private System.Windows.Forms.Label energy_consumptionUM;
+        private System.Windows.Forms.Label weightUM;
+        private System.Windows.Forms.Label widthUM;
+        private System.Windows.Forms.Label depthUM;
+        private System.Windows.Forms.Label heightUM;
     }
 }

@@ -134,13 +134,13 @@ namespace GManagerial
 
         private void categorieSottocategorieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Categories categories = new Categories();
+            CategoriesForm categories = new CategoriesForm();
             categories.ShowDialog();
         }
 
         private void BrandItem_Click(object sender, EventArgs e)
         {
-            Brands brands = new Brands();
+            BrandForm brands = new BrandForm();
             brands.ShowDialog();
         }
 

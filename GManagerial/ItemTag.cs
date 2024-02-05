@@ -16,9 +16,9 @@ namespace GManagerial
 
         public object Tag2 { get; set; }    
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return Text;
-        }
+        }*/
     }
 }

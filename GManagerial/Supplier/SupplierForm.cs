@@ -1,6 +1,5 @@
 ﻿using GManagerial.AttachmentsForm;
 using GManagerial.CustomerForm;
-using GManagerial.CustomerForm.ChildForms;
 using GManagerial.CustomerMGM;
 using GManagerial.ObtainID;
 using GManagerial.Products;
@@ -54,7 +53,7 @@ namespace GManagerial
         {
             this.nec = 'n';
 
-            FormLogicGUI.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn }
+            FormLogicGUIObsolete.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn }
                 );
         }
 
@@ -68,7 +67,7 @@ namespace GManagerial
                 selectedRow = SupplierDGV.SelectedRows[0].Index;
 
                 this.nec = 'e';
-                FormLogicGUI.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton,
+                FormLogicGUIObsolete.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton,
             AttachmentsBtn });
 
                 SupplierMGM.editSupplier(companyTB, mailBox, idTaxBox, regionBox, provBox, municBox, AddressBox, telBox, pecBox, notesBox, CapBox,
@@ -84,7 +83,7 @@ namespace GManagerial
 
             else
             {
-                FormLogicGUI.SelectElement("fornitore");
+                FormLogicGUIObsolete.SelectElement("fornitore");
             }
         }
 
@@ -94,7 +93,7 @@ namespace GManagerial
             {
                 this.nec = 'c';
 
-                FormLogicGUI.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn }
+                FormLogicGUIObsolete.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn }
                 );
 
                 selectedRow = SupplierDGV.SelectedRows[0].Index;
@@ -104,7 +103,7 @@ namespace GManagerial
 
                 RPMlogicBox.ActDeaPM(regionBox, provBox, provLbl, municBox, municipLbl, CapBox, AddressBox, CapLbl, AddressLbl);
 
-                attachmentRow = AttachmentClass.LoadCustAttFromDB(ObtainIDelements.ObtainIdElement(SupplierDGV.SelectedRows[0].Index, SupplierDGV, "Supplier_ID"));
+                //attachmentRow = AttachmentClass.LoadCustAttFromDB(ObtainIDelements.ObtainIdElement(SupplierDGV.SelectedRows[0].Index, SupplierDGV, "Supplier_ID"));
             }
 
             else if (idDGVRows.Count == 1 || SupplierDGV.SelectedRows.Count > 1 || idDBRows.Count > 1)
@@ -114,7 +113,7 @@ namespace GManagerial
 
             else
             {
-                FormLogicGUI.SelectElement("fornitore");
+                FormLogicGUIObsolete.SelectElement("fornitore");
             }
         }
 
@@ -150,7 +149,7 @@ namespace GManagerial
 
             else
             {
-                FormLogicGUI.SelectElement("fornitore");
+                FormLogicGUIObsolete.SelectElement("fornitore");
             }
 
             idDBRows.Clear();
@@ -177,14 +176,14 @@ namespace GManagerial
                          pecBox, notesBox, ivaTB, coDestBox, 0);
                     }
 
-                    FormLogicGUI.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn });
-                    FormLogicGUI.DisableAndCleanTextBox(AnagrPanel);
+                    FormLogicGUIObsolete.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn });
+                    FormLogicGUIObsolete.DisableAndCleanTextBox(AnagrPanel);
                     SupplierForm_Load(sender, e);
                 }
 
                 else
                 {
-                    FormLogicGUI.PrintNotValidNameMessage("fornitore");
+                    FormLogicGUIObsolete.PrintNotValidNameMessage("fornitore");
                 }
 
             }
@@ -217,12 +216,12 @@ namespace GManagerial
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (FormLogicGUI.PrintCancelEdit())
+            if (FormLogicGUIObsolete.PrintCancelEdit())
             {
-                FormLogicGUI.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn
+                FormLogicGUIObsolete.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, BottomPanel, DocsButton, AttachmentsBtn
                 });
 
-                FormLogicGUI.DisableAndCleanTextBox(AnagrPanel);
+                FormLogicGUIObsolete.DisableAndCleanTextBox(AnagrPanel);
 
                 AFCommonLogic.resetAndCleanVars(ref AttachmentFormExist, ref countAttachmentsAccess, attachmentsToDeleteIndex);
 
@@ -300,16 +299,16 @@ namespace GManagerial
 
             if (this.nec == 'n')
             {
-                attachmentForm = new AttachmentForm(-1, countAttachmentsAccess, 'p');
+                //attachmentForm = new AttachmentForm(-1, countAttachmentsAccess, 'p');
             }
 
             else
             {
-                attachmentForm = new AttachmentForm(ObtainIDelements.ObtainIdElement(SupplierDGV.SelectedRows[0].Index, SupplierDGV, "Supplier_ID"),  countAttachmentsAccess, 'p');
+                //attachmentForm = new AttachmentForm(ObtainIDelements.ObtainIdElement(SupplierDGV.SelectedRows[0].Index, SupplierDGV, "Supplier_ID"),  countAttachmentsAccess, 'p');
             }
 
             AttachmentFormExist = true;
-            attachmentForm.ShowDialog();
+            //attachmentForm.ShowDialog();
         }
 
 

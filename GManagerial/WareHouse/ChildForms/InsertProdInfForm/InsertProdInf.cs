@@ -95,33 +95,33 @@ namespace GManagerial.WareHouse.ChildForms
 
                             else
                             {
-                                FormLogicGUI.AddQuantity();
+                                FormLogicGUIObsolete.AddQuantity();
                             }
                         }
 
                         else
                         {
-                            FormLogicGUI.AddQuantity();
+                            FormLogicGUIObsolete.AddQuantity();
                         }
 
                     }
 
                     else
                     {
-                        FormLogicGUI.AddQuantity();
+                        FormLogicGUIObsolete.AddQuantity();
                     }
                 }
 
 
                 else
                 {
-                    FormLogicGUI.PrintDateMessage();
+                    FormLogicGUIObsolete.PrintDateMessage();
                 }
             }
 
             else
             {
-                FormLogicGUI.SelectElement("magazzino");
+                FormLogicGUIObsolete.SelectElement("magazzino");
             }
         }
 

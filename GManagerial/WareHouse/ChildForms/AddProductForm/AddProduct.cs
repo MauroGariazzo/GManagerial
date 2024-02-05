@@ -98,7 +98,7 @@ namespace GManagerial.WareHouse.ChildForms
 
             else
             {
-                FormLogicGUI.SelectElement("prodotto");
+                FormLogicGUIObsolete.SelectElement("prodotto");
             }
 
         }

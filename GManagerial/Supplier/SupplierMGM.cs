@@ -8,25 +8,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GManagerial.Products.ChildForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Npgsql;
 
 namespace GManagerial.Supplier
 {
     class SupplierMGM
     {
         //static string connectionString = "Data Source=MAUROG\\SQLEXPRESS;Initial Catalog=Gmanagerial;Integrated Security=True";
-        static private string connectionString = "Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True";
+        //static private string connectionString = "Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True";
+        static private string connectionString = "Data Source=localhost;User ID=postgres;Password=1234";
         public SupplierMGM() { }
 
         static public void LoadSuppliers(DataGridView SupplierDGV)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string query = "SELECT Supplier_ID,Company_Name, City FROM SuppliersTbl WHERE SUPPLIER_ID != 1";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                string query = "SELECT Supplier_ID, Company_Name, City FROM SuppliersTbl WHERE Supplier_ID != 1";
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(query, connection);
                 DataTable dataTable = new DataTable();
 
                 adapter.Fill(dataTable);
 
+                SupplierDGV.DataSource = dataTable;
+                SupplierDGV.AutoGenerateColumns = false;
+
+                // Inserisci la colonna checkbox dopo aver impostato la DataSource
                 bool checkBoxColumnExists = false;
                 foreach (DataGridViewColumn column in SupplierDGV.Columns)
                 {
@@ -42,18 +48,15 @@ namespace GManagerial.Supplier
                     DataGridViewCheckBoxColumn checkBoxDataGridViewColumn = new DataGridViewCheckBoxColumn();
                     checkBoxDataGridViewColumn.Name = "chkColumn";
                     checkBoxDataGridViewColumn.HeaderText = "";
-                    
+
                     SupplierDGV.Columns.Insert(0, checkBoxDataGridViewColumn);
                 }
-
-                SupplierDGV.DataSource = dataTable;
-                SupplierDGV.AutoGenerateColumns = false;
-
-
             }
         }
 
-      
+
+
+
 
         static public void registerSupplier(char nec, System.Windows.Forms.TextBox Company_Name, System.Windows.Forms.TextBox idTaxBox,
             System.Windows.Forms.ComboBox regionBox, System.Windows.Forms.ComboBox municBox, System.Windows.Forms.ComboBox provBox,

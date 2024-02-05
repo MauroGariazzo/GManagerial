@@ -30,13 +30,13 @@ namespace GManagerial.Products.ChildForms.ProductPricesForm
                     SupplierMGM.registerSupplier('n', companyTB, idTaxBox, regionBox, municBox, provBox, AddressBox, telBox, mobileBox, mailBox, CapBox,
                      pecBox, notesBox, ivaTB, coDestBox, -1);
 
-                    FormLogicGUI.NECCC(AnagrPanel, true, true, new object[] { confirmBtn, cancelBtn });
+                    FormLogicGUIObsolete.NECCC(AnagrPanel, true, true, new object[] { confirmBtn, cancelBtn });
                     this.Close();
                 }
 
                 else
                 {
-                    FormLogicGUI.PrintNotValidNameMessage("fornitore");
+                    FormLogicGUIObsolete.PrintNotValidNameMessage("fornitore");
                 }
 
             }
@@ -51,7 +51,7 @@ namespace GManagerial.Products.ChildForms.ProductPricesForm
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (FormLogicGUI.PrintCancelEdit())
+            if (FormLogicGUIObsolete.PrintCancelEdit())
             {
                 this.Close();
             }

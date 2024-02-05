@@ -80,7 +80,7 @@ namespace GManagerial.WareHouse
 
             else
             {
-                FormLogicGUI.SelectElement("magazzino");
+                FormLogicGUIObsolete.SelectElement("magazzino");
             }
         }
 
@@ -154,7 +154,7 @@ namespace GManagerial.WareHouse
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            FormLogicGUI.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, barcBtn, ImageBtn });
+            FormLogicGUIObsolete.NECCC(AnagrPanel, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, barcBtn, ImageBtn });
 
             ProductsMGM.EditProduct(codArticleTB, snTB, manfDateTB, descriptionTB, null, null, null,
              null, null, null, null, null, null, null, null, null, null, null, null, 
@@ -196,9 +196,9 @@ namespace GManagerial.WareHouse
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            FormLogicGUI.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, barcBtn, ImageBtn });
+            FormLogicGUIObsolete.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, barcBtn, ImageBtn });
             InsertMinStockToDB();
-            FormLogicGUI.DisableAndCleanTextBox(AnagrPanel);
+            FormLogicGUIObsolete.DisableAndCleanTextBox(AnagrPanel);
 
            
             WareHouseProductMGM.LoadWareHouse(selectedWareHouseID, WareHouseDGV);
@@ -224,10 +224,10 @@ namespace GManagerial.WareHouse
         }
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (FormLogicGUI.PrintCancelEdit())
+            if (FormLogicGUIObsolete.PrintCancelEdit())
             {
-                FormLogicGUI.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, barcBtn, ImageBtn });
-                FormLogicGUI.DisableAndCleanTextBox(AnagrPanel);
+                FormLogicGUIObsolete.NECCC(AnagrPanel, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, barcBtn, ImageBtn });
+                FormLogicGUIObsolete.DisableAndCleanTextBox(AnagrPanel);
             }
         }
 

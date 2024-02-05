@@ -14,8 +14,8 @@ namespace GManagerial
 {
     static class GeoClass
     {
-        //static string connstring = "Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True";
-        static string connstring = "Data Source=MAUROG\\SQLEXPRESS;Initial Catalog=Gmanagerial;Integrated Security=True";
+        static string connstring = "Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True";
+       // static string connstring = "Data Source=MAUROG\\SQLEXPRESS;Initial Catalog=Gmanagerial;Integrated Security=True";
         static public List<string> GetRegions()
         {
             List<string> regions = new List<string>

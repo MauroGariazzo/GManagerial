@@ -11,17 +11,17 @@ using GManagerial.Products.ChildForms;
 
 namespace GManagerial.CustomerMGM
 {
-    class Customer
+    class CustomerMGM
     {
         
-        static string connectionString = "Data Source=MAUROG\\SQLEXPRESS;Initial Catalog=Gmanagerial;Integrated Security=True";
-        //static private string connectionString = "Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True";
+        //static string connectionString = "Data Source=MAUROG\\SQLEXPRESS;Initial Catalog=Gmanagerial;Integrated Security=True";
+        static private string connectionString = "Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True";
 
         static public void Load(DataGridView CustomersDgv)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id_customer,name,id_tax,region,municip,province,address,telephone,mobile,email,cap FROM customerTbl";
+                string query = "SELECT customer_id,name,id_tax,region,municip,province,address,telephone,mobile,email,cap FROM customerTbl";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 DataTable dataTable = new DataTable();
 

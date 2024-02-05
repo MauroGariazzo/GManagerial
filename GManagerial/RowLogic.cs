@@ -136,8 +136,8 @@ namespace GManagerial
         {
             foreach (DataGridViewRow row in DGV.Rows)
             {
-                DataGridViewCheckBoxCell chkCell = (DataGridViewCheckBoxCell)row.Cells[0]; // Colonna della casella di controllo (indice 0)
-                chkCell.Value = false;
+                //DataGridViewCheckBoxCell chkCell = (DataGridViewCheckBoxCell)row.Cells[0]; // Colonna della casella di controllo (indice 0)
+                //chkCell.Value = false;
             }
         }
 

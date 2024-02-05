@@ -8,9 +8,10 @@ namespace GManagerial.Products
 {
     internal interface IDAOProduct
     {
-        void Insert(IProduct product);
-        List<IProduct> GetAll();
-        void Update(IProduct product);  
+        int Insert(IProduct product);
+        Dictionary<int, Product> GetAll();
+        void Update(IProduct product); 
+        void Delete(IProduct product);  
         
     }
 }

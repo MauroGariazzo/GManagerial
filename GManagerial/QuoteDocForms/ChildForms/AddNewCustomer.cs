@@ -36,10 +36,10 @@ namespace GManagerial
         {
             if (denBox.Text != null && denBox.Text != "")
             {
-                Customer.registerCustomer('n', denBox, mailBox, idTaxBox, regionBox, provBox, municBox, AddressBox, telBox, pecBox, notesBox, CapBox, birthDateTB,
-                    mobileBox, -1);
+                //Customer.registerCustomer('n', denBox, mailBox, idTaxBox, regionBox, provBox, municBox, AddressBox, telBox, pecBox, notesBox, CapBox, birthDateTB,
+                 //   mobileBox, -1);
 
-                FormLogicGUI.DisableAndCleanTextBox(AnagrPanel);
+                FormLogicGUIObsolete.DisableAndCleanTextBox(AnagrPanel);
 
                 isCustomerCreated = true;
                 this.Close();
@@ -56,7 +56,7 @@ namespace GManagerial
 
                 else
                 {
-                    FormLogicGUI.PrintNotValidNameMessage("contatto");
+                    FormLogicGUIObsolete.PrintNotValidNameMessage("contatto");
                 }
 
             }
@@ -106,7 +106,7 @@ namespace GManagerial
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            FormLogicGUI.DisableAndCleanTextBox(AnagrPanel);
+            FormLogicGUIObsolete.DisableAndCleanTextBox(AnagrPanel);
             this.Close();
         }
 
