@@ -150,8 +150,10 @@
     <Compile Include="Attachments\IDAOAttchments.cs" />
     <Compile Include="Attachments\IDAOObjectAttachemnts.cs" />
     <Compile Include="ChildFormLogic\ChildFormLogic.cs" />
-    <Compile Include="CustomerForm\models\Customer.cs" />
-    <Compile Include="CustomerForm\models\ICustomer.cs" />
+    <Compile Include="Customers\models\Customer.cs" />
+    <Compile Include="Customers\models\DAOCustomer.cs" />
+    <Compile Include="Customers\models\ICustomer.cs" />
+    <Compile Include="Customers\models\IDAOCustomer.cs" />
     <Compile Include="Datasets\Gmanagerial.cs">
       <DependentUpon>Gmanagerial.xsd</DependentUpon>
     </Compile>
@@ -165,6 +167,8 @@
     <Compile Include="DBSearchLogic\TextBoxSearch.cs" />
     <Compile Include="FormLogicGUIObsolete.cs" />
     <Compile Include="FormLogicGUI\models\FormLogicGUI.cs" />
+    <Compile Include="Geo\models\DAOGeo.cs" />
+    <Compile Include="Geo\models\IDAOGeo.cs" />
     <Compile Include="HomeForm\HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,7 +179,7 @@
     <Compile Include="DBConnector\IDBConnector.cs" />
     <Compile Include="IsDigitInput.cs" />
     <Compile Include="ItemTag.cs" />
-    <Compile Include="CustomerForm\CustomerMGM.cs" />
+    <Compile Include="Customers\CustomerMGM.cs" />
     <Compile Include="ObtainID\ObtainIDelements.cs" />
     <Compile Include="priceProductInf.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Forms\BrandInfoForm.cs">
@@ -191,7 +195,6 @@
       <DependentUpon>BrandForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\ChildForms\BrandProduct\Models\Brand.cs" />
-    <Compile Include="Products\ChildForms\BrandProduct\Models\BrandMGM.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Models\DAOBrand.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Models\IBrand.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Models\IDAOBrand.cs" />
@@ -297,10 +300,10 @@
     </Compile>
     <Compile Include="GeoClass.cs" />
     <Compile Include="CustomerDgw.cs" />
-    <Compile Include="CustomerForm\forms\CustomersForm.cs">
+    <Compile Include="Customers\forms\CustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerForm\forms\CustomersForm.Designer.cs">
+    <Compile Include="Customers\forms\CustomersForm.Designer.cs">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -375,7 +378,7 @@
     <EmbeddedResource Include="Attachments\AttachmentForm.resx">
       <DependentUpon>AttachmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerForm\forms\CustomersForm.resx">
+    <EmbeddedResource Include="Customers\forms\CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm\HomeForm.resx">

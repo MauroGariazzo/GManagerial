@@ -87,7 +87,7 @@ namespace GManagerial.Products
             return idProduct;
         }
 
-        public Dictionary<int, Product> GetAll()
+        public Dictionary<int, IProduct> GetAll()
         {
             string query = "SELECT * , B.BRAND_NAME, C.CATEGORY_NAME, S.SUBCATEGORY_NAME FROM PRODUCTSTBL P JOIN BRANDTBL B ON P.ID_BRAND = B.ID_BRAND JOIN CATEGORIESTBL C ON " +
                 "C.CATEGORY_ID = P.CATEGORY_ID JOIN SUBCATEGORYTBL S ON S.SUBCATEGORY_ID = P.SUBCATEGORY_ID";
@@ -97,7 +97,7 @@ namespace GManagerial.Products
 
             SqlDataReader reader = this.dbConnector.Load(command);
 
-            Dictionary<int, Product> ret = new Dictionary<int, Product>();
+            Dictionary<int, IProduct> products = new Dictionary<int, IProduct>();
 
             while (reader.Read())
 
@@ -115,6 +115,7 @@ namespace GManagerial.Products
                 product.CategoryObj.CategoryName = reader["CATEGORY_NAME"].ToString();
                 product.SubCategory.SubCategoryName = reader["SUBCATEGORY_NAME"].ToString();
                 product.EnergyClass = reader["ENERGY_CLASS"].ToString();
+                product.Notes = reader["NOTES"].ToString();
 
                 if (reader["DEPTH"] == DBNull.Value) { product.Depth = null; }
                 else { product.Depth = (Decimal)reader["DEPTH"]; }
@@ -160,12 +161,12 @@ namespace GManagerial.Products
                         product.Image = Image.FromStream(ms);
                     }
                 }
-                ret.Add(product.ID, product);
+                products.Add(product.ID, product);
             }
 
             this.dbConnector.Close();
 
-            return ret;
+            return products;
         }
 
      

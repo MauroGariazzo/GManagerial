@@ -29,24 +29,6 @@ internal interface IProduct
     Image ResizedImage { get; set; }
     IBrand BrandP { get; set; }
 
-    Dictionary<int, IAttachment> Attachments
-    {
-        get;
-        set;
-    }
-
-    Dictionary<int, IAttachment> TempAttachments
-    {
-        get;
-        set;
-    }
-
-    Dictionary<int, IAttachment> AttachmentsToDelete
-    {
-        get;
-        set;
-    }
-
     byte[] ConvertImageToArrayBytes();
     byte[] ConvertResizeImageToArrayBytes();
 

@@ -340,7 +340,7 @@
             // selectAllRows
             // 
             this.selectAllRows.AutoSize = true;
-            this.selectAllRows.Location = new System.Drawing.Point(88, 39);
+            this.selectAllRows.Location = new System.Drawing.Point(86, 36);
             this.selectAllRows.Margin = new System.Windows.Forms.Padding(4);
             this.selectAllRows.Name = "selectAllRows";
             this.selectAllRows.Size = new System.Drawing.Size(18, 17);
@@ -707,6 +707,7 @@
             this.weightTB.Size = new System.Drawing.Size(135, 22);
             this.weightTB.TabIndex = 88;
             this.weightTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.weightTB_KeyPress);
+            this.weightTB.Leave += new System.EventHandler(this.weightTB_Leave);
             // 
             // weightLbl
             // 
@@ -727,6 +728,7 @@
             this.depthTB.Size = new System.Drawing.Size(140, 22);
             this.depthTB.TabIndex = 86;
             this.depthTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.depthTB_KeyPress);
+            this.depthTB.Leave += new System.EventHandler(this.depthTB_Leave);
             // 
             // depthLbl
             // 
@@ -757,6 +759,7 @@
             this.widthTB.Size = new System.Drawing.Size(135, 22);
             this.widthTB.TabIndex = 83;
             this.widthTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.widthTB_KeyPress);
+            this.widthTB.Leave += new System.EventHandler(this.widthTB_Leave);
             // 
             // heightTB
             // 
@@ -767,6 +770,7 @@
             this.heightTB.Size = new System.Drawing.Size(141, 22);
             this.heightTB.TabIndex = 82;
             this.heightTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.heightTB_KeyPress);
+            this.heightTB.Leave += new System.EventHandler(this.heightTB_Leave);
             // 
             // heightLbl
             // 
@@ -815,6 +819,7 @@
             this.manfDateTB.TextChanged += new System.EventHandler(this.manfDateTB_TextChanged);
             this.manfDateTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.manfDateTB_KeyDown);
             this.manfDateTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.manfDateTB_KeyPress);
+            this.manfDateTB.Leave += new System.EventHandler(this.manfDateTB_Leave);
             // 
             // manfDateLbl
             // 
@@ -834,6 +839,7 @@
             this.powerTB.Size = new System.Drawing.Size(117, 22);
             this.powerTB.TabIndex = 76;
             this.powerTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.powerTB_KeyPress);
+            this.powerTB.Leave += new System.EventHandler(this.powerTB_Leave);
             // 
             // powerLbl
             // 
@@ -864,6 +870,7 @@
             this.energyConsTB.Size = new System.Drawing.Size(132, 22);
             this.energyConsTB.TabIndex = 72;
             this.energyConsTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.energyConsTB_KeyPress);
+            this.energyConsTB.Leave += new System.EventHandler(this.energyConsTB_Leave);
             // 
             // energyTB
             // 
@@ -873,6 +880,7 @@
             this.energyTB.Name = "energyTB";
             this.energyTB.Size = new System.Drawing.Size(63, 22);
             this.energyTB.TabIndex = 71;
+            this.energyTB.Leave += new System.EventHandler(this.energyTB_Leave);
             // 
             // EnergeticClass
             // 
@@ -954,10 +962,10 @@
             this.cancelBtn.FlatAppearance.BorderSize = 0;
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.cancelBtn.Location = new System.Drawing.Point(88, 575);
+            this.cancelBtn.Location = new System.Drawing.Point(81, 575);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(61, 28);
+            this.cancelBtn.Size = new System.Drawing.Size(68, 28);
             this.cancelBtn.TabIndex = 62;
             this.cancelBtn.Text = "Annulla";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -1067,6 +1075,7 @@
             this.notesTB.Name = "notesTB";
             this.notesTB.Size = new System.Drawing.Size(411, 73);
             this.notesTB.TabIndex = 55;
+            this.notesTB.Leave += new System.EventHandler(this.notesTB_Leave);
             // 
             // subCategoryLbl
             // 
@@ -1118,6 +1127,7 @@
             this.descriptionTB.Name = "descriptionTB";
             this.descriptionTB.Size = new System.Drawing.Size(445, 91);
             this.descriptionTB.TabIndex = 49;
+            this.descriptionTB.Leave += new System.EventHandler(this.descriptionTB_Leave);
             // 
             // ProductNameTB
             // 

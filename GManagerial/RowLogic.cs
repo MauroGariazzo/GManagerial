@@ -183,7 +183,7 @@ namespace GManagerial
 
         static public void selectAllRows_CheckedChanged(CheckBox selectAllRows, DataGridView dgv, List<int>idDGVRows, List<int> idDBRows, string idForm)
         {
-            if (selectAllRows.Checked)
+            /*if (selectAllRows.Checked)
             {
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
@@ -216,7 +216,7 @@ namespace GManagerial
                         dgv.Rows[0].Selected = true;
                     }
                 }
-            }
+            }*/
         }
 
         static public void HowManyRows(DataGridView dgv, List<int>idDGVRows, ref int selectedRow, List<int>idDBRows) //RowLogic

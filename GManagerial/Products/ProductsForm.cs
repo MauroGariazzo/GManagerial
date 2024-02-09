@@ -35,33 +35,21 @@ namespace GManagerial.Products
     public partial class ProductsForm : Form
     {
         private char _newEditCopy;
-
-        private int categoryID;
-        private int subCategoryID;
-        private int brandID;
         private int selectedRow;
-        private int countFormPricesAccess;
 
         /////////////////////////////////////////
 
-        private List<System.Windows.Forms.Button> _buttonList;
-        private List<System.Windows.Forms.TextBox> _textboxes;
-        private List<System.Windows.Forms.ComboBox> _comboboxes;
+        private System.Windows.Forms.Button[] _buttonList;
+        private System.Windows.Forms.TextBox[] _textboxes;
+        private System.Windows.Forms.ComboBox[] _comboboxes;
 
 
         private AttachmentForm attachmentForm;
-        private bool AttachmentFormExist; //
-        private int countAttachmentsAccess; //
-        private int countIconForm; //
-        private List<int> attachmentsToDeleteIndex;//
 
         private List<int> idDBRows;  //id del DB
         private List<int> idDGVRows;  //id del datagridview
-        private List<object> attachmentRow;  //per copiare gli allegati quando si duplica un prodotto
 
-        private bool PriceFormExist;
-
-        private Product _product;
+        private IProduct _product;
 
         private IDBConnector.IDBConnector _dbConnector = new DBConnector("Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True");
 
@@ -77,20 +65,14 @@ namespace GManagerial.Products
         private DAOObjectAttachments _daoObjectAttachments;
 
         private AttachmentForm _attachmentForm;
-        private Dictionary<int, Product> _productsDictionary; //dizionario dove ho tutti i prodotti
+        private Dictionary<int, IProduct> _productsDictionary; //dizionario dove ho tutti i prodotti
         private FormLogicGUI _formLogicGUI;
         public ProductsForm()
         {
             InitializeComponent();
   
-            this.AttachmentFormExist = false;
-            this.attachmentsToDeleteIndex = new List<int>();
             this.idDBRows = new List<int>();
             this.idDGVRows = new List<int>();
-            this.attachmentRow = new List<object>();
-            this.PriceFormExist = false;
-            this.countFormPricesAccess = 0;
-            this.countIconForm = 0;
 
             this._daoProduct = new DAOProduct(this._dbConnector);
             this._daoBrand = new DAOBrand(this._dbConnector); //-> da cancellare
@@ -105,10 +87,10 @@ namespace GManagerial.Products
             this._subCategories = this._daoSubCategory.GetAllDictionaries();    
 
             this._formLogicGUI = new FormLogicGUI();
-            this._buttonList = new List<System.Windows.Forms.Button>() { confirmBtn, cancelBtn, confirmBtn2, cancelBtn2, barcBtn, priceBtn, AttachmentsBtn, ImageBtn};
-            this._textboxes = new List<System.Windows.Forms.TextBox>() {ProductNameTB, serialNumberTB, manfDateTB, descriptionTB, heightTB, widthTB, depthTB, weightTB, energyTB, powerTB, 
+            this._buttonList = new System.Windows.Forms.Button[] { confirmBtn, cancelBtn, confirmBtn2, cancelBtn2, barcBtn, priceBtn, AttachmentsBtn, ImageBtn};
+            this._textboxes = new System.Windows.Forms.TextBox[] {ProductNameTB, serialNumberTB, manfDateTB, descriptionTB, heightTB, widthTB, depthTB, weightTB, energyTB, powerTB, 
                 energyConsTB, notesTB};
-            this._comboboxes = new List<System.Windows.Forms.ComboBox>() { BrandCB, categoryCB, subCategoryCB};
+            this._comboboxes = new System.Windows.Forms.ComboBox[] { BrandCB, categoryCB, subCategoryCB};
         }
 
 
@@ -151,28 +133,9 @@ namespace GManagerial.Products
         }
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            //ProductsMGM.ProductsForm_Load(productsDGV);
-            //ProductsMGM.LoadCategories(categoryCB);
-
-
-            //ProductsMGM.AllBrands(BrandCB);
-
-            /*if (reader["Brand_Name"].ToString() != "" && reader["Brand_Name"].ToString() != null)
-            {
-                BrandCB.Items.Add(item);
-            }*/
-
             UpdateDataGridView();
             OnUpdateBrand();
             OnUpdateCategory();
-
-
-            /*if (BrandCB.SelectedItem == null)
-            {
-                brandID = 1;
-            }*/
-
-            //FormLogicGUI.LoadDGV(productsDGV);
         }
 
         private void UpdateDataGridView()
@@ -183,7 +146,7 @@ namespace GManagerial.Products
         }
 
 
-        private void DataGridViewPopulateFromDictionary(Dictionary<int, Product> productsDictionary)
+        private void DataGridViewPopulateFromDictionary(Dictionary<int, IProduct> productsDictionary)
         {
             foreach(var couple in productsDictionary)
             {
@@ -191,7 +154,6 @@ namespace GManagerial.Products
                 productsDGV.Rows[rowIndex].Cells[0].Value = couple.Key;
                 productsDGV.Rows[rowIndex].Cells[1].Value = couple.Value.ProductName;
                 productsDGV.Rows[rowIndex].Cells[2].Value = couple.Value.ResizedImage;
-
             }
         }
 
@@ -199,24 +161,16 @@ namespace GManagerial.Products
         {
             _formLogicGUI.NewEditCopyButton(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
 
-            /*this._newEditCopy = 'n';
-
-            ProductsMGM.LoadPowUnityMeasure(powerCB, energy_consCB);
-            ProductsMGM.LoadLenUnityMeasure(depthCB, widthCB, heightCB);
-            ProductsMGM.LoadWeiUnityMeasure(weightCB);
-
-            FormLogicGUI.NECCC(null, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, priceBtn, barcBtn, AttachmentsBtn, ImageBtn, ImageBtn },
-                ProductTab);
-
-            searchBtn.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
-            searchBox.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI*/
             this._newEditCopy = 'n';
 
             _product = new Product();
+            _product.BrandP = new Brand(); 
+            _product.CategoryObj = new Category(); 
+            _product.SubCategory = new SubCategory(); 
 
-            _product.Attachments = new Dictionary<int, IAttachment>();
-            _product.TempAttachments = new Dictionary<int, IAttachment>();
-            _product.AttachmentsToDelete = new Dictionary<int, IAttachment>();
+            ((Product)_product).Attachments = new Dictionary<int, IAttachment>();
+            ((Product)_product).TempAttachments = new Dictionary<int, IAttachment>();
+            ((Product)_product).AttachmentsToDelete = new Dictionary<int, IAttachment>();
         }
 
 
@@ -226,31 +180,7 @@ namespace GManagerial.Products
             {
                 /*RowLogic.DisableAllCheckBoxes(productsDGV);
 
-                selectedRow = productsDGV.SelectedRows[0].Index;
-
-                this._newEditCopy = 'e';
-                FormLogicGUI.NECCC(null, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, priceBtn, barcBtn, AttachmentsBtn, ImageBtn },
-                    ProductTab);
-
-                searchBtn.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
-                searchBox.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
-
-                /*BrandCB.Items.Clear();
-
-                ProductsMGM.AllBrands(BrandCB);
-                
-                ProductsMGM.LoadPowUnityMeasure(powerCB, energy_consCB);
-                ProductsMGM.LoadLenUnityMeasure(depthCB, widthCB, heightCB);
-                ProductsMGM.LoadWeiUnityMeasure(weightCB);
-     
-
-                ProductsMGM.EditProduct(codArticleTB, serialNumberTB, manfDateTB, descriptionTB, energyTB, powerTB, energyConsTB,
-             heightTB, widthTB, weightTB, depthTB, notesTB, heightCB, widthCB, weightCB, depthCB, powerCB, energy_consCB,
-             productsDGV, ObtainID.ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, 
-             "Product_ID"), BrandCB, categoryCB, subCategoryCB);
-
-                stockLblValue.Text = WareHouseProductMGM.ShowStock(ObtainID.ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV,
-             "Product_ID")).ToString();*/
+                selectedRow = productsDGV.SelectedRows[0].Index;*/
 
                 this._newEditCopy = 'e';
 
@@ -259,14 +189,12 @@ namespace GManagerial.Products
                 _product = new Product();
                 _product = _productsDictionary[id];
 
+                ((Product)_product).TempAttachments = new Dictionary<int, IAttachment>();
+                ((Product)_product).AttachmentsToDelete = new Dictionary<int, IAttachment>();
+                ((Product)_product).Attachments = _daoObjectAttachments.GetAll(id);
+
                 TransferDataFromDictionariesToControls();
-
-                _product.TempAttachments = new Dictionary<int, IAttachment>();
-                _product.AttachmentsToDelete = new Dictionary<int, IAttachment>();
-                _product.Attachments = _daoObjectAttachments.GetAll(id);
-
                 _formLogicGUI.NewEditCopyButton(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
-
             }
 
             else if (idDGVRows.Count > 1 || productsDGV.SelectedRows.Count > 1 || idDBRows.Count > 1)
@@ -276,7 +204,7 @@ namespace GManagerial.Products
 
             else
             {
-                FormLogicGUIObsolete.SelectElement("prodotto");
+                _formLogicGUI.SelectElement("prodotto");
             }
         }
 
@@ -304,54 +232,24 @@ namespace GManagerial.Products
         }
         private void CopyBtn_Click(object sender, EventArgs e)
         {
-            /*if (idDGVRows.Count == 1 || productsDGV.SelectedRows.Count == 1)
-            {
-                this._newEditCopy = 'c';
-
-                FormLogicGUI.NECCC(null, false, false, new object[] { stripBtns, confirmBtn, cancelBtn, priceBtn, barcBtn, AttachmentsBtn, ImageBtn },
-                    ProductTab);
-
-                searchBtn.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
-                searchBox.Enabled = false;   //---> DA SPOSTARE SU FORMLOGICGUI
-
+            /*
+            {               
                 selectedRow = productsDGV.SelectedRows[0].Index;
-
-                BrandCB.Items.Clear();
-
-                ProductsMGM.AllBrands(BrandCB);
-               /* ProductsMGM.EditProduct(ProductNameTB, serialNumberTB, manfDateTB, descriptionTB, energyTB, powerTB, energyConsTB,
-             heightTB, widthTB, weightTB, depthTB, notesTB, heightCB, widthCB, weightCB, depthCB, powerCB, energy_consCB, productsDGV, ObtainIdProduct(selectedRow), BrandCB,
-            categoryCB, subCategoryCB);
-
-                //attachmentRow = AttachmentClass.LoadProdAttFromDB(ObtainIdProduct(selectedRow));
-            }
-
-            else if (idDGVRows.Count > 1 || productsDGV.SelectedRows.Count > 1 || idDBRows.Count > 1)
-            {
-                MessageBox.Show("Non posso copiare più di un elemento alla volta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            else
-            {
-                FormLogicGUI.SelectElement("prodotto");
-            }*/
+            */
 
             if (idDGVRows.Count == 1 || productsDGV.SelectedRows.Count == 1)
             {
                 _newEditCopy = 'c';
 
                 _product = new Product();
-
-                int id = ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"); //ottengo l'id che voglio modificare dal datagridview.
-                
+                int id = ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"); //ottengo l'id che voglio modificare dal datagridview.              
                 _product = _productsDictionary[id];
 
+                ((Product)_product).TempAttachments = new Dictionary<int, IAttachment>();
+                ((Product)_product).AttachmentsToDelete = new Dictionary<int, IAttachment>();
+                ((Product)_product).Attachments = _daoObjectAttachments.GetAll(id);
+
                 _formLogicGUI = new FormLogicGUI();
-
-                _product.TempAttachments = new Dictionary<int, IAttachment>();
-                _product.AttachmentsToDelete = new Dictionary<int, IAttachment>();
-                _product.Attachments = _daoObjectAttachments.GetAll(id);
-
                 TransferDataFromDictionariesToControls();
                 _formLogicGUI.NewEditCopyButton(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
 
@@ -367,7 +265,6 @@ namespace GManagerial.Products
                 //quante righe sono state selezionate NON SFRUTTANDO LE CHECKBOX?
                 //RowLogic.moveIDfromDGVToDBList(idDBRows, idDGVRows, productsDGV, "Product_ID");
                 
-
                 try
                 {
 
@@ -432,7 +329,7 @@ namespace GManagerial.Products
                         int id_product = ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"); //ottengo l'id che voglio modificare dal datagridview.
                         _product = _productsDictionary[id_product];
 
-                        _product.AttachmentsToDelete = _daoObjectAttachments.GetAll(id_product); //tutti gli allegati
+                        ((Product)_product).AttachmentsToDelete = _daoObjectAttachments.GetAll(id_product); //tutti gli allegati
                         DeleteAttachments();
                         DeleteProduct(id_product);
                     }
@@ -442,16 +339,14 @@ namespace GManagerial.Products
 
             else
             {
-                MessageBox.Show("Seleziona prima una riga da cancellare", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("Seleziona prima una riga da cancellare", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning); FORMLOGICGUI
             }
         }
 
 
-
-
         private void DeleteAttachments()
         {
-            foreach (Attachment attachment in _product.AttachmentsToDelete.Values)
+            foreach (Attachment attachment in ((Product)_product).AttachmentsToDelete.Values)
             {
                 _daoObjectAttachments.Delete(attachment, attachment.ObjectID); //cancella gli allegati dalla tabella product_attachment
                 _daoAttachment.Delete(attachment); //cancella gli allegati dalla tabella attachments
@@ -468,142 +363,49 @@ namespace GManagerial.Products
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            if (ProductNameTB.Text != "")
+            if (ProductNameTB.Text != string.Empty)
             {
                 int id_product; //id per recuperare l'ultima riga inserita
 
-                if (SetProductFields())
-                { //settare tutti i fields di prodotto prima di registrarlo nel db
-
-                    if (_newEditCopy == 'n' || _newEditCopy == 'c')
-                    {
-                        id_product = _daoProduct.Insert(_product);
-                    }
-
-                    else
-                    {
-                        _daoProduct.Update(_product);
-                        id_product = _product.ID;
-                    }
-
-
-                    foreach (Attachment attachment in _product.TempAttachments.Values)
-                    {
-                        int id_attachment = _daoAttachment.Insert(attachment);
-                        _daoObjectAttachments.Insert(id_product, id_attachment);
-                    }
-
-
-                    AttachmentForm.TempID = -1; //risetto la variabile TempID che mi serviva per gli allegati temporanei
-                    _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
-
-                    UpdateDataGridView();
+                if (_newEditCopy == 'n' || _newEditCopy == 'c')
+                {
+                    id_product = _daoProduct.Insert(_product); //nuovo inserimento recupero l'id direttamente dalla query
                 }
+
+                else
+                {
+                    _daoProduct.Update(_product); //l'id ce l'ho già, perché sto cercando di modificare un prodotto già esistente
+                    id_product = _product.ID;
+                }
+
+
+                foreach (Attachment attachment in ((Product)_product).TempAttachments.Values)
+                {
+                   int id_attachment = _daoAttachment.Insert(attachment);
+                   _daoObjectAttachments.Insert(id_product, id_attachment);
+                }
+
+                   AttachmentForm.TempID = -1; //risetto la variabile TempID che mi serviva per gli allegati temporanei
+                   _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
+
+                   UpdateDataGridView();
             }
 
             else
             {
-                MessageBox.Show("Inserisci il nome del prodotto", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Inserisci il nome del prodotto", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);//formlogicgui
             }
         }
 
-        private bool SetProductFields() //*
-        {
-          
-                if (BrandCB.SelectedItem == null)
-                {
-                    _product.BrandP = new Brand(); //->spostarlo nei controlli new, edit e copy
-                    _product.BrandP.ID = 1;
-                }
-
-                if (categoryCB.SelectedItem == null)
-                {
-                    _product.CategoryObj = new Category(); //->spostarlo nei controlli new, edit e copy
-                    _product.CategoryObj.ID = 1;
-                }
-
-                if (subCategoryCB.SelectedItem == null)
-                {
-                    _product.SubCategory = new SubCategory(); //->spostarlo nei controlli new, edit e copy
-                    _product.SubCategory.ID = 1;
-                }
-
-                _product.Description = descriptionTB.Text;
-                _product.EnergyClass = energyTB.Text;
-                _product.SerialNumber = serialNumberTB.Text;
-                _product.Notes = notesTB.Text;
-
-                decimal decimalResult;
-
-                if (decimal.TryParse(energyConsTB.Text, out decimalResult))
-                {
-                    _product.EnergyConsumption = decimalResult;
-                }
-
-                if (decimal.TryParse(heightTB.Text, out decimalResult))
-                {
-                    _product.Height = decimalResult;
-                }
-
-                if (decimal.TryParse(widthTB.Text, out decimalResult))
-                {
-                    _product.Width = decimalResult;
-                }
-
-                if (decimal.TryParse(weightTB.Text, out decimalResult))
-                {
-                    _product.Weight = decimalResult;
-                }
-
-                if (decimal.TryParse(depthTB.Text, out decimalResult))
-                {
-                    _product.Depth = decimalResult;
-                }
-
-                int intResult;
-
-                if (int.TryParse(powerTB.Text, out intResult))
-                {
-                    _product.Power = intResult;
-                }
-
-                DateTime dateTime;
-                if(DateTime.TryParse(manfDateTB.Text, out dateTime))
-                {
-                    _product.ManufacturingDate = dateTime;
-                }
-
-            return true;
-
-            //per l'immagine non posso mettre valori null
-        }
-
-
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (FormLogicGUIObsolete.PrintCancelEdit())
-            {
-                //_product.ResizedImage = null;
+            if (_formLogicGUI.PrintCancelEdit())
+            {  
                 _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
-                
-
-                /*AttachmentForm.TempID = -1;
-
-                FormLogicGUI.NECCC(null, true, true, new object[] { stripBtns, confirmBtn, cancelBtn, priceBtn, barcBtn, AttachmentsBtn, ImageBtn }, ProductTab
-                    );
-
-                FormLogicGUI.DisableAndCleanTextBox(AnagrPanelTP);
-
-                AFCommonLogic.resetAndCleanVars(ref AttachmentFormExist, ref countAttachmentsAccess, attachmentsToDeleteIndex);
-                PPLogic.resetAndCleanVars(ref countFormPricesAccess, ref PriceFormExist);
-
-                IFCommonLogic.resetAndClean(ref countIconForm);
-
+                /*
                 RowLogic.RowSelected(selectedRow, productsDGV);
                 RowLogic.DeselectAllCheckBox(idDGVRows, productsDGV);
-
-                searchBtn.Enabled = true;   //---> DA SPOSTARE SU FORMLOGICGUI
-                searchBox.Enabled = true;   //---> DA SPOSTARE SU FORMLOGICGUI*/
+                */
             }
 
             idDBRows.Clear();   // --> ?????????
@@ -612,30 +414,15 @@ namespace GManagerial.Products
 
         private void attachmentsBtn_Click(object sender, EventArgs e)
         {
-            _attachmentForm = new AttachmentForm(_product, _product.ID);
+            _attachmentForm = new AttachmentForm((Product)_product, _product.ID);
             _attachmentForm.ShowDialog();
         }
 
 
         private void priceBtn_Click(object sender, EventArgs e)
         {
-            PriceFormExist = true;
-            ProductPrices pp;
-            countFormPricesAccess += 1;
-
-            if (this._newEditCopy == 'n')
-            {
-                pp = new ProductPrices(_newEditCopy, 0, countFormPricesAccess);
-            }
-
-            else
-            {
-                pp = new ProductPrices(_newEditCopy, ObtainIdProduct(selectedRow), countFormPricesAccess);
-            }
-
-            pp.ShowDialog();
+           
         }
-
 
         private void ImageBtn_Click(object sender, EventArgs e)
         {
@@ -654,8 +441,15 @@ namespace GManagerial.Products
             categories.SetSubCategoryCallBack(this.OnUpdateSubCategory);
             categories.ShowDialog();
 
-            categoryCB.Text = tempCategoryForStringAttribute.CategoryName;
-            subCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
+            if (tempCategoryForStringAttribute != null)
+            {
+                categoryCB.Text = tempCategoryForStringAttribute.CategoryName;
+            }
+
+            if (tempSubCategoryForStringAttribute != null)
+            {
+                subCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
+            }
         }
 
 
@@ -669,8 +463,15 @@ namespace GManagerial.Products
             categories.SetSubCategoryCallBack(this.OnUpdateSubCategory);
             categories.ShowDialog();
 
-            categoryCB.Text = tempCategoryForStringAttribute.CategoryName;
-            subCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
+            if (tempCategoryForStringAttribute != null)
+            {
+                categoryCB.Text = tempCategoryForStringAttribute.CategoryName;
+            }
+
+            if (tempSubCategoryForStringAttribute != null)
+            {
+                subCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
+            }
         }
 
 
@@ -724,15 +525,20 @@ namespace GManagerial.Products
 
         private void subCategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _product.SubCategory = (SubCategory)subCategoryCB.SelectedItem;
-
-            if (_product.SubCategory != null)
+            if (subCategoryCB.SelectedIndex != 0 && subCategoryCB.SelectedIndex != -1)
             {
-                if (_product.SubCategory.CategoryId == 1)
+                _product.SubCategory = (SubCategory)subCategoryCB.SelectedItem;
+
+                /*if (_product.SubCategory.CategoryId == 1)
                 {
                     subCategoryCB.Text = "-";
                     return;
-                }
+                }*/
+            }
+
+            else
+            {
+                subCategoryCB.SelectedItem = null;
             }
         }
 
@@ -942,19 +748,7 @@ namespace GManagerial.Products
         //--------------------------------------------------------PANELSEARCH----------------------------------------------------------------------------//
         private void catCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (catCB.SelectedItem != null && catCB.SelectedItem.ToString() != "")
-            {
-                subCatCB.SelectedItem = null;
-                subCatCB.Enabled = true;
-                subCat.ForeColor = Color.Black;
-            }
-
-            ItemTag selectedCategory = (ItemTag)catCB.SelectedItem;
-
-            if (selectedCategory != null)
-            {
-                categoryID = (int)selectedCategory.Tag;
-            }
+  
         }
 
         private void catCB_Click(object sender, EventArgs e)
@@ -977,31 +771,22 @@ namespace GManagerial.Products
 
         private void subCatCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ItemTag ScatSelectedItem = (ItemTag)subCatCB.SelectedItem;
-            if (ScatSelectedItem != null) { subCategoryID = (int)ScatSelectedItem.Tag; }
+
         }
 
         private void subCatCB_Click(object sender, EventArgs e)
         {
-            subCatCB.Items.Clear();
-            ProductsMGM.LoadSubCategories(categoryID, subCatCB);
         }
 
         private void brandCBsearch_Click(object sender, EventArgs e)
         {
-            brandCBsearch.Items.Clear();
-            ProductsMGM.AllBrands(brandCBsearch);
 
-            if (brandCBsearch.SelectedItem == null)
-            {
-                brandID = 1;
-            }
+
         }
 
         private void brandCBsearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ItemTag BrandSelectedItem = (ItemTag)brandCBsearch.SelectedItem;
-            if (BrandSelectedItem != null) { brandID = (int)BrandSelectedItem.Tag; }
+
         }
 
         //-------------------------------------------------ENDPANELSEARCH---------------------------------------------------------------------------//
@@ -1017,8 +802,17 @@ namespace GManagerial.Products
         }
 
         private void selectAllRows_CheckedChanged(object sender, EventArgs e) //ROWLOGIC
-        { 
-            RowLogic.selectAllRows_CheckedChanged(selectAllRows, productsDGV, idDGVRows, idDBRows, "Product_ID");
+        {
+            
+            if(!selectAllRows.Checked)
+            { 
+                productsDGV.SelectAll();
+            }
+
+            else
+            {
+                productsDGV.ClearSelection();
+            }
         }
 
         private void productsDGV_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -1140,13 +934,92 @@ namespace GManagerial.Products
             if(BrandCB.SelectedItem != null)
             {
                 _product.BrandP = BrandCB.SelectedItem as Brand;
-
             }
 
             if (BrandCB.Text == "-" && BrandCB.SelectedIndex == 0)
             {
                 BrandCB.SelectedItem = null;
             }
+        }
+
+        private void descriptionTB_Leave(object sender, EventArgs e)
+        {
+            _product.Description = descriptionTB.Text;
+        }
+
+        private void heightTB_Leave(object sender, EventArgs e)
+        {
+            decimal height;
+
+            if (decimal.TryParse(heightTB.Text, out height))
+            {
+                _product.Height = height;
+            }
+        }
+
+        private void widthTB_Leave(object sender, EventArgs e)
+        {
+            decimal width;
+
+            if (decimal.TryParse(widthTB.Text, out width))
+            {
+                _product.Width = width;
+            }
+        }
+
+        private void depthTB_Leave(object sender, EventArgs e)
+        {
+            decimal depth;
+
+            if (decimal.TryParse(depthTB.Text, out depth))
+            {
+                _product.Width = depth;
+            }
+        }
+
+        private void weightTB_Leave(object sender, EventArgs e)
+        {
+            decimal weight;
+
+            if (decimal.TryParse(weightTB.Text, out weight))
+            {
+                _product.Weight = weight;
+            }
+        }
+
+        private void energyTB_Leave(object sender, EventArgs e)
+        {
+            _product.EnergyClass = energyTB.Text;
+        }
+
+        private void powerTB_Leave(object sender, EventArgs e)
+        {
+            decimal power;
+
+            if (decimal.TryParse(powerTB.Text, out power))
+            {
+                _product.Weight = power;
+            }
+        }
+
+        private void energyConsTB_Leave(object sender, EventArgs e)
+        {
+            decimal energyConsumption;
+
+            if (decimal.TryParse(energyConsTB.Text, out energyConsumption))
+            {
+                _product.Weight = energyConsumption;
+            }
+        }
+
+        private void notesTB_Leave(object sender, EventArgs e)
+        {
+            _product.Notes = notesTB.Text;
+        }
+
+        private void manfDateTB_Leave(object sender, EventArgs e)
+        {
+
         }
     }
     

@@ -16,7 +16,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace GManagerial.Products
 {
-
     internal class Product: IProduct, IAttachmentParent
     {
         private int _ID;
@@ -51,6 +50,10 @@ namespace GManagerial.Products
     
         public Product()
         {
+            this._description = string.Empty;
+            this._serialNumber = string.Empty;
+            this._notes = string.Empty;
+            this._energyClass = string.Empty;
             //this._daoObjectAttachments = new DAOObjectAttachments(_dbConnector, AttachmentQuery.SELECT_PRODUCT, AttachmentQuery.INSERT_PRODUCT, AttachmentQuery.DELETE_PRODUCT);
         }
 
@@ -179,7 +182,10 @@ namespace GManagerial.Products
                 return _brandP;
             }
 
-            set { _brandP = value; }
+            set 
+            {
+                _brandP = value; 
+            }
         }
 
 
