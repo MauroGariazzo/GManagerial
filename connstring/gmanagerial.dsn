@@ -1,0 +1,5 @@
+[ODBC]
+DRIVER=Devart ODBC Driver for PostgreSQL
+Password=1234
+User ID=postgres
+Data Source=localhost
