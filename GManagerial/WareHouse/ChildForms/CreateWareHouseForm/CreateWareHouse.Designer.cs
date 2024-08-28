@@ -33,32 +33,32 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.anagrPanel = new System.Windows.Forms.Panel();
+            this.AnagrPanelTP = new System.Windows.Forms.Panel();
             this.descrLbl = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.CapLbl = new System.Windows.Forms.Label();
-            this.CapBox = new System.Windows.Forms.TextBox();
-            this.cancelBtn = new System.Windows.Forms.Button();
-            this.confirmBtn = new System.Windows.Forms.Button();
+            this.DescriptionTB = new System.Windows.Forms.TextBox();
+            this.ZipCodeLbl = new System.Windows.Forms.Label();
+            this.CancelBtn = new System.Windows.Forms.Button();
+            this.ConfirmBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.AddressLbl = new System.Windows.Forms.Label();
-            this.AddressBox = new System.Windows.Forms.TextBox();
-            this.municBox = new System.Windows.Forms.ComboBox();
-            this.municipLbl = new System.Windows.Forms.Label();
-            this.provBox = new System.Windows.Forms.ComboBox();
-            this.regionBox = new System.Windows.Forms.ComboBox();
-            this.provLbl = new System.Windows.Forms.Label();
+            this.AddressTB = new System.Windows.Forms.TextBox();
+            this.CityComboBox = new System.Windows.Forms.ComboBox();
+            this.CityLbl = new System.Windows.Forms.Label();
+            this.ProvinceComboBox = new System.Windows.Forms.ComboBox();
+            this.RegionComboBox = new System.Windows.Forms.ComboBox();
+            this.ProvinceLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.WHname = new System.Windows.Forms.TextBox();
+            this.WareHouseNameTB = new System.Windows.Forms.TextBox();
             this.wareHouseLB = new System.Windows.Forms.ListBox();
             this.stripBtns = new System.Windows.Forms.ToolStrip();
             this.newBtn = new System.Windows.Forms.ToolStripButton();
             this.editBtn = new System.Windows.Forms.ToolStripButton();
             this.deleteBtn = new System.Windows.Forms.ToolStripButton();
             this.exitBtn = new System.Windows.Forms.ToolStripButton();
+            this.ZipCodeTB = new GManagerial.GraphicElements.IntTextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.anagrPanel.SuspendLayout();
+            this.AnagrPanelTP.SuspendLayout();
             this.stripBtns.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,18 +69,18 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(0, 1);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(475, 81);
+            this.panel2.Size = new System.Drawing.Size(633, 100);
             this.panel2.TabIndex = 23;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(391, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(521, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 61);
+            this.pictureBox1.Size = new System.Drawing.Size(100, 75);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -90,10 +90,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label5.Location = new System.Drawing.Point(8, 7);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(11, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 20);
+            this.label5.Size = new System.Drawing.Size(209, 25);
             this.label5.TabIndex = 1;
             this.label5.Text = "Gestione Magazzino";
             // 
@@ -102,102 +101,95 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(12, 38);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(16, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 17);
+            this.label3.Size = new System.Drawing.Size(197, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Gestione magazzini fisici";
             // 
-            // anagrPanel
+            // AnagrPanelTP
             // 
-            this.anagrPanel.Controls.Add(this.descrLbl);
-            this.anagrPanel.Controls.Add(this.textBox1);
-            this.anagrPanel.Controls.Add(this.CapLbl);
-            this.anagrPanel.Controls.Add(this.CapBox);
-            this.anagrPanel.Controls.Add(this.cancelBtn);
-            this.anagrPanel.Controls.Add(this.confirmBtn);
-            this.anagrPanel.Controls.Add(this.label4);
-            this.anagrPanel.Controls.Add(this.AddressLbl);
-            this.anagrPanel.Controls.Add(this.AddressBox);
-            this.anagrPanel.Controls.Add(this.municBox);
-            this.anagrPanel.Controls.Add(this.municipLbl);
-            this.anagrPanel.Controls.Add(this.provBox);
-            this.anagrPanel.Controls.Add(this.regionBox);
-            this.anagrPanel.Controls.Add(this.provLbl);
-            this.anagrPanel.Controls.Add(this.label1);
-            this.anagrPanel.Controls.Add(this.WHname);
-            this.anagrPanel.Enabled = false;
-            this.anagrPanel.Location = new System.Drawing.Point(202, 87);
-            this.anagrPanel.Name = "anagrPanel";
-            this.anagrPanel.Size = new System.Drawing.Size(272, 301);
-            this.anagrPanel.TabIndex = 24;
+            this.AnagrPanelTP.Controls.Add(this.ZipCodeTB);
+            this.AnagrPanelTP.Controls.Add(this.descrLbl);
+            this.AnagrPanelTP.Controls.Add(this.DescriptionTB);
+            this.AnagrPanelTP.Controls.Add(this.ZipCodeLbl);
+            this.AnagrPanelTP.Controls.Add(this.CancelBtn);
+            this.AnagrPanelTP.Controls.Add(this.ConfirmBtn);
+            this.AnagrPanelTP.Controls.Add(this.label4);
+            this.AnagrPanelTP.Controls.Add(this.AddressLbl);
+            this.AnagrPanelTP.Controls.Add(this.AddressTB);
+            this.AnagrPanelTP.Controls.Add(this.CityComboBox);
+            this.AnagrPanelTP.Controls.Add(this.CityLbl);
+            this.AnagrPanelTP.Controls.Add(this.ProvinceComboBox);
+            this.AnagrPanelTP.Controls.Add(this.RegionComboBox);
+            this.AnagrPanelTP.Controls.Add(this.ProvinceLbl);
+            this.AnagrPanelTP.Controls.Add(this.label1);
+            this.AnagrPanelTP.Controls.Add(this.WareHouseNameTB);
+            this.AnagrPanelTP.Enabled = false;
+            this.AnagrPanelTP.Location = new System.Drawing.Point(269, 107);
+            this.AnagrPanelTP.Margin = new System.Windows.Forms.Padding(4);
+            this.AnagrPanelTP.Name = "AnagrPanelTP";
+            this.AnagrPanelTP.Size = new System.Drawing.Size(363, 370);
+            this.AnagrPanelTP.TabIndex = 24;
             // 
             // descrLbl
             // 
             this.descrLbl.AutoSize = true;
-            this.descrLbl.Location = new System.Drawing.Point(10, 149);
-            this.descrLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.descrLbl.Location = new System.Drawing.Point(13, 183);
             this.descrLbl.Name = "descrLbl";
-            this.descrLbl.Size = new System.Drawing.Size(62, 13);
+            this.descrLbl.Size = new System.Drawing.Size(78, 16);
             this.descrLbl.TabIndex = 45;
             this.descrLbl.Text = "Descrizione";
             // 
-            // textBox1
+            // DescriptionTB
             // 
-            this.textBox1.Location = new System.Drawing.Point(10, 167);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(251, 99);
-            this.textBox1.TabIndex = 44;
+            this.DescriptionTB.Location = new System.Drawing.Point(13, 206);
+            this.DescriptionTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DescriptionTB.Multiline = true;
+            this.DescriptionTB.Name = "DescriptionTB";
+            this.DescriptionTB.Size = new System.Drawing.Size(333, 121);
+            this.DescriptionTB.TabIndex = 44;
             // 
-            // CapLbl
+            // ZipCodeLbl
             // 
-            this.CapLbl.AutoSize = true;
-            this.CapLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.CapLbl.Location = new System.Drawing.Point(156, 109);
-            this.CapLbl.Name = "CapLbl";
-            this.CapLbl.Size = new System.Drawing.Size(26, 13);
-            this.CapLbl.TabIndex = 43;
-            this.CapLbl.Text = "Cap";
+            this.ZipCodeLbl.AutoSize = true;
+            this.ZipCodeLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.ZipCodeLbl.Location = new System.Drawing.Point(208, 134);
+            this.ZipCodeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ZipCodeLbl.Name = "ZipCodeLbl";
+            this.ZipCodeLbl.Size = new System.Drawing.Size(32, 16);
+            this.ZipCodeLbl.TabIndex = 43;
+            this.ZipCodeLbl.Text = "Cap";
             // 
-            // CapBox
+            // CancelBtn
             // 
-            this.CapBox.Enabled = false;
-            this.CapBox.Location = new System.Drawing.Point(158, 125);
-            this.CapBox.MaxLength = 5;
-            this.CapBox.Name = "CapBox";
-            this.CapBox.Size = new System.Drawing.Size(44, 20);
-            this.CapBox.TabIndex = 42;
-            this.CapBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CapBox_KeyPress);
+            this.CancelBtn.Location = new System.Drawing.Point(247, 334);
+            this.CancelBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(100, 28);
+            this.CancelBtn.TabIndex = 41;
+            this.CancelBtn.Text = "Annulla";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // cancelBtn
+            // ConfirmBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(185, 271);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelBtn.TabIndex = 41;
-            this.cancelBtn.Text = "Annulla";
-            this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
-            // 
-            // confirmBtn
-            // 
-            this.confirmBtn.Location = new System.Drawing.Point(95, 271);
-            this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(75, 23);
-            this.confirmBtn.TabIndex = 40;
-            this.confirmBtn.Text = "Conferma";
-            this.confirmBtn.UseVisualStyleBackColor = true;
-            this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
+            this.ConfirmBtn.Location = new System.Drawing.Point(127, 334);
+            this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.ConfirmBtn.Name = "ConfirmBtn";
+            this.ConfirmBtn.Size = new System.Drawing.Size(100, 28);
+            this.ConfirmBtn.TabIndex = 40;
+            this.ConfirmBtn.Text = "Conferma";
+            this.ConfirmBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(158, 15);
+            this.label4.Location = new System.Drawing.Point(211, 18);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.Size = new System.Drawing.Size(59, 16);
             this.label4.TabIndex = 39;
             this.label4.Text = "Regione";
             // 
@@ -205,99 +197,107 @@
             // 
             this.AddressLbl.AutoSize = true;
             this.AddressLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.AddressLbl.Location = new System.Drawing.Point(10, 109);
+            this.AddressLbl.Location = new System.Drawing.Point(13, 134);
+            this.AddressLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.AddressLbl.Name = "AddressLbl";
-            this.AddressLbl.Size = new System.Drawing.Size(45, 13);
+            this.AddressLbl.Size = new System.Drawing.Size(55, 16);
             this.AddressLbl.TabIndex = 38;
             this.AddressLbl.Text = "Indirizzo";
             // 
-            // AddressBox
+            // AddressTB
             // 
-            this.AddressBox.Enabled = false;
-            this.AddressBox.Location = new System.Drawing.Point(12, 125);
-            this.AddressBox.MaxLength = 30;
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.Size = new System.Drawing.Size(120, 20);
-            this.AddressBox.TabIndex = 37;
+            this.AddressTB.Enabled = false;
+            this.AddressTB.Location = new System.Drawing.Point(16, 154);
+            this.AddressTB.Margin = new System.Windows.Forms.Padding(4);
+            this.AddressTB.MaxLength = 30;
+            this.AddressTB.Name = "AddressTB";
+            this.AddressTB.Size = new System.Drawing.Size(159, 22);
+            this.AddressTB.TabIndex = 37;
             // 
-            // municBox
+            // CityComboBox
             // 
-            this.municBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.municBox.Enabled = false;
-            this.municBox.FormattingEnabled = true;
-            this.municBox.Location = new System.Drawing.Point(158, 79);
-            this.municBox.Name = "municBox";
-            this.municBox.Size = new System.Drawing.Size(104, 21);
-            this.municBox.TabIndex = 36;
-            this.municBox.DropDownClosed += new System.EventHandler(this.municBox_DropDownClosed);
+            this.CityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CityComboBox.Enabled = false;
+            this.CityComboBox.FormattingEnabled = true;
+            this.CityComboBox.Location = new System.Drawing.Point(211, 97);
+            this.CityComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.CityComboBox.Name = "CityComboBox";
+            this.CityComboBox.Size = new System.Drawing.Size(137, 24);
+            this.CityComboBox.TabIndex = 36;
+            this.CityComboBox.SelectedIndexChanged += new System.EventHandler(this.CityComboBox_SelectedIndexChanged);
             // 
-            // municipLbl
+            // CityLbl
             // 
-            this.municipLbl.AutoSize = true;
-            this.municipLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.municipLbl.Location = new System.Drawing.Point(156, 63);
-            this.municipLbl.Name = "municipLbl";
-            this.municipLbl.Size = new System.Drawing.Size(46, 13);
-            this.municipLbl.TabIndex = 35;
-            this.municipLbl.Text = "Comune";
+            this.CityLbl.AutoSize = true;
+            this.CityLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.CityLbl.Location = new System.Drawing.Point(208, 78);
+            this.CityLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CityLbl.Name = "CityLbl";
+            this.CityLbl.Size = new System.Drawing.Size(57, 16);
+            this.CityLbl.TabIndex = 35;
+            this.CityLbl.Text = "Comune";
             // 
-            // provBox
+            // ProvinceComboBox
             // 
-            this.provBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.provBox.Enabled = false;
-            this.provBox.FormattingEnabled = true;
-            this.provBox.Location = new System.Drawing.Point(10, 79);
-            this.provBox.Name = "provBox";
-            this.provBox.Size = new System.Drawing.Size(143, 21);
-            this.provBox.TabIndex = 34;
-            this.provBox.SelectedIndexChanged += new System.EventHandler(this.provBox_SelectedIndexChanged);
-            this.provBox.DropDownClosed += new System.EventHandler(this.provBox_DropDownClosed);
+            this.ProvinceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProvinceComboBox.Enabled = false;
+            this.ProvinceComboBox.FormattingEnabled = true;
+            this.ProvinceComboBox.Location = new System.Drawing.Point(13, 97);
+            this.ProvinceComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ProvinceComboBox.Name = "ProvinceComboBox";
+            this.ProvinceComboBox.Size = new System.Drawing.Size(189, 24);
+            this.ProvinceComboBox.TabIndex = 34;
+            this.ProvinceComboBox.SelectedIndexChanged += new System.EventHandler(this.ProvinceComboBox_SelectedIndexChanged);
             // 
-            // regionBox
+            // RegionComboBox
             // 
-            this.regionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.regionBox.FormattingEnabled = true;
-            this.regionBox.Location = new System.Drawing.Point(158, 31);
-            this.regionBox.Name = "regionBox";
-            this.regionBox.Size = new System.Drawing.Size(103, 21);
-            this.regionBox.TabIndex = 33;
-            this.regionBox.SelectedIndexChanged += new System.EventHandler(this.regionBox_SelectedIndexChanged);
-            this.regionBox.DropDownClosed += new System.EventHandler(this.regionBox_DropDownClosed);
+            this.RegionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.RegionComboBox.FormattingEnabled = true;
+            this.RegionComboBox.Location = new System.Drawing.Point(211, 38);
+            this.RegionComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.RegionComboBox.Name = "RegionComboBox";
+            this.RegionComboBox.Size = new System.Drawing.Size(136, 24);
+            this.RegionComboBox.TabIndex = 33;
+            this.RegionComboBox.SelectedIndexChanged += new System.EventHandler(this.RegionComboBox_SelectedIndexChanged);
             // 
-            // provLbl
+            // ProvinceLbl
             // 
-            this.provLbl.AutoSize = true;
-            this.provLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.provLbl.Location = new System.Drawing.Point(10, 63);
-            this.provLbl.Name = "provLbl";
-            this.provLbl.Size = new System.Drawing.Size(51, 13);
-            this.provLbl.TabIndex = 32;
-            this.provLbl.Text = "Provincia";
+            this.ProvinceLbl.AutoSize = true;
+            this.ProvinceLbl.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.ProvinceLbl.Location = new System.Drawing.Point(13, 78);
+            this.ProvinceLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ProvinceLbl.Name = "ProvinceLbl";
+            this.ProvinceLbl.Size = new System.Drawing.Size(63, 16);
+            this.ProvinceLbl.TabIndex = 32;
+            this.ProvinceLbl.Text = "Provincia";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 15);
+            this.label1.Location = new System.Drawing.Point(13, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 27;
             this.label1.Text = "Nome Magazzino";
             // 
-            // WHname
+            // WareHouseNameTB
             // 
-            this.WHname.Location = new System.Drawing.Point(10, 31);
-            this.WHname.MaxLength = 40;
-            this.WHname.Name = "WHname";
-            this.WHname.Size = new System.Drawing.Size(143, 20);
-            this.WHname.TabIndex = 26;
+            this.WareHouseNameTB.Location = new System.Drawing.Point(13, 38);
+            this.WareHouseNameTB.Margin = new System.Windows.Forms.Padding(4);
+            this.WareHouseNameTB.MaxLength = 40;
+            this.WareHouseNameTB.Name = "WareHouseNameTB";
+            this.WareHouseNameTB.Size = new System.Drawing.Size(189, 22);
+            this.WareHouseNameTB.TabIndex = 26;
             // 
             // wareHouseLB
             // 
             this.wareHouseLB.FormattingEnabled = true;
-            this.wareHouseLB.Location = new System.Drawing.Point(0, 86);
-            this.wareHouseLB.Margin = new System.Windows.Forms.Padding(2);
+            this.wareHouseLB.ItemHeight = 16;
+            this.wareHouseLB.Location = new System.Drawing.Point(0, 106);
+            this.wareHouseLB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.wareHouseLB.Name = "wareHouseLB";
-            this.wareHouseLB.Size = new System.Drawing.Size(198, 303);
+            this.wareHouseLB.Size = new System.Drawing.Size(263, 372);
             this.wareHouseLB.TabIndex = 44;
             this.wareHouseLB.SelectedIndexChanged += new System.EventHandler(this.wareHouseLB_SelectedIndexChanged);
             // 
@@ -312,9 +312,9 @@
             this.editBtn,
             this.deleteBtn,
             this.exitBtn});
-            this.stripBtns.Location = new System.Drawing.Point(0, 392);
+            this.stripBtns.Location = new System.Drawing.Point(0, 505);
             this.stripBtns.Name = "stripBtns";
-            this.stripBtns.Size = new System.Drawing.Size(477, 26);
+            this.stripBtns.Size = new System.Drawing.Size(636, 50);
             this.stripBtns.TabIndex = 45;
             this.stripBtns.Text = "toolStrip1";
             // 
@@ -323,7 +323,7 @@
             this.newBtn.Image = ((System.Drawing.Image)(resources.GetObject("newBtn.Image")));
             this.newBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newBtn.Name = "newBtn";
-            this.newBtn.Size = new System.Drawing.Size(55, 23);
+            this.newBtn.Size = new System.Drawing.Size(63, 47);
             this.newBtn.Text = "Crea";
             this.newBtn.Click += new System.EventHandler(this.newBtn_Click);
             // 
@@ -332,7 +332,7 @@
             this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
             this.editBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(78, 23);
+            this.editBtn.Size = new System.Drawing.Size(92, 47);
             this.editBtn.Text = "Modifica";
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
@@ -341,7 +341,7 @@
             this.deleteBtn.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.Image")));
             this.deleteBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(70, 23);
+            this.deleteBtn.Size = new System.Drawing.Size(82, 47);
             this.deleteBtn.Text = "Elimina";
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
@@ -351,21 +351,32 @@
             this.exitBtn.Image = ((System.Drawing.Image)(resources.GetObject("exitBtn.Image")));
             this.exitBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(51, 23);
+            this.exitBtn.Size = new System.Drawing.Size(58, 47);
             this.exitBtn.Text = "Esci";
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
+            // ZipCodeTB
+            // 
+            this.ZipCodeTB.Enabled = false;
+            this.ZipCodeTB.Location = new System.Drawing.Point(214, 154);
+            this.ZipCodeTB.MaxLength = 5;
+            this.ZipCodeTB.Name = "ZipCodeTB";
+            this.ZipCodeTB.Size = new System.Drawing.Size(100, 22);
+            this.ZipCodeTB.TabIndex = 46;
+            this.ZipCodeTB.TextChanged += new System.EventHandler(this.ZipCodeTB_TextChanged);
+            // 
             // CreateWareHouse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 418);
+            this.ClientSize = new System.Drawing.Size(636, 555);
             this.ControlBox = false;
             this.Controls.Add(this.stripBtns);
             this.Controls.Add(this.wareHouseLB);
-            this.Controls.Add(this.anagrPanel);
+            this.Controls.Add(this.AnagrPanelTP);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateWareHouse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crea Magazzino";
@@ -373,8 +384,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.anagrPanel.ResumeLayout(false);
-            this.anagrPanel.PerformLayout();
+            this.AnagrPanelTP.ResumeLayout(false);
+            this.AnagrPanelTP.PerformLayout();
             this.stripBtns.ResumeLayout(false);
             this.stripBtns.PerformLayout();
             this.ResumeLayout(false);
@@ -387,28 +398,28 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel anagrPanel;
+        private System.Windows.Forms.Panel AnagrPanelTP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox WHname;
+        private System.Windows.Forms.TextBox WareHouseNameTB;
         private System.Windows.Forms.Label AddressLbl;
-        private System.Windows.Forms.TextBox AddressBox;
-        private System.Windows.Forms.ComboBox municBox;
-        private System.Windows.Forms.Label municipLbl;
-        private System.Windows.Forms.ComboBox provBox;
-        private System.Windows.Forms.ComboBox regionBox;
-        private System.Windows.Forms.Label provLbl;
+        private System.Windows.Forms.TextBox AddressTB;
+        private System.Windows.Forms.ComboBox CityComboBox;
+        private System.Windows.Forms.Label CityLbl;
+        private System.Windows.Forms.ComboBox ProvinceComboBox;
+        private System.Windows.Forms.ComboBox RegionComboBox;
+        private System.Windows.Forms.Label ProvinceLbl;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button cancelBtn;
-        private System.Windows.Forms.Button confirmBtn;
-        private System.Windows.Forms.Label CapLbl;
-        private System.Windows.Forms.TextBox CapBox;
+        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Button ConfirmBtn;
+        private System.Windows.Forms.Label ZipCodeLbl;
         private System.Windows.Forms.ListBox wareHouseLB;
         private System.Windows.Forms.ToolStrip stripBtns;
         private System.Windows.Forms.ToolStripButton newBtn;
         private System.Windows.Forms.ToolStripButton editBtn;
         private System.Windows.Forms.ToolStripButton deleteBtn;
         private System.Windows.Forms.Label descrLbl;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox DescriptionTB;
         private System.Windows.Forms.ToolStripButton exitBtn;
+        private GraphicElements.IntTextBox ZipCodeTB;
     }
 }

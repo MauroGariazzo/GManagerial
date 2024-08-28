@@ -1,0 +1,5 @@
+﻿I delegates ci consentono di assegnare dei tipi di dato che consentono di trattare i metodi come se fossero degli oggetti.
+Un delegate è un riferimento a un metodo consentendo di passare dei metodi come argomenti ad altri metodi, di memorizzarli in variabili e invocarli in un secondo momento.
+I delegates sono spesso usati per implementare callback ed eventi consentendo agli oggetti di comunicare tra di loro in modo flessibile e basato sugli eventi.
+
+un evento è come un'interfaccia sicura che utilizza un delegate per notificare altre parti del codice quando qualcosa accade

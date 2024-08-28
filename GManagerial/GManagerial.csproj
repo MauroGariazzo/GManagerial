@@ -133,55 +133,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attachments\AFCommonLogic.cs" />
-    <Compile Include="Attachments\Attachment.cs" />
-    <Compile Include="Attachments\AttachmentForm.cs">
+    <Compile Include="Attachments\forms\AttachmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Attachments\AttachmentForm.Designer.cs">
+    <Compile Include="Attachments\forms\AttachmentForm.Designer.cs">
       <DependentUpon>AttachmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Attachments\AttachmentGUI.cs" />
-    <Compile Include="Attachments\AttachmentsQueries.cs" />
-    <Compile Include="Attachments\DAOAttachments.cs" />
-    <Compile Include="Attachments\DAOObjectAttachments.cs" />
-    <Compile Include="Attachments\IAttachment.cs" />
-    <Compile Include="Attachments\IAttachmentParent.cs" />
-    <Compile Include="Attachments\IDAOAttchments.cs" />
-    <Compile Include="Attachments\IDAOObjectAttachemnts.cs" />
+    <Compile Include="Attachments\models\Attachment.cs" />
+    <Compile Include="Attachments\models\AttachmentsQueries.cs" />
+    <Compile Include="Attachments\models\DAOAttachments.cs" />
+    <Compile Include="Attachments\models\DAOObjectAttachments.cs" />
+    <Compile Include="Attachments\models\IAttachment.cs" />
+    <Compile Include="Attachments\models\IAttachmentParent.cs" />
+    <Compile Include="Attachments\models\IDAOAttchments.cs" />
+    <Compile Include="Attachments\models\IDAOObjectAttachments.cs" />
     <Compile Include="ChildFormLogic\ChildFormLogic.cs" />
     <Compile Include="Customers\models\Customer.cs" />
+    <Compile Include="Customers\models\CustomerQueries.cs" />
     <Compile Include="Customers\models\DAOCustomer.cs" />
     <Compile Include="Customers\models\ICustomer.cs" />
     <Compile Include="Customers\models\IDAOCustomer.cs" />
-    <Compile Include="Datasets\Gmanagerial.cs">
-      <DependentUpon>Gmanagerial.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Datasets\Gmanagerial.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Gmanagerial.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DateManipulate.cs" />
+    <Compile Include="DBConnectors\DBConnector.cs" />
+    <Compile Include="DBConnectors\IDBConnector.cs" />
     <Compile Include="DBSearchLogic\SearchLogic.cs" />
     <Compile Include="DBSearchLogic\TextBoxSearch.cs" />
-    <Compile Include="FormLogicGUIObsolete.cs" />
+    <Compile Include="Documents\OrderDocument\ChildForms\AddWareHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\OrderDocument\ChildForms\AddWareHouse.Designer.cs">
+      <DependentUpon>AddWareHouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\OrderDocument\forms\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\OrderDocument\forms\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\OrderDocument\models\DAOOrder.cs" />
+    <Compile Include="Documents\OrderDocument\models\DAOOrderDetails.cs" />
+    <Compile Include="Documents\OrderDocument\models\DAOOrderProduct.cs" />
+    <Compile Include="Documents\OrderDocument\models\IDAOOrder.cs" />
+    <Compile Include="Documents\OrderDocument\models\IDAOOrderDetails.cs" />
+    <Compile Include="Documents\OrderDocument\models\IDAOOrderProduct.cs" />
+    <Compile Include="Documents\OrderDocument\models\IOrder.cs" />
+    <Compile Include="Documents\OrderDocument\models\IOrderDetails.cs" />
+    <Compile Include="Documents\OrderDocument\models\IOrderProduct.cs" />
+    <Compile Include="Documents\OrderDocument\models\Order.cs" />
+    <Compile Include="Documents\OrderDocument\models\OrderDetails.cs" />
+    <Compile Include="Documents\OrderDocument\models\OrderProduct.cs" />
+    <Compile Include="EnumUtilities\ManageMonths.cs" />
     <Compile Include="FormLogicGUI\models\FormLogicGUI.cs" />
     <Compile Include="Geo\models\DAOGeo.cs" />
     <Compile Include="Geo\models\IDAOGeo.cs" />
+    <Compile Include="GraphicElements\DateTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphicElements\DecimalTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphicElements\IntTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphicElements\SearchTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HomeForm\HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HomeForm\HomeForm.Designer.cs">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBConnector\DBConnector.cs" />
-    <Compile Include="DBConnector\IDBConnector.cs" />
     <Compile Include="IsDigitInput.cs" />
+    <Compile Include="EnumUtilities\Enums.cs" />
     <Compile Include="ItemTag.cs" />
-    <Compile Include="Customers\CustomerMGM.cs" />
     <Compile Include="ObtainID\ObtainIDelements.cs" />
-    <Compile Include="priceProductInf.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Forms\BrandInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +223,7 @@
     <Compile Include="Products\ChildForms\BrandProduct\Models\DAOBrand.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Models\IBrand.cs" />
     <Compile Include="Products\ChildForms\BrandProduct\Models\IDAOBrand.cs" />
+    <Compile Include="Products\ChildForms\CategoryAndSubProduct\CategoriesGUI.cs" />
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Forms\AddNewCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,8 +242,6 @@
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Forms\CategoriesForm.Designer.cs">
       <DependentUpon>CategoriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products\ChildForms\CategoryAndSubProduct\CategoriesGUI.cs" />
-    <Compile Include="Products\ChildForms\CategoryAndSubProduct\CategoriesMGM.cs" />
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Models\Category.cs" />
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Models\DAOCategory.cs" />
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Models\DAOSubCategory.cs" />
@@ -226,7 +250,8 @@
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Models\IDAOSubCategory.cs" />
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Models\ISubCategory.cs" />
     <Compile Include="Products\ChildForms\CategoryAndSubProduct\Models\SubCategory.cs" />
-    <Compile Include="Products\ChildForms\CategoryAndSubProduct\sharedLogic.cs" />
+    <Compile Include="Products\ChildForms\DAOSupplierProduct.cs" />
+    <Compile Include="Products\ChildForms\IDAOSupplierProduct.cs" />
     <Compile Include="Products\ChildForms\ImageProduct\IFCommonLogic.cs" />
     <Compile Include="Products\ChildForms\ImageProduct\Form\ImageForm.cs">
       <SubType>Form</SubType>
@@ -235,60 +260,84 @@
       <DependentUpon>ImageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\ChildForms\ImageProduct\ImageMGM.cs" />
-    <Compile Include="Products\ChildForms\ProductPricesForm\AddSupplier.cs">
+    <Compile Include="Products\ChildForms\ManageSupplier\forms\AddSupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Products\ChildForms\ProductPricesForm\AddSupplier.designer.cs">
-      <DependentUpon>AddSupplier.cs</DependentUpon>
+    <Compile Include="Products\ChildForms\ManageSupplier\forms\AddSupplierForm.Designer.cs">
+      <DependentUpon>AddSupplierForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products\ChildForms\ProductPricesForm\PPLogic.cs" />
-    <Compile Include="Products\ChildForms\ProductPricesForm\ProductPrices.cs">
+    <Compile Include="Products\ChildForms\ManageSupplier\forms\RemoveSupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Products\ChildForms\ProductPricesForm\ProductPrices.Designer.cs">
-      <DependentUpon>ProductPrices.cs</DependentUpon>
+    <Compile Include="Products\ChildForms\ManageSupplier\forms\RemoveSupplierForm.Designer.cs">
+      <DependentUpon>RemoveSupplierForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products\ChildForms\ProductPricesForm\ProductPricesMGM.cs" />
+    <Compile Include="Products\ChildForms\models\ISupplierProduct.cs" />
+    <Compile Include="Products\ChildForms\models\SupplierProduct.cs" />
+    <Compile Include="Products\ChildForms\SupplierProductQueries.cs" />
     <Compile Include="Products\DAOProduct.cs" />
     <Compile Include="Products\IDAOProduct.cs" />
     <Compile Include="Products\IProduct.cs" />
     <Compile Include="Products\Product.cs" />
+    <Compile Include="Products\ProductPriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\ProductQueries.cs" />
     <Compile Include="Products\ProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Products\ProductsForm.Designer.cs">
       <DependentUpon>ProductsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products\ProductsMGM.cs" />
-    <Compile Include="QuoteDocForms\ChildForms\AddNewCustomer.cs">
+    <Compile Include="Products\SellPrices\DAOSellPrice.cs" />
+    <Compile Include="Products\SellPrices\IDAOSellPrice.cs" />
+    <Compile Include="Products\SellPrices\ISellPrice.cs" />
+    <Compile Include="Products\SellPrices\SellPrice.cs" />
+    <Compile Include="Documents\QuoteDocument\ChildForms\AddProductForm\AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuoteDocForms\ChildForms\AddNewCustomer.Designer.cs">
+    <Compile Include="Documents\QuoteDocument\ChildForms\AddProductForm\AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\QuoteDocument\ChildForms\InsertProdInfForm\ProductInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\QuoteDocument\ChildForms\InsertProdInfForm\ProductInfo.Designer.cs">
+      <DependentUpon>ProductInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\QuoteDocument\ChildForms\NewCustomer\AddNewCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\QuoteDocument\ChildForms\NewCustomer\AddNewCustomer.Designer.cs">
       <DependentUpon>AddNewCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuoteDocForms\ChildForms\AddNewCustomerMGM.cs" />
-    <Compile Include="QuoteDocForms\ChildForms\AddNewQuote.cs">
+    <Compile Include="Documents\QuoteDocument\ChildForms\NewQuote\NewQuoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuoteDocForms\ChildForms\AddNewQuote.Designer.cs">
-      <DependentUpon>AddNewQuote.cs</DependentUpon>
+    <Compile Include="Documents\QuoteDocument\ChildForms\NewQuote\NewQuoteForm.Designer.cs">
+      <DependentUpon>NewQuoteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuoteDocForms\QuoteDoc.cs">
+    <Compile Include="Documents\QuoteDocument\models\QuoteDocument.cs" />
+    <Compile Include="Documents\QuoteDocument\QuoteDoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuoteDocForms\QuoteDoc.Designer.cs">
+    <Compile Include="Documents\QuoteDocument\QuoteDoc.Designer.cs">
       <DependentUpon>QuoteDoc.cs</DependentUpon>
     </Compile>
-    <Compile Include="RowLogic.cs" />
-    <Compile Include="RPMlogicBox.cs" />
+    <Compile Include="ResizeImage.cs" />
+    <Compile Include="RowLogic\RowLogic.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Supplier\SupplierForm.cs">
+    <Compile Include="Suppliers\forms\SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Supplier\SupplierForm.Designer.cs">
+    <Compile Include="Suppliers\forms\SupplierForm.Designer.cs">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Supplier\SupplierMGM.cs" />
+    <Compile Include="Suppliers\models\DAOSupplier.cs" />
+    <Compile Include="Suppliers\models\IDAOSupplier.cs" />
+    <Compile Include="Suppliers\models\ISupplier.cs" />
+    <Compile Include="Suppliers\models\Supplier.cs" />
+    <Compile Include="Suppliers\models\SupplierQueries.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -298,8 +347,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GeoClass.cs" />
-    <Compile Include="CustomerDgw.cs" />
     <Compile Include="Customers\forms\CustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,7 +358,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ResizeImage.cs" />
     <Compile Include="SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,7 +378,6 @@
     <Compile Include="WareHouse\ChildForms\AddProductForm\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="WareHouse\ChildForms\AddProductForm\AddProductMGM.cs" />
     <Compile Include="WareHouse\ChildForms\AddSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,41 +390,78 @@
     <Compile Include="WareHouse\ChildForms\CreateWareHouseForm\CreateWareHouse.Designer.cs">
       <DependentUpon>CreateWareHouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="WareHouse\ChildForms\CreateWareHouseForm\CreateWareHouseMGM.cs" />
-    <Compile Include="WareHouse\ChildForms\InsertProdInfForm\InsertProdInf.cs">
+    <Compile Include="WareHouse\ChildForms\InsertProdInfForm\ProductInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WareHouse\ChildForms\InsertProdInfForm\InsertProdInf.Designer.cs">
-      <DependentUpon>InsertProdInf.cs</DependentUpon>
+    <Compile Include="WareHouse\ChildForms\InsertProdInfForm\ProductInfo.Designer.cs">
+      <DependentUpon>ProductInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="WareHouse\ChildForms\InsertProdInfForm\InsertProdInfMGM.cs" />
-    <Compile Include="WareHouse\ChildForms\LoadMerchForm\EditLoadMerchForm.cs">
+    <Compile Include="WareHouse\ChildForms\LoadMerch\LoadMerchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WareHouse\ChildForms\LoadMerchForm\EditLoadMerchForm.Designer.cs">
-      <DependentUpon>EditLoadMerchForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WareHouse\ChildForms\LoadMerchForm\LoadMerchForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WareHouse\ChildForms\LoadMerchForm\LoadMerchForm.Designer.cs">
+    <Compile Include="WareHouse\ChildForms\LoadMerch\LoadMerchForm.Designer.cs">
       <DependentUpon>LoadMerchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WareHouse\ChildForms\LoadMerchForm\LoadMerchMGM.cs" />
-    <Compile Include="WareHouse\Warehouse.cs">
+    <Compile Include="WareHouse\ChildForms\LoadMerch\UnloadMerchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WareHouse\Warehouse.Designer.cs">
-      <DependentUpon>Warehouse.cs</DependentUpon>
+    <Compile Include="WareHouse\ChildForms\LoadMerch\UnloadMerchForm.Designer.cs">
+      <DependentUpon>UnloadMerchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WareHouse\WarehouseMGM.cs" />
-    <Compile Include="WareHouse\WareHouseProductMGM.cs" />
+    <Compile Include="WareHouse\ChildForms\NewOrder\NewOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouse\ChildForms\NewOrder\NewOrderForm.Designer.cs">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouse\ChildForms\NewOrder\OrderDocumentPrint.cs" />
+    <Compile Include="WareHouse\forms\SearchMovement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouse\forms\SearchMovement.Designer.cs">
+      <DependentUpon>SearchMovement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouse\forms\WarehouseMovementsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouse\forms\WarehouseMovementsForm.Designer.cs">
+      <DependentUpon>WarehouseMovementsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouse\forms\WarehouseStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouse\forms\WarehouseStocks.Designer.cs">
+      <DependentUpon>WarehouseStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouse\models\Movements\DAODetailsMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\DAOMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\DetailsMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\IDAODetailsMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\IDAOMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\IDetailsMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\IMovement.cs" />
+    <Compile Include="WareHouse\models\Movements\Movement.cs" />
+    <Compile Include="WareHouse\models\Movements\MovementQueries.cs" />
+    <Compile Include="WareHouse\models\WareHouseProducts\DAOWarehouseProduct.cs" />
+    <Compile Include="WareHouse\models\WareHouseProducts\IWareHouseProduct.cs" />
+    <Compile Include="WareHouse\models\WareHouseProducts\WareHouseProduct.cs" />
+    <Compile Include="WareHouse\models\WareHouseProducts\WarehouseProductQueries.cs" />
+    <Compile Include="WareHouse\models\WareHouses\DAOWareHouse.cs" />
+    <Compile Include="WareHouse\models\WareHouses\IDAOWareHouse.cs" />
+    <Compile Include="WareHouse\models\WareHouses\IWarehouse.cs" />
+    <Compile Include="WareHouse\models\WareHouses\Warehouse.cs" />
     <Compile Include="WMCLink.cs" />
-    <EmbeddedResource Include="Attachments\AttachmentForm.resx">
+    <EmbeddedResource Include="Attachments\forms\AttachmentForm.resx">
       <DependentUpon>AttachmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customers\forms\CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\OrderDocument\ChildForms\AddWareHouse.resx">
+      <DependentUpon>AddWareHouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\OrderDocument\forms\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
@@ -402,26 +484,29 @@
     <EmbeddedResource Include="Products\ChildForms\ImageProduct\Form\ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Products\ChildForms\ProductPricesForm\AddSupplier.resx">
-      <DependentUpon>AddSupplier.cs</DependentUpon>
+    <EmbeddedResource Include="Products\ChildForms\ManageSupplier\forms\AddSupplierForm.resx">
+      <DependentUpon>AddSupplierForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Products\ChildForms\ProductPricesForm\ProductPrices.resx">
-      <DependentUpon>ProductPrices.cs</DependentUpon>
+    <EmbeddedResource Include="Products\ChildForms\ManageSupplier\forms\RemoveSupplierForm.resx">
+      <DependentUpon>RemoveSupplierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\ProductsForm.resx">
       <DependentUpon>ProductsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuoteDocForms\ChildForms\AddNewCustomer.resx">
+    <EmbeddedResource Include="Documents\QuoteDocument\ChildForms\AddProductForm\AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\QuoteDocument\ChildForms\InsertProdInfForm\ProductInfo.resx">
+      <DependentUpon>ProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\QuoteDocument\ChildForms\NewCustomer\AddNewCustomer.resx">
       <DependentUpon>AddNewCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuoteDocForms\ChildForms\AddNewQuote.resx">
-      <DependentUpon>AddNewQuote.cs</DependentUpon>
+    <EmbeddedResource Include="Documents\QuoteDocument\ChildForms\NewQuote\NewQuoteForm.resx">
+      <DependentUpon>NewQuoteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuoteDocForms\QuoteDoc.resx">
+    <EmbeddedResource Include="Documents\QuoteDocument\QuoteDoc.resx">
       <DependentUpon>QuoteDoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Supplier\SupplierForm.resx">
-      <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
@@ -434,6 +519,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\forms\SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WareHouse\ChildForms\AddProductForm\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -443,17 +531,23 @@
     <EmbeddedResource Include="WareHouse\ChildForms\CreateWareHouseForm\CreateWareHouse.resx">
       <DependentUpon>CreateWareHouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WareHouse\ChildForms\InsertProdInfForm\InsertProdInf.resx">
-      <DependentUpon>InsertProdInf.cs</DependentUpon>
+    <EmbeddedResource Include="WareHouse\ChildForms\InsertProdInfForm\ProductInfo.resx">
+      <DependentUpon>ProductInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WareHouse\ChildForms\LoadMerchForm\EditLoadMerchForm.resx">
-      <DependentUpon>EditLoadMerchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WareHouse\ChildForms\LoadMerchForm\LoadMerchForm.resx">
+    <EmbeddedResource Include="WareHouse\ChildForms\LoadMerch\LoadMerchForm.resx">
       <DependentUpon>LoadMerchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WareHouse\Warehouse.resx">
-      <DependentUpon>Warehouse.cs</DependentUpon>
+    <EmbeddedResource Include="WareHouse\ChildForms\LoadMerch\UnloadMerchForm.resx">
+      <DependentUpon>UnloadMerchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouse\ChildForms\NewOrder\NewOrderForm.resx">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouse\forms\WarehouseMovementsForm.resx">
+      <DependentUpon>WarehouseMovementsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouse\forms\WarehouseStocks.resx">
+      <DependentUpon>WarehouseStocks.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\GManagerial.exe.config" />
     <None Include="DataSet1.xsc">
@@ -468,17 +562,6 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="Datasets\comuni.csv" />
-    <None Include="Datasets\Gmanagerial.xsc">
-      <DependentUpon>Gmanagerial.xsd</DependentUpon>
-    </None>
-    <None Include="Datasets\Gmanagerial.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Gmanagerial.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Datasets\Gmanagerial.xss">
-      <DependentUpon>Gmanagerial.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -524,7 +607,11 @@
     <Content Include="bin\Debug\Newtonsoft.Json.dll" />
     <Content Include="bin\Debug\Newtonsoft.Json.xml" />
     <Content Include="bin\Debug\NGeo.dll" />
+    <Content Include="DBConnectors\.txt" />
     <Content Include="Products\ChildForms\BrandProduct\Forms\Delegate.txt" />
+    <Content Include="Properties\hamburger.png" />
+    <Content Include="Properties\Image1.bmp" />
+    <None Include="Resources\hamburger.png" />
     <None Include="images\plus.png" />
     <None Include="images\34248_achtung_alert_attention_exclamation_warning_icon.png" />
     <None Include="Properties\53359_bullet_red_icon.png" />

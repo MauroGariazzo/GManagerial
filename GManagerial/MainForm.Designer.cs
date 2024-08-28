@@ -56,6 +56,7 @@
             this.whCMS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.WHsitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movimentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrderToSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.docsMS.SuspendLayout();
             this.productCMS.SuspendLayout();
@@ -78,7 +79,7 @@
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1664, 70);
+            this.toolStrip1.Size = new System.Drawing.Size(1664, 75);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -157,7 +158,7 @@
             this.productsBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.productsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.productsBtn.Name = "productsBtn";
-            this.productsBtn.Size = new System.Drawing.Size(54, 67);
+            this.productsBtn.Size = new System.Drawing.Size(67, 72);
             this.productsBtn.Text = "Prodotti";
             this.productsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.productsBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.productsBtn_MouseDown);
@@ -168,7 +169,7 @@
             this.SuppliersBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.SuppliersBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SuppliersBtn.Name = "SuppliersBtn";
-            this.SuppliersBtn.Size = new System.Drawing.Size(56, 67);
+            this.SuppliersBtn.Size = new System.Drawing.Size(69, 72);
             this.SuppliersBtn.Text = "Fornitori";
             this.SuppliersBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.SuppliersBtn.Click += new System.EventHandler(this.SuppliersBtn_Click);
@@ -176,7 +177,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 70);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 75);
             // 
             // BottomToolStripPanel
             // 
@@ -220,9 +221,9 @@
             this.panelDesktop.BackColor = System.Drawing.SystemColors.Window;
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.ForeColor = System.Drawing.Color.Black;
-            this.panelDesktop.Location = new System.Drawing.Point(0, 70);
+            this.panelDesktop.Location = new System.Drawing.Point(0, 75);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1664, 893);
+            this.panelDesktop.Size = new System.Drawing.Size(1664, 888);
             this.panelDesktop.TabIndex = 2;
             // 
             // docsMS
@@ -231,15 +232,16 @@
             this.docsMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preventiviToolStripMenuItem,
             this.fattureToolStripMenuItem,
-            this.dDTToolStripMenuItem});
+            this.dDTToolStripMenuItem,
+            this.OrderToSupplier});
             this.docsMS.Name = "docsMS";
-            this.docsMS.Size = new System.Drawing.Size(131, 82);
+            this.docsMS.Size = new System.Drawing.Size(215, 136);
             // 
             // preventiviToolStripMenuItem
             // 
             this.preventiviToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("preventiviToolStripMenuItem.Image")));
             this.preventiviToolStripMenuItem.Name = "preventiviToolStripMenuItem";
-            this.preventiviToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.preventiviToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.preventiviToolStripMenuItem.Text = "Preventivi";
             this.preventiviToolStripMenuItem.Click += new System.EventHandler(this.preventiviToolStripMenuItem_Click);
             // 
@@ -247,14 +249,14 @@
             // 
             this.fattureToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fattureToolStripMenuItem.Image")));
             this.fattureToolStripMenuItem.Name = "fattureToolStripMenuItem";
-            this.fattureToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.fattureToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.fattureToolStripMenuItem.Text = "Fatture";
             // 
             // dDTToolStripMenuItem
             // 
             this.dDTToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dDTToolStripMenuItem.Image")));
             this.dDTToolStripMenuItem.Name = "dDTToolStripMenuItem";
-            this.dDTToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.dDTToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.dDTToolStripMenuItem.Text = "D.D.T.";
             // 
             // productCMS
@@ -265,53 +267,63 @@
             this.catAndSubItem,
             this.BrandItem});
             this.productCMS.Name = "productCMS";
-            this.productCMS.Size = new System.Drawing.Size(208, 70);
+            this.productCMS.Size = new System.Drawing.Size(249, 76);
             // 
             // productsItem
             // 
             this.productsItem.Name = "productsItem";
-            this.productsItem.Size = new System.Drawing.Size(207, 22);
+            this.productsItem.Size = new System.Drawing.Size(248, 24);
             this.productsItem.Text = "Prodotti";
             this.productsItem.Click += new System.EventHandler(this.productsItem_Click);
             // 
             // catAndSubItem
             // 
             this.catAndSubItem.Name = "catAndSubItem";
-            this.catAndSubItem.Size = new System.Drawing.Size(207, 22);
+            this.catAndSubItem.Size = new System.Drawing.Size(248, 24);
             this.catAndSubItem.Text = "Categorie/Sottocategorie";
             this.catAndSubItem.Click += new System.EventHandler(this.categorieSottocategorieToolStripMenuItem_Click);
             // 
             // BrandItem
             // 
             this.BrandItem.Name = "BrandItem";
-            this.BrandItem.Size = new System.Drawing.Size(207, 22);
+            this.BrandItem.Size = new System.Drawing.Size(248, 24);
             this.BrandItem.Text = "Marche";
             this.BrandItem.Click += new System.EventHandler(this.BrandItem_Click);
             // 
             // whCMS
             // 
+            this.whCMS.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.whCMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.WHsitItem,
             this.movimentiToolStripMenuItem});
             this.whCMS.Name = "whCMS";
-            this.whCMS.Size = new System.Drawing.Size(181, 70);
+            this.whCMS.Size = new System.Drawing.Size(150, 52);
             // 
             // WHsitItem
             // 
             this.WHsitItem.Name = "WHsitItem";
-            this.WHsitItem.Size = new System.Drawing.Size(180, 22);
+            this.WHsitItem.Size = new System.Drawing.Size(149, 24);
             this.WHsitItem.Text = "Situazione";
             this.WHsitItem.Click += new System.EventHandler(this.WHsitItem_Click);
             // 
             // movimentiToolStripMenuItem
             // 
             this.movimentiToolStripMenuItem.Name = "movimentiToolStripMenuItem";
-            this.movimentiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.movimentiToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             this.movimentiToolStripMenuItem.Text = "Movimenti";
+            this.movimentiToolStripMenuItem.Click += new System.EventHandler(this.movimentiToolStripMenuItem_Click);
+            // 
+            // OrderToSupplier
+            // 
+            this.OrderToSupplier.Image = ((System.Drawing.Image)(resources.GetObject("OrderToSupplier.Image")));
+            this.OrderToSupplier.Name = "OrderToSupplier";
+            this.OrderToSupplier.Size = new System.Drawing.Size(214, 26);
+            this.OrderToSupplier.Text = "Ordini Al Fornitore";
+            this.OrderToSupplier.Click += new System.EventHandler(this.OrderToSupplier_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1664, 963);
             this.Controls.Add(this.panelDesktop);
@@ -362,5 +374,6 @@
         private System.Windows.Forms.ContextMenuStrip whCMS;
         private System.Windows.Forms.ToolStripMenuItem WHsitItem;
         private System.Windows.Forms.ToolStripMenuItem movimentiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OrderToSupplier;
     }
 }

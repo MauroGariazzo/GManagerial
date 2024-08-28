@@ -1,57 +1,141 @@
-﻿using GManagerial.Products.ChildForms;
+﻿using GManagerial.DBConnectors;
+using GManagerial.Products;
+using GManagerial.Products.ChildForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using GManagerial.WareHouse.models;
+
+using GManagerial.WareHouse.models.WareHouseProducts;
+using GManagerial.Products.ChildForms.AddSupplier.models;
+using System.Drawing;
+
 
 namespace GManagerial.WareHouse.ChildForms
 {
-    public partial class AddProduct : Form
+    public delegate void OnFormClosing();
+    internal partial class AddProduct : Form
     {
-        public int product_id;
-        private int supplier_id;
-        private int categoryID;
-        public ItemTag item;
-        public bool isOK;
+       
+        //public int product_id;
+        /*evento*/
+        internal event EventHandler<WareHouseProduct> PopulateDictionaryRequested;
 
-        private int selectedWareHouseID;
+        private DBConnector _dbConnector = new DBConnector("Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True");
+        private DAOProduct _daoProduct;
+        private DAOSupplier _daoSupplier;
+        private DAOSupplierProduct _daoSupplierProduct;
 
-        public AddProduct(int selectedWareHouseID)
+        private Dictionary<int,Product> _products;
+        private Product _product;
+
+        //private Dictionary<int,SupplierProduct> _supplierProducts;
+        private WareHouseProduct _wareHouseProduct;
+        private Dictionary<int, Supplier> _suppliers;
+        private Warehouse selectedWareHouse;
+        private Supplier _supplier;
+        public AddProduct(Warehouse selectedWareHouse)
         {
             InitializeComponent();
-            this.item = new ItemTag();
-            this.selectedWareHouseID = selectedWareHouseID;
-            this.isOK = false;
+            this.selectedWareHouse = selectedWareHouse;
+            //this._dbConnector = new DBConnector("Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True");
+            this._products = new Dictionary<int,Product>();
+            this._daoProduct = new DAOProduct(_dbConnector);
+            this._product = new Product();
+            this._wareHouseProduct = new WareHouseProduct();
+            this._daoSupplier = new DAOSupplier(_dbConnector);
+            this._supplier = new Supplier();
+            this._daoSupplierProduct = new DAOSupplierProduct(_dbConnector);
+        }
+
+        public AddProduct(Warehouse selectedWareHouse, Supplier selectedSupplier) : this(selectedWareHouse)
+        {
+            this._supplier = selectedSupplier;
+            this.SupplierCB.Enabled = false;
+        }
+
+        public AddProduct()
+        {
+            InitializeComponent();
+            this._daoSupplierProduct = new DAOSupplierProduct(_dbConnector);
+            this._supplier = new Supplier();
+            this._daoSupplier = new DAOSupplier(_dbConnector);
+            this._daoProduct = new DAOProduct(_dbConnector);
         }
 
         private void AddProduct_Load(object sender, EventArgs e)
         {
-           AddProductMGM.ProductsForm_Load(productsLB);
+            LoadSuppliers();
+            if (_supplier.ID.Equals(0))
+            {        
+                _products = _daoProduct.GetAll();
+            }
+
+            else
+            {
+                SupplierCB.Text = _supplier.SupplierName;
+                _products = _daoSupplierProduct.GetSupplierProducts(_supplier);
+            }
+
+            OnUpdateListBox();
+        }
+ 
+        private void LoadSuppliers()
+        {
+            _suppliers = _daoSupplier.GetAll();
+            SupplierCB.Items.Clear();
+
+            foreach (Supplier supplier in _suppliers.Values)
+            {
+                SupplierCB.Items.Add(supplier);
+            }
+            SupplierCB.DisplayMember = "SupplierName";
+        }
+        
+
+        private void OnUpdateListBox()
+        {
+            productsLB.Items.Clear();
+            foreach (Product product in _products.Values)
+            {              
+                productsLB.Items.Add(product);
+                PassProductIdToWarehouseProduct(product.ID);
+            }
+
+            productsLB.DisplayMember = "ProductName";
+        }
+
+        private void PassProductIdToWarehouseProduct(int product_fk)
+        {
+            _wareHouseProduct = new WareHouseProduct();
+            Product product = new Product();
+            _wareHouseProduct.ID = product_fk;
         }
 
         private void productsLB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (productsLB.SelectedIndex != -1)
             {
-                ItemTag selectedProduct = (ItemTag)productsLB.SelectedItem;
-                product_id = (int)selectedProduct.Tag;
-
-                if (selectedProduct.Tag2 != null)
-                {
-                    supplier_id = (int)selectedProduct.Tag2;
-
-                }
-                
-
-                AddProductMGM.LoadProductAnagraphic(codArticleTB, snTB, brandTB, manfDateTB, categoryTB, subCategoryTB,
-                    descriptionTB, heightTB, depthTB, widthTB, weightTB, heightUM, depthUM, widthUM, weightUM, productPB,
-                    product_id);
+                _product = (Product)productsLB.SelectedItem;
+                TransferDataFromDictionariesToPanelControls(_product);
             }
+        }
+
+        private void TransferDataFromDictionariesToPanelControls(Product product)
+        {
+            ProductNameTB.Text = product.ProductName;
+            serialNumberTB.Text = product.SerialNumber;
+            BrandTB.Text = product.BrandP.Name;
+            CategoryTB.Text = product.CategoryObj.CategoryName;
+            SubCategoryTB.Text = product.SubCategory.SubCategoryName;
+            descriptionTB.Text = product.Description;
+            heightTB.Text = product.GetHeight.ToString();
+            widthTB.Text = product.GetWidth.ToString();
+            weightTB.Text = product.GetWeight.ToString();
+            depthTB.Text = product.GetDepth.ToString();
+            productPB.Image = product.Image;
+
+            ManufacturingDateTB.Text = (product.ManufacturingDate == string.Empty) ? string.Empty : product.ManufacturingDate.Substring(0, 10);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -61,46 +145,38 @@ namespace GManagerial.WareHouse.ChildForms
 
         private void okBtn_Click(object sender, EventArgs e)
         {
-            /*if (productsLB.SelectedIndex != -1)
-            {
-                 AddSupplier addS = new AddSupplier(product_id);
-                 addS.ShowDialog();
-
-                 if(addS.item.Text != null)
-                 {
-                     item = addS.item;
-                     this.isOK = true;   
-                     this.Close();
-                 }
-
-                 else
-                 {
-                     FormLogicGUI.SelectElement("fornitore");
-                 }
-
-             }
-
-             else
-             {
-                 FormLogicGUI.SelectElement("prodotto");
-             }*/
-
             if (productsLB.SelectedIndex != -1)
             {
+                if (_supplier.ID.Equals(0))
+                {
+                    //product è il prodotto che viene recuperato dalla lista
+                    InsertProductInformations productInformation = new InsertProductInformations(CloseForm, _product, _wareHouseProduct, IsNewEditCopyDeleteEnum.New); //menù movimenti
+                    productInformation.PopulateDictionaryRequested += AddProduct_PopulateDictionaryRequested;
+                    productInformation.ShowDialog();
+                }
 
-                InsertProdInf pi = new InsertProdInf(product_id, codArticleTB.Text);
-                pi.ShowDialog();
-
-                if (InsertProdInf.isOK)
-                { this.Close(); }
-                //
+                else
+                {
+                    InsertProductInformations productInformation = new InsertProductInformations(_wareHouseProduct, CloseForm, _product, _supplier, IsNewEditCopyDeleteEnum.New); //menù nuovo ordine
+                    productInformation.PopulateDictionaryRequested += AddProduct_PopulateDictionaryRequested;
+                    productInformation.ShowDialog();
+                }
             }
 
             else
             {
-                FormLogicGUIObsolete.SelectElement("prodotto");
+                //FormLogicGUIObsolete.SelectElement("prodotto");
             }
 
+        }
+        private void AddProduct_PopulateDictionaryRequested(object sender, WareHouseProduct data)
+        {
+            PopulateDictionaryRequested?.Invoke(this, data);
+        }
+
+        private void CloseForm()
+        {
+            this.Close();
         }
 
         private void qtaTB_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,115 +184,84 @@ namespace GManagerial.WareHouse.ChildForms
             IsDigitInput.OnlyNums_KeyPress(sender, e);
         }
 
-        private void searchBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            SearchLogic.searchBox_KeyDown(e, searchBox);
-        }
-
-        private void searchBox_Enter(object sender, EventArgs e)
-        {
-            SearchLogic.searchBox_Enter(searchBox);
-        }
-
-        private void searchBox_Leave(object sender, EventArgs e)
-        {
-            SearchLogic.searchBox_Leave(searchBox);
-        }
-
-        private void searchBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SearchLogic.searchBox_KeyPress(sender, e);
-        }
-
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            Dictionary<string, System.Windows.Forms.ComboBox> comboBoxDictionary = new Dictionary<string, System.Windows.Forms.ComboBox> { { "catCB", catCB },
-            { "subCatCB", subCatCB }, { "brandCBsearch", brandCBsearch }};
-            SearchLogic.FormSorting(searchBox, 'p', productsLB, comboBoxDictionary);
-        }
-
-
-        private void searchBtn_Click(object sender, EventArgs e)
-        {
-            Dictionary<string, System.Windows.Forms.ComboBox> comboBoxDictionary = new Dictionary<string, System.Windows.Forms.ComboBox> { { "catCB", catCB },
-            { "subCatCB", subCatCB }, { "brandCBsearch", brandCBsearch }};
-
-            SearchLogic.searchBtn_Click(searchPanel, searchBox, 'p', productsLB, comboBoxDictionary, searchBtn);
-        }
-
-        private void searchbtn2_Click(object sender, EventArgs e)
-        {
-            Dictionary<string, System.Windows.Forms.ComboBox> comboBoxDictionary = new Dictionary<string, System.Windows.Forms.ComboBox> { { "catCB", catCB },
-            { "subCatCB", subCatCB }, { "brandCBsearch", brandCBsearch }};
-            SearchLogic.FormSorting(searchBox, 'p', productsLB, comboBoxDictionary);
-        }
-
-        private void resetCB_Click(object sender, EventArgs e)
-        {
-            SearchLogic.resetCB_Click(searchPanel);
-        }
-
-        private void catCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (catCB.SelectedItem != null && catCB.SelectedItem.ToString() != "")
+            if (!SearchTB.Text.Equals("Cerca") && SearchTB.Font.FontFamily.Name != "Times New Roman")
             {
-                subCatCB.Enabled = true;
-                subCat.ForeColor = Color.Black;
-            }
-
-            ItemTag selectedCategory = (ItemTag)catCB.SelectedItem;
-
-            if (selectedCategory != null)
-            {
-                categoryID = (int)selectedCategory.Tag;
+                SearchProduct();
             }
         }
 
-        private void catCB_Click(object sender, EventArgs e)
+        private void SearchProduct()
         {
-            catCB.Items.Clear();
-            ProductsMGM.LoadCategories(catCB);
-        }
+            string textToSearch;
 
-        private void catCB_DropDownClosed(object sender, EventArgs e)
-        {
-            if (catCB.SelectedItem == null)
+            if (SearchTB.Text.Equals("Cerca") && SearchTB.Font.FontFamily.Name.Equals("Times New Roman"))
             {
-                subCatCB.Enabled = false;
-                subCat.ForeColor = Color.Gray;
-                subCatCB.Text = null;
+                textToSearch = string.Empty;
             }
-            subCatCB.Items.Clear();
-        }
 
-        private void subCatCB_SelectedIndexChanged(object sender, EventArgs e)
+            else
+            {
+                textToSearch = SearchTB.Text;
+            }
+
+            if (SupplierCB.SelectedItem is null)
+            {
+                _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), null, null, null, ProductQueries.SEARCHPRODUCTS, null);
+            }
+
+            else
+            {
+                _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), null, null, null, ProductQueries.SEARCHPRODUCTSWITHSUPPLIER, _supplier);
+            }
+            OnUpdateListBox();
+        }
+     
+        private void SearchTB_Enter(object sender, EventArgs e)
         {
-            //ItemTag ScatSelectedItem = (ItemTag)subCatCB.SelectedItem;
-            //if (ScatSelectedItem != null) { subCategoryID = (int)ScatSelectedItem.Tag; }
+            if (SearchTB.Text.Equals("Cerca"))
+            {
+                SetTextForSearchBox();
+            }
         }
-
-        private void subCatCB_Click(object sender, EventArgs e)
+        private void SearchTB_Leave(object sender, EventArgs e)
         {
-            subCatCB.Items.Clear();
-            ProductsMGM.LoadSubCategories(categoryID, subCatCB);
+            if (SearchTB.Text.Equals(string.Empty))
+            {
+                ResetStandardTextForSearchBox();
+            }            
         }
 
-        private void brandCBsearch_Click(object sender, EventArgs e)
+        private void ResetStandardTextForSearchBox()
         {
-            brandCBsearch.Items.Clear();
-            ProductsMGM.AllBrands(brandCBsearch);
-
-            //if (brandCBsearch.SelectedItem == null)
-            //{
-                //brandID = 1;
-            //}
+            SearchTB.Text = "Cerca";
+            SearchTB.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            SearchTB.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
-
-        private void brandCBsearch_SelectedIndexChanged(object sender, EventArgs e)
+ 
+        private void SetTextForSearchBox()
         {
-            //ItemTag BrandSelectedItem = (ItemTag)brandCBsearch.SelectedItem;
-            //if (BrandSelectedItem != null) { brandID = (int)BrandSelectedItem.Tag; }
+            SearchTB.Text = string.Empty;
+            SearchTB.ForeColor = Color.Black;
+            SearchTB.Font = new Font("Arial", 12);
         }
 
+        private void SupplierCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _supplier = SupplierCB.SelectedItem as Supplier;
+
+            if (_supplier.ID != 1)
+            {
+                _products = _daoSupplierProduct.GetSupplierProducts(_supplier);
+                OnUpdateListBox();
+            }
+
+            else
+            {
+                _products = _daoProduct.GetAll();
+                OnUpdateListBox();
+            }
+        }
     }
 }

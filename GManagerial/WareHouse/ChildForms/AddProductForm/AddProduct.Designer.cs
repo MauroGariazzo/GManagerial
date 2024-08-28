@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProduct));
+            this.SupplierCB = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,54 +47,48 @@
             this.widthTB = new System.Windows.Forms.TextBox();
             this.heightTB = new System.Windows.Forms.TextBox();
             this.heightLbl = new System.Windows.Forms.Label();
-            this.subCategoryTB = new System.Windows.Forms.TextBox();
-            this.categoryTB = new System.Windows.Forms.TextBox();
+            this.SubCategoryTB = new System.Windows.Forms.TextBox();
+            this.CategoryTB = new System.Windows.Forms.TextBox();
             this.subCategoryLbl = new System.Windows.Forms.Label();
             this.categoryLbl = new System.Windows.Forms.Label();
             this.descriptionLbl = new System.Windows.Forms.Label();
             this.descriptionTB = new System.Windows.Forms.TextBox();
-            this.brandTB = new System.Windows.Forms.TextBox();
-            this.manfDateTB = new System.Windows.Forms.TextBox();
+            this.BrandTB = new System.Windows.Forms.TextBox();
+            this.ManufacturingDateTB = new System.Windows.Forms.TextBox();
             this.manfDateLbl = new System.Windows.Forms.Label();
-            this.snTB = new System.Windows.Forms.TextBox();
+            this.serialNumberTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BrandLbl = new System.Windows.Forms.Label();
             this.ArticleNameLbl = new System.Windows.Forms.Label();
-            this.codArticleTB = new System.Windows.Forms.TextBox();
+            this.ProductNameTB = new System.Windows.Forms.TextBox();
             this.productPB = new System.Windows.Forms.PictureBox();
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.productsLB = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.searchBox = new System.Windows.Forms.TextBox();
-            this.searchBtn = new System.Windows.Forms.Button();
-            this.searchPanel = new System.Windows.Forms.Panel();
-            this.searchbtn2 = new System.Windows.Forms.Button();
-            this.resetCB = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.searchFor = new System.Windows.Forms.Label();
-            this.pbSearch = new System.Windows.Forms.PictureBox();
-            this.separatorPanel = new System.Windows.Forms.Panel();
-            this.brandCBsearch = new System.Windows.Forms.ComboBox();
-            this.subCatCB = new System.Windows.Forms.ComboBox();
-            this.catCB = new System.Windows.Forms.ComboBox();
-            this.brandLblSearch = new System.Windows.Forms.Label();
-            this.subCat = new System.Windows.Forms.Label();
-            this.catLbl = new System.Windows.Forms.Label();
+            this.SearchTB = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.MenuName = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPB)).BeginInit();
-            this.searchPanel.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSearch)).BeginInit();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // SupplierCB
+            // 
+            this.SupplierCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SupplierCB.Enabled = false;
+            this.SupplierCB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SupplierCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SupplierCB.FormattingEnabled = true;
+            this.SupplierCB.Location = new System.Drawing.Point(237, 0);
+            this.SupplierCB.MaximumSize = new System.Drawing.Size(500, 0);
+            this.SupplierCB.Name = "SupplierCB";
+            this.SupplierCB.Size = new System.Drawing.Size(246, 33);
+            this.SupplierCB.TabIndex = 64;
+            this.SupplierCB.SelectedIndexChanged += new System.EventHandler(this.SupplierCB_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -155,20 +150,20 @@
             this.panel1.Controls.Add(this.widthTB);
             this.panel1.Controls.Add(this.heightTB);
             this.panel1.Controls.Add(this.heightLbl);
-            this.panel1.Controls.Add(this.subCategoryTB);
-            this.panel1.Controls.Add(this.categoryTB);
+            this.panel1.Controls.Add(this.SubCategoryTB);
+            this.panel1.Controls.Add(this.CategoryTB);
             this.panel1.Controls.Add(this.subCategoryLbl);
             this.panel1.Controls.Add(this.categoryLbl);
             this.panel1.Controls.Add(this.descriptionLbl);
             this.panel1.Controls.Add(this.descriptionTB);
-            this.panel1.Controls.Add(this.brandTB);
-            this.panel1.Controls.Add(this.manfDateTB);
+            this.panel1.Controls.Add(this.BrandTB);
+            this.panel1.Controls.Add(this.ManufacturingDateTB);
             this.panel1.Controls.Add(this.manfDateLbl);
-            this.panel1.Controls.Add(this.snTB);
+            this.panel1.Controls.Add(this.serialNumberTB);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.BrandLbl);
             this.panel1.Controls.Add(this.ArticleNameLbl);
-            this.panel1.Controls.Add(this.codArticleTB);
+            this.panel1.Controls.Add(this.ProductNameTB);
             this.panel1.Controls.Add(this.productPB);
             this.panel1.Location = new System.Drawing.Point(284, 135);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -300,25 +295,25 @@
             this.heightLbl.TabIndex = 49;
             this.heightLbl.Text = "Altezza";
             // 
-            // subCategoryTB
+            // SubCategoryTB
             // 
-            this.subCategoryTB.Enabled = false;
-            this.subCategoryTB.Location = new System.Drawing.Point(229, 126);
-            this.subCategoryTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.subCategoryTB.Name = "subCategoryTB";
-            this.subCategoryTB.ReadOnly = true;
-            this.subCategoryTB.Size = new System.Drawing.Size(237, 22);
-            this.subCategoryTB.TabIndex = 48;
+            this.SubCategoryTB.Enabled = false;
+            this.SubCategoryTB.Location = new System.Drawing.Point(229, 126);
+            this.SubCategoryTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SubCategoryTB.Name = "SubCategoryTB";
+            this.SubCategoryTB.ReadOnly = true;
+            this.SubCategoryTB.Size = new System.Drawing.Size(237, 22);
+            this.SubCategoryTB.TabIndex = 48;
             // 
-            // categoryTB
+            // CategoryTB
             // 
-            this.categoryTB.Enabled = false;
-            this.categoryTB.Location = new System.Drawing.Point(8, 126);
-            this.categoryTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.categoryTB.Name = "categoryTB";
-            this.categoryTB.ReadOnly = true;
-            this.categoryTB.Size = new System.Drawing.Size(215, 22);
-            this.categoryTB.TabIndex = 47;
+            this.CategoryTB.Enabled = false;
+            this.CategoryTB.Location = new System.Drawing.Point(8, 126);
+            this.CategoryTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CategoryTB.Name = "CategoryTB";
+            this.CategoryTB.ReadOnly = true;
+            this.CategoryTB.Size = new System.Drawing.Size(215, 22);
+            this.CategoryTB.TabIndex = 47;
             // 
             // subCategoryLbl
             // 
@@ -363,26 +358,26 @@
             this.descriptionTB.Size = new System.Drawing.Size(460, 88);
             this.descriptionTB.TabIndex = 43;
             // 
-            // brandTB
+            // BrandTB
             // 
-            this.brandTB.Enabled = false;
-            this.brandTB.Location = new System.Drawing.Point(8, 75);
-            this.brandTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.brandTB.Name = "brandTB";
-            this.brandTB.ReadOnly = true;
-            this.brandTB.Size = new System.Drawing.Size(215, 22);
-            this.brandTB.TabIndex = 42;
+            this.BrandTB.Enabled = false;
+            this.BrandTB.Location = new System.Drawing.Point(8, 75);
+            this.BrandTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BrandTB.Name = "BrandTB";
+            this.BrandTB.ReadOnly = true;
+            this.BrandTB.Size = new System.Drawing.Size(215, 22);
+            this.BrandTB.TabIndex = 42;
             // 
-            // manfDateTB
+            // ManufacturingDateTB
             // 
-            this.manfDateTB.Enabled = false;
-            this.manfDateTB.Location = new System.Drawing.Point(229, 78);
-            this.manfDateTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.manfDateTB.MaxLength = 10;
-            this.manfDateTB.Name = "manfDateTB";
-            this.manfDateTB.ReadOnly = true;
-            this.manfDateTB.Size = new System.Drawing.Size(236, 22);
-            this.manfDateTB.TabIndex = 41;
+            this.ManufacturingDateTB.Enabled = false;
+            this.ManufacturingDateTB.Location = new System.Drawing.Point(229, 78);
+            this.ManufacturingDateTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ManufacturingDateTB.MaxLength = 10;
+            this.ManufacturingDateTB.Name = "ManufacturingDateTB";
+            this.ManufacturingDateTB.ReadOnly = true;
+            this.ManufacturingDateTB.Size = new System.Drawing.Size(236, 22);
+            this.ManufacturingDateTB.TabIndex = 41;
             // 
             // manfDateLbl
             // 
@@ -393,16 +388,16 @@
             this.manfDateLbl.TabIndex = 40;
             this.manfDateLbl.Text = "Data fabbric.";
             // 
-            // snTB
+            // serialNumberTB
             // 
-            this.snTB.Enabled = false;
-            this.snTB.Location = new System.Drawing.Point(229, 28);
-            this.snTB.Margin = new System.Windows.Forms.Padding(4);
-            this.snTB.MaxLength = 98;
-            this.snTB.Name = "snTB";
-            this.snTB.ReadOnly = true;
-            this.snTB.Size = new System.Drawing.Size(237, 22);
-            this.snTB.TabIndex = 38;
+            this.serialNumberTB.Enabled = false;
+            this.serialNumberTB.Location = new System.Drawing.Point(229, 28);
+            this.serialNumberTB.Margin = new System.Windows.Forms.Padding(4);
+            this.serialNumberTB.MaxLength = 98;
+            this.serialNumberTB.Name = "serialNumberTB";
+            this.serialNumberTB.ReadOnly = true;
+            this.serialNumberTB.Size = new System.Drawing.Size(237, 22);
+            this.serialNumberTB.TabIndex = 38;
             // 
             // label2
             // 
@@ -434,16 +429,16 @@
             this.ArticleNameLbl.TabIndex = 34;
             this.ArticleNameLbl.Text = "nome/modello";
             // 
-            // codArticleTB
+            // ProductNameTB
             // 
-            this.codArticleTB.Enabled = false;
-            this.codArticleTB.Location = new System.Drawing.Point(8, 28);
-            this.codArticleTB.Margin = new System.Windows.Forms.Padding(4);
-            this.codArticleTB.MaxLength = 98;
-            this.codArticleTB.Name = "codArticleTB";
-            this.codArticleTB.ReadOnly = true;
-            this.codArticleTB.Size = new System.Drawing.Size(215, 22);
-            this.codArticleTB.TabIndex = 33;
+            this.ProductNameTB.Enabled = false;
+            this.ProductNameTB.Location = new System.Drawing.Point(8, 28);
+            this.ProductNameTB.Margin = new System.Windows.Forms.Padding(4);
+            this.ProductNameTB.MaxLength = 98;
+            this.ProductNameTB.Name = "ProductNameTB";
+            this.ProductNameTB.ReadOnly = true;
+            this.ProductNameTB.Size = new System.Drawing.Size(215, 22);
+            this.ProductNameTB.TabIndex = 33;
             // 
             // productPB
             // 
@@ -505,235 +500,30 @@
             this.button1.TabIndex = 30;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // searchBox
+            // SearchTB
             // 
-            this.searchBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.searchBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.searchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.searchBox.Location = new System.Drawing.Point(533, 0);
-            this.searchBox.Margin = new System.Windows.Forms.Padding(4);
-            this.searchBox.Multiline = true;
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(263, 34);
-            this.searchBox.TabIndex = 61;
-            this.searchBox.Text = "Cerca";
-            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
-            this.searchBox.Enter += new System.EventHandler(this.searchBox_Enter);
-            this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchBox_KeyDown);
-            this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_KeyPress);
-            this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.searchBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("searchBtn.BackgroundImage")));
-            this.searchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.searchBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.searchBtn.Location = new System.Drawing.Point(387, 0);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(51, 34);
-            this.searchBtn.TabIndex = 62;
-            this.searchBtn.UseVisualStyleBackColor = false;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
-            // 
-            // searchPanel
-            // 
-            this.searchPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.searchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchPanel.Controls.Add(this.searchbtn2);
-            this.searchPanel.Controls.Add(this.resetCB);
-            this.searchPanel.Controls.Add(this.label4);
-            this.searchPanel.Controls.Add(this.label1);
-            this.searchPanel.Controls.Add(this.label6);
-            this.searchPanel.Controls.Add(this.panel3);
-            this.searchPanel.Controls.Add(this.separatorPanel);
-            this.searchPanel.Controls.Add(this.brandCBsearch);
-            this.searchPanel.Controls.Add(this.subCatCB);
-            this.searchPanel.Controls.Add(this.catCB);
-            this.searchPanel.Controls.Add(this.brandLblSearch);
-            this.searchPanel.Controls.Add(this.subCat);
-            this.searchPanel.Controls.Add(this.catLbl);
-            this.searchPanel.Location = new System.Drawing.Point(275, 135);
-            this.searchPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.searchPanel.Name = "searchPanel";
-            this.searchPanel.Size = new System.Drawing.Size(278, 268);
-            this.searchPanel.TabIndex = 63;
-            this.searchPanel.Visible = false;
-            // 
-            // searchbtn2
-            // 
-            this.searchbtn2.Location = new System.Drawing.Point(19, 209);
-            this.searchbtn2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.searchbtn2.Name = "searchbtn2";
-            this.searchbtn2.Size = new System.Drawing.Size(75, 23);
-            this.searchbtn2.TabIndex = 14;
-            this.searchbtn2.Text = "Cerca";
-            this.searchbtn2.UseVisualStyleBackColor = true;
-            this.searchbtn2.Click += new System.EventHandler(this.searchbtn2_Click);
-            // 
-            // resetCB
-            // 
-            this.resetCB.Location = new System.Drawing.Point(193, 209);
-            this.resetCB.Margin = new System.Windows.Forms.Padding(4);
-            this.resetCB.Name = "resetCB";
-            this.resetCB.Size = new System.Drawing.Size(75, 23);
-            this.resetCB.TabIndex = 13;
-            this.resetCB.Text = "Cancella";
-            this.resetCB.UseVisualStyleBackColor = true;
-            this.resetCB.Click += new System.EventHandler(this.resetCB_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 154);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 16);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "-";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 102);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(11, 16);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "-";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 54);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(11, 16);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "-";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel3.Controls.Add(this.searchFor);
-            this.panel3.Controls.Add(this.pbSearch);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(279, 34);
-            this.panel3.TabIndex = 9;
-            // 
-            // searchFor
-            // 
-            this.searchFor.AutoSize = true;
-            this.searchFor.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchFor.Location = new System.Drawing.Point(4, 11);
-            this.searchFor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.searchFor.Name = "searchFor";
-            this.searchFor.Size = new System.Drawing.Size(94, 21);
-            this.searchFor.TabIndex = 6;
-            this.searchFor.Text = "Cerca per:";
-            // 
-            // pbSearch
-            // 
-            this.pbSearch.Image = ((System.Drawing.Image)(resources.GetObject("pbSearch.Image")));
-            this.pbSearch.Location = new System.Drawing.Point(95, 6);
-            this.pbSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.pbSearch.Name = "pbSearch";
-            this.pbSearch.Size = new System.Drawing.Size(35, 25);
-            this.pbSearch.TabIndex = 8;
-            this.pbSearch.TabStop = false;
-            // 
-            // separatorPanel
-            // 
-            this.separatorPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.separatorPanel.Location = new System.Drawing.Point(8, 37);
-            this.separatorPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.separatorPanel.Name = "separatorPanel";
-            this.separatorPanel.Size = new System.Drawing.Size(267, 1);
-            this.separatorPanel.TabIndex = 7;
-            // 
-            // brandCBsearch
-            // 
-            this.brandCBsearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.brandCBsearch.FormattingEnabled = true;
-            this.brandCBsearch.Location = new System.Drawing.Point(108, 150);
-            this.brandCBsearch.Margin = new System.Windows.Forms.Padding(4);
-            this.brandCBsearch.Name = "brandCBsearch";
-            this.brandCBsearch.Size = new System.Drawing.Size(160, 24);
-            this.brandCBsearch.TabIndex = 5;
-            this.brandCBsearch.SelectedIndexChanged += new System.EventHandler(this.subCatCB_SelectedIndexChanged);
-            this.brandCBsearch.Click += new System.EventHandler(this.brandCBsearch_Click);
-            // 
-            // subCatCB
-            // 
-            this.subCatCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.subCatCB.Enabled = false;
-            this.subCatCB.FormattingEnabled = true;
-            this.subCatCB.Location = new System.Drawing.Point(108, 100);
-            this.subCatCB.Margin = new System.Windows.Forms.Padding(4);
-            this.subCatCB.Name = "subCatCB";
-            this.subCatCB.Size = new System.Drawing.Size(160, 24);
-            this.subCatCB.TabIndex = 4;
-            this.subCatCB.SelectedIndexChanged += new System.EventHandler(this.subCatCB_SelectedIndexChanged);
-            this.subCatCB.Click += new System.EventHandler(this.subCatCB_Click);
-            // 
-            // catCB
-            // 
-            this.catCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.catCB.FormattingEnabled = true;
-            this.catCB.Location = new System.Drawing.Point(108, 50);
-            this.catCB.Margin = new System.Windows.Forms.Padding(4);
-            this.catCB.Name = "catCB";
-            this.catCB.Size = new System.Drawing.Size(160, 24);
-            this.catCB.TabIndex = 3;
-            this.catCB.SelectedIndexChanged += new System.EventHandler(this.catCB_SelectedIndexChanged);
-            this.catCB.DropDownClosed += new System.EventHandler(this.catCB_DropDownClosed);
-            this.catCB.Click += new System.EventHandler(this.catCB_Click);
-            // 
-            // brandLblSearch
-            // 
-            this.brandLblSearch.AutoSize = true;
-            this.brandLblSearch.Location = new System.Drawing.Point(29, 154);
-            this.brandLblSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.brandLblSearch.Name = "brandLblSearch";
-            this.brandLblSearch.Size = new System.Drawing.Size(45, 16);
-            this.brandLblSearch.TabIndex = 2;
-            this.brandLblSearch.Text = "Marca";
-            // 
-            // subCat
-            // 
-            this.subCat.AutoSize = true;
-            this.subCat.Enabled = false;
-            this.subCat.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.subCat.Location = new System.Drawing.Point(29, 103);
-            this.subCat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.subCat.Name = "subCat";
-            this.subCat.Size = new System.Drawing.Size(59, 16);
-            this.subCat.TabIndex = 1;
-            this.subCat.Text = "Sottocat.";
-            // 
-            // catLbl
-            // 
-            this.catLbl.AutoSize = true;
-            this.catLbl.Location = new System.Drawing.Point(29, 54);
-            this.catLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.catLbl.Name = "catLbl";
-            this.catLbl.Size = new System.Drawing.Size(66, 16);
-            this.catLbl.TabIndex = 0;
-            this.catLbl.Text = "Categoria";
+            this.SearchTB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SearchTB.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.SearchTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchTB.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchTB.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.SearchTB.Location = new System.Drawing.Point(533, 0);
+            this.SearchTB.Margin = new System.Windows.Forms.Padding(4);
+            this.SearchTB.Multiline = true;
+            this.SearchTB.Name = "SearchTB";
+            this.SearchTB.Size = new System.Drawing.Size(263, 34);
+            this.SearchTB.TabIndex = 61;
+            this.SearchTB.Text = "Cerca";
+            this.SearchTB.Enter += new System.EventHandler(this.SearchTB_Enter);
+            this.SearchTB.Leave += new System.EventHandler(this.SearchTB_Leave);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel4.Controls.Add(this.MenuName);
-            this.panel4.Controls.Add(this.searchBtn);
-            this.panel4.Controls.Add(this.searchBox);
+            this.panel4.Controls.Add(this.SearchTB);
             this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.SupplierCB);
             this.panel4.Location = new System.Drawing.Point(3, 100);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
@@ -757,7 +547,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 672);
-            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.productsLB);
             this.Controls.Add(this.cancelBtn);
@@ -776,11 +565,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPB)).EndInit();
-            this.searchPanel.ResumeLayout(false);
-            this.searchPanel.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSearch)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -788,7 +572,7 @@
         }
 
         #endregion
-
+        private System.Windows.Forms.ComboBox SupplierCB;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
@@ -797,15 +581,14 @@
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.PictureBox productPB;
-        private System.Windows.Forms.TextBox brandTB;
-        private System.Windows.Forms.TextBox manfDateTB;
+        private System.Windows.Forms.TextBox BrandTB;
+        private System.Windows.Forms.TextBox ManufacturingDateTB;
         private System.Windows.Forms.Label manfDateLbl;
-        private System.Windows.Forms.TextBox snTB;
+        private System.Windows.Forms.TextBox serialNumberTB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label BrandLbl;
         private System.Windows.Forms.Label ArticleNameLbl;
-        private System.Windows.Forms.TextBox subCategoryTB;
-        private System.Windows.Forms.TextBox categoryTB;
+        private System.Windows.Forms.TextBox SubCategoryTB;
         private System.Windows.Forms.Label subCategoryLbl;
         private System.Windows.Forms.Label categoryLbl;
         private System.Windows.Forms.Label descriptionLbl;
@@ -824,26 +607,10 @@
         private System.Windows.Forms.TextBox depthUM;
         private System.Windows.Forms.TextBox heightUM;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox searchBox;
-        private System.Windows.Forms.Button searchBtn;
-        private System.Windows.Forms.Panel searchPanel;
-        private System.Windows.Forms.Button searchbtn2;
-        private System.Windows.Forms.Button resetCB;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label searchFor;
-        private System.Windows.Forms.PictureBox pbSearch;
-        private System.Windows.Forms.Panel separatorPanel;
-        private System.Windows.Forms.ComboBox brandCBsearch;
-        private System.Windows.Forms.ComboBox subCatCB;
-        private System.Windows.Forms.ComboBox catCB;
-        private System.Windows.Forms.Label brandLblSearch;
-        private System.Windows.Forms.Label subCat;
-        private System.Windows.Forms.Label catLbl;
+        private System.Windows.Forms.TextBox SearchTB;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label MenuName;
-        public System.Windows.Forms.TextBox codArticleTB;
+        public System.Windows.Forms.TextBox ProductNameTB;
+        private System.Windows.Forms.TextBox CategoryTB;
     }
 }

@@ -1,17 +1,16 @@
-﻿using System;
+﻿using GManagerial.Products;
+using GManagerial;
+using GManagerial.Products.ChildForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace GManagerial.Products
-{
-    internal interface IDAOProduct
+internal interface IDAOProduct
     {
-        int Insert(IProduct product);
-        Dictionary<int, IProduct> GetAll();
-        void Update(IProduct product); 
-        void Delete(IProduct product);  
-        
-    }
+    int Insert(Product product);
+    Dictionary<int,Product> GetAll();
+    void Update(Product product);
+    void Delete(Product product, string deleteQuery);
+    Dictionary<int, Product> GetProductsSearch(string searchValues, string category, string subcategory, string brand, string query, Supplier supplier);
 }

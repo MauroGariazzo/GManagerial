@@ -1,0 +1,25 @@
+﻿La classe DBConnector è una classe per la gestione delle connessioni a un database SQL e l'esecuzione delle operazioni CRUD 
+ * (Create, Read, Update, Delete) su di esso.
+ * 
+ - Connessione al Database:
+
+    La classe accetta una stringa di connessione (connectionString) come parametro nel costruttore per inizializzare un oggetto SqlConnection.
+
+ - Gestione della Connessione:
+
+    Open(): Apre la connessione al database.
+    Close(): Chiude la connessione al database.
+    GetConnectionObj(): Restituisce l'oggetto SqlConnection per accedere direttamente alla connessione se necessario.
+
+ - Esecuzione di Comandi SQL:
+
+    Insert(SqlCommand command): Esegue un comando SQL di inserimento.
+    Load(SqlCommand command): Esegue un comando SQL di lettura e restituisce un SqlDataReader per leggere i dati dal database.
+    Update(SqlCommand command): Esegue un comando SQL di aggiornamento.
+    Delete(SqlCommand command): Esegue un comando SQL di eliminazione.
+
+ - Interfaccia:
+
+    La classe implementa l'interfaccia IDBConnector, il che implica che aderisce a un contratto specifico definito da questa interfaccia 
+    (anche se l'interfaccia IDBConnector non è fornita nel tuo esempio, possiamo supporre che definisca i metodi che la classe DBConnector deve
+    implementare).

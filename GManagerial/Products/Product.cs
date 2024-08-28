@@ -1,6 +1,8 @@
-﻿using GManagerial.Attachments;
-using GManagerial.IDBConnector;
+﻿using GeoAPI.IO;
+using GManagerial.Attachments;
+using GManagerial.DBConnectors;
 using GManagerial.Products.ChildForms;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,7 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
-
 namespace GManagerial.Products
 {
     internal class Product: IProduct, IAttachmentParent
@@ -21,7 +22,7 @@ namespace GManagerial.Products
         private int _ID;
         private string _product_name;
         private string _serialNumber;
-        private DateTime? _manufacturingDate;
+        private string _manufacturingDate;
 
         private ICategory _categoryObj;
         private ISubCategory _subCategory;
@@ -36,6 +37,8 @@ namespace GManagerial.Products
         private decimal? _energyConsumption;
         private string _notes;
         private string _barcode;
+        private int _stock;
+        private int _lastSupplierSelected;
 
         private System.Drawing.Image _image;
         private System.Drawing.Image _resizedImage;
@@ -74,7 +77,8 @@ namespace GManagerial.Products
                 }
                 else
                 {
-                    MessageBox.Show("Non puoi lasciare il campo vuoto", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Non puoi lasciare il campo vuoto", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new ArgumentException("Non puoi creare un articolo senza nome");
                 }
             }
         }
@@ -86,10 +90,31 @@ namespace GManagerial.Products
         }
 
 
-        public DateTime? ManufacturingDate
+        public string ManufacturingDate
         {
             get { return _manufacturingDate; }
-            set { _manufacturingDate = value; }
+
+            set 
+            {
+                DateTime dateConverted;
+
+                if(DateTime.TryParseExact(value, new string[] { "dd/MM/yyyy", "dd/M/yyyy", "d/MM/yyyy", "d/M/yyyy" }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateConverted))
+                {
+                    _manufacturingDate = Convert.ToString(dateConverted);
+                }
+
+                else
+                if(value == string.Empty)
+                {
+                    _manufacturingDate = value;
+                }
+
+                else
+                {
+                    //MessageBox.Show("Data non corretta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new ParseException("Data non corretta");
+                }
+            }
         }
 
         public ICategory CategoryObj
@@ -110,28 +135,71 @@ namespace GManagerial.Products
             set { _description = value; }
         }
 
-        public decimal? Height
+        public void SetHeight(string value)
+        {
+            if(ConvertToDecimal(value) && value != string.Empty)
+            {
+                _height = Convert.ToDecimal(value);
+            }
+            else
+            {
+                _height = null;
+            }
+        }
+
+        public Decimal? GetHeight
         {
             get { return _height; }
-            set { _height = value; }
+        }
+        public void SetWidth(string value)
+        {
+            if(ConvertToDecimal(value) && value != string.Empty)
+            {
+                _width = Convert.ToDecimal(value);
+            }
+            else
+            {
+                _width = null;
+            }
         }
 
-        public decimal? Width
+        public Decimal? GetWidth
         {
             get { return _width; }
-            set { _width = value; }
         }
 
-        public decimal? Depth
+        public decimal? GetDepth
         {
             get { return _depth; }
-            set { _depth = value; }
         }
 
-        public decimal? Weight
+        public void SetDepth(string value)
+        {
+            if (ConvertToDecimal(value) && value != string.Empty)
+            {
+                _depth = Convert.ToDecimal(value);
+            }
+            else
+            {
+                _depth = null;
+            }
+        }
+        public void SetWeight(string value)
+        {
+            if (ConvertToDecimal(value) && value != string.Empty)
+            {
+                _weight = Convert.ToDecimal(value);
+            }
+
+            else
+            {
+                _weight = null;
+            }
+        }
+
+        public decimal? GetWeight
         {
             get { return _weight; }
-            set { _weight = value; }
         }
 
         public string EnergyClass
@@ -140,16 +208,38 @@ namespace GManagerial.Products
             set { _energyClass = value; }
         }
 
-        public decimal? Power
+        public void SetPower(string value)
+        {
+            if (ConvertToDecimal(value) && value != string.Empty)
+            {
+                _power = Convert.ToDecimal(value);
+            }
+
+            else
+            {
+                _power = null;
+            }
+        }
+        public decimal? GetPower
         {
             get { return _power; }
-            set { _power = value; }
         }
 
-        public decimal? EnergyConsumption
+        public void SetEnergyConsumption(string value)
+        {
+            if (ConvertToDecimal(value) && value != string.Empty)
+            {
+                _energyConsumption = Convert.ToDecimal(value);
+            }
+            else
+            {
+                _energyConsumption = null;
+            }
+        }
+
+        public decimal? GetEnergyConsumption
         {
             get { return _energyConsumption; }
-            set { _energyConsumption = value; }
         }
 
         public string Notes
@@ -237,6 +327,12 @@ namespace GManagerial.Products
             return fileData;
         }
 
+        public int Stock
+        {
+            get { return _stock; }
+            set { _stock = value; }
+        }
+
         /*public void PopulateAttachmentsToDelete()
         {
             AttachmentsToDelete = _daoObjectAttachments.GetAll(ID); //popolo il dizionario prendendo i dati dalla query
@@ -247,6 +343,21 @@ namespace GManagerial.Products
             Attachments = _daoObjectAttachments.GetAll(ID); //popolo il dizionario prendendo i dati dalla query
         }*/
 
+        private bool ConvertToDecimal(string value)
+        {
+            if (Decimal.TryParse(value, out _) || value == string.Empty)
+            {
+                return true;
+            }
+            return false;
+            //throw new ParseException("Errore nella conversione");
+        }
+
+        public int LastSupplierSelected
+        {
+            get { return _lastSupplierSelected; }
+            set { _lastSupplierSelected = value; }
+        }
     }
 
 }

@@ -1,6 +1,8 @@
 ﻿using GManagerial.Products;
 using GManagerial.Products.ChildForms;
 using GManagerial.WareHouse;
+using GManagerial.WareHouse.ChildForms.NewOrder;
+using GManagerial.WareHouse.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using GManagerial.Documents.OrderDocument.forms;
 
 namespace GManagerial
 {
@@ -30,8 +32,8 @@ namespace GManagerial
             productsBtn.Image = CustomButton.ResizeImage(productsBtn.Image);
             SuppliersBtn.Image = CustomButton.ResizeImage(SuppliersBtn.Image);
 
-            Screen currentScreen = Screen.FromControl(this); 
-            this.Size = currentScreen.WorkingArea.Size; 
+            Screen currentScreen = Screen.FromControl(this);
+            this.Size = currentScreen.WorkingArea.Size;
 
         }
 
@@ -164,7 +166,17 @@ namespace GManagerial
 
         private void WHsitItem_Click(object sender, EventArgs e)
         {
-            ChildFormLogic.ChildFormLogic.OpenChildForm(new Warehouse(), this.panelDesktop);
+            ChildFormLogic.ChildFormLogic.OpenChildForm(new WarehouseStocks(), this.panelDesktop);
+        }
+
+        private void movimentiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChildFormLogic.ChildFormLogic.OpenChildForm(new WarehouseMovementsForm(), this.panelDesktop);
+        }
+
+        private void OrderToSupplier_Click(object sender, EventArgs e)
+        {
+            ChildFormLogic.ChildFormLogic.OpenChildForm(new OrderForm(), this.panelDesktop);
         }
     }
 }

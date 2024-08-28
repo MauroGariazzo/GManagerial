@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using GManagerial.Products.ChildForms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Globalization;
-using static System.Net.Mime.MediaTypeNames;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing.Imaging;
-using GManagerial.AttachmentsForm;
-using GManagerial.Supplier;
-using GManagerial.WareHouse.ChildForms;
-using GManagerial.WareHouse;
-
-using GManagerial.IDBConnector;
+using GManagerial.DBConnectors;
 using GManagerial.Products.ChildForms.CategorySubForm.Models;
 using GManagerial.Attachments;
-using GManagerial.ObtainID;
-using System.Data.SqlTypes;
+using GManagerial.Products.ChildForms.AddSupplier.models;
+using GManagerial.Products.SellPrices;
+using GManagerial.WareHouse.models.Movements;
+
 
 namespace GManagerial.Products
 {
@@ -34,28 +19,18 @@ namespace GManagerial.Products
 
     public partial class ProductsForm : Form
     {
-        private char _newEditCopy;
-        private int selectedRow;
-
-        /////////////////////////////////////////
-
         private System.Windows.Forms.Button[] _buttonList;
         private System.Windows.Forms.TextBox[] _textboxes;
         private System.Windows.Forms.ComboBox[] _comboboxes;
+        internal IsNewEditCopyDeleteEnum _isNewEditCopyDelete;
 
+        private Product _product;
 
-        private AttachmentForm attachmentForm;
+        private IDBConnector _dbConnector = new DBConnector("Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True");
 
-        private List<int> idDBRows;  //id del DB
-        private List<int> idDGVRows;  //id del datagridview
-
-        private IProduct _product;
-
-        private IDBConnector.IDBConnector _dbConnector = new DBConnector("Data Source=DESKTOP-TH1C0HD;Initial Catalog=Gmanagerial;Integrated Security=True");
-
-        private Dictionary<string, IBrand> _brands;
-        private Dictionary<string, ICategory> _categories;
-        private Dictionary<string, ISubCategory> _subCategories;
+        private Dictionary<string, IBrand> _brands; //->lista
+        private Dictionary<string, ICategory> _categories; //->lista
+        private Dictionary<string, ISubCategory> _subCategories; //->lista
 
         private DAOProduct _daoProduct;
         private DAOBrand _daoBrand;
@@ -63,74 +38,96 @@ namespace GManagerial.Products
         private DAOSubCategory _daoSubCategory;
         private DAOAttachments _daoAttachment;
         private DAOObjectAttachments _daoObjectAttachments;
-
+        //private DAOSupplier _daoSupplier;
+        private DAODetailsMovement _daoDetailsMovement;
+        //private DAOSupplierProduct _daoSupplierProduct;
         private AttachmentForm _attachmentForm;
-        private Dictionary<int, IProduct> _productsDictionary; //dizionario dove ho tutti i prodotti
+        private Dictionary<int,Product> _products; //dizionario dove ho tutti i prodotti
         private FormLogicGUI _formLogicGUI;
+        private RowLogic.RowLogic _rowLogic;
+
+        private decimal _supplierPrice = 0.0M;
+        private decimal _listPrice = 0.0M;
+        private int _selectedRow;
         public ProductsForm()
         {
             InitializeComponent();
-  
-            this.idDBRows = new List<int>();
-            this.idDGVRows = new List<int>();
 
+            InitializeSetAddComponents();
+
+            this._daoSellPrice = new DAOSellPrice(this._dbConnector);
             this._daoProduct = new DAOProduct(this._dbConnector);
             this._daoBrand = new DAOBrand(this._dbConnector); //-> da cancellare
+                                                              //this._daoSupplier = new DAOSupplier(this._dbConnector);
             this._daoCategory = new DAOCategory(this._dbConnector);
             this._daoSubCategory = new DAOSubCategory(this._dbConnector);
+            this._daoProductSupplier = new DAOSupplierProduct(this._dbConnector);
             this._daoAttachment = new DAOAttachments(_dbConnector, AttachmentQuery.INSERT_ATTACHMENT, AttachmentQuery.DELETE_ATTACHMENT);
 
+            this._daoDetailsMovement = new DAODetailsMovement(_dbConnector);
             this._daoObjectAttachments = new DAOObjectAttachments(_dbConnector, AttachmentQuery.SELECT_PRODUCT, AttachmentQuery.INSERT_PRODUCT, AttachmentQuery.DELETE_PRODUCT);
+            //this._daoSupplierProduct = new DAOSupplierProduct(this._dbConnector);
 
             this._brands = this._daoBrand.GetAllDictionaries();    //-> da cancellare
             this._categories = this._daoCategory.GetAllDictionaries();
-            this._subCategories = this._daoSubCategory.GetAllDictionaries();    
+            this._subCategories = this._daoSubCategory.GetAllDictionaries();
 
             this._formLogicGUI = new FormLogicGUI();
-            this._buttonList = new System.Windows.Forms.Button[] { confirmBtn, cancelBtn, confirmBtn2, cancelBtn2, barcBtn, priceBtn, AttachmentsBtn, ImageBtn};
-            this._textboxes = new System.Windows.Forms.TextBox[] {ProductNameTB, serialNumberTB, manfDateTB, descriptionTB, heightTB, widthTB, depthTB, weightTB, energyTB, powerTB, 
-                energyConsTB, notesTB};
-            this._comboboxes = new System.Windows.Forms.ComboBox[] { BrandCB, categoryCB, subCategoryCB};
-        }
 
+            this._buttonList = new System.Windows.Forms.Button[] { ConfirmBtn, CancelBtn, confirmBtn2, cancelBtn2, barcBtn, AttachmentsBtn, ImageBtn };
+            this._textboxes = new System.Windows.Forms.TextBox[] {ProductNameTB, serialNumberTB, ManufacturingDateTB, descriptionTB, heightTB, widthTB, depthTB, weightTB, energyTB, powerTB,
+                energyConsTB, notesTB, SupplierPriceTB, ListPriceTB1, ListPriceTB2, ListPriceTB3, ListPriceTB4, ListPriceTB5, ListPriceTB6};
+            this._comboboxes = new System.Windows.Forms.ComboBox[] { BrandCB, CategoryCB, SubCategoryCB };
+            this._rowLogic = new RowLogic.RowLogic(ProductsDGV);
+            this.AddSupplier.Click += new System.EventHandler(AddSupplier_Click);
+        }
 
         private void OnUpdateBrand()
         {
             this._brands = this._daoBrand.GetAllDictionaries();
-            BrandCB.Items.Clear();  
+            BrandCB.Items.Clear();
             foreach (IBrand brand in _brands.Values)
             {
                 BrandCB.Items.Add(brand);
+                BrandSearchCB.Items.Add(brand);
             }
 
             BrandCB.DisplayMember = "Name";
+            BrandSearchCB.DisplayMember = "Name";
         }
 
         private void OnUpdateCategory()
         {
             this._categories = this._daoCategory.GetAllDictionaries();
-            categoryCB.Items.Clear();
+            CategoryCB.Items.Clear();
+            CategorySearchCB.Items.Clear();
+
             foreach (ICategory category in _categories.Values)
             {
-                categoryCB.Items.Add(category);
+                CategoryCB.Items.Add(category);
+                CategorySearchCB.Items.Add(category);
             }
 
-            categoryCB.DisplayMember = "CategoryName"; // Imposta il membro da visualizzare
-            
+            CategoryCB.DisplayMember = "CategoryName"; // Imposta il membro da visualizzare
+            CategorySearchCB.DisplayMember = "CategoryName";
         }
 
         private void OnUpdateSubCategory(ICategory category)
         {
             this._subCategories = this._daoSubCategory.GetAllSubCategoriesFromACategoryDictionaries(category);
-            subCategoryCB.Items.Clear(); 
+            SubCategoryCB.Items.Clear();
+            SubCategorySearchCB.Items.Clear();
+
             foreach (ISubCategory subCategory in _subCategories.Values)
             {
-                subCategoryCB.Items.Add(subCategory);
+                SubCategoryCB.Items.Add(subCategory);
+                SubCategorySearchCB.Items.Add(subCategory);
             }
 
-            subCategoryCB.DisplayMember = "SubCategoryName";
-
+            SubCategoryCB.DisplayMember = "SubCategoryName";
+            SubCategorySearchCB.DisplayMember = "SubCategoryName";
         }
+
         private void ProductsForm_Load(object sender, EventArgs e)
         {
             UpdateDataGridView();
@@ -140,64 +137,90 @@ namespace GManagerial.Products
 
         private void UpdateDataGridView()
         {
-            productsDGV.Rows.Clear();
-            _productsDictionary = _daoProduct.GetAll();
-            DataGridViewPopulateFromDictionary(_productsDictionary);
+            ProductsDGV.Rows.Clear();
+            _products = _daoProduct.GetAll();
+            DataGridViewPopulateFromDictionary();
         }
 
-
-        private void DataGridViewPopulateFromDictionary(Dictionary<int, IProduct> productsDictionary)
+        private void UpdateDataGridViewFilter()//delegate?
         {
-            foreach(var couple in productsDictionary)
+            ProductsDGV.Rows.Clear();
+            DataGridViewPopulateFromDictionary();
+        }
+
+        private void DataGridViewPopulateFromDictionary()
+        {
+            foreach (Product product in _products.Values)
             {
-                int rowIndex = productsDGV.Rows.Add();
-                productsDGV.Rows[rowIndex].Cells[0].Value = couple.Key;
-                productsDGV.Rows[rowIndex].Cells[1].Value = couple.Value.ProductName;
-                productsDGV.Rows[rowIndex].Cells[2].Value = couple.Value.ResizedImage;
+                int rowIndex = ProductsDGV.Rows.Add();
+                ProductsDGV.Rows[rowIndex].Cells[0].Value = product.ID;
+                ProductsDGV.Rows[rowIndex].Cells[1].Value = product.ProductName;
+                ProductsDGV.Rows[rowIndex].Cells[2].Value = product.ResizedImage;
             }
         }
 
-        private void newBtn_Click(object sender, EventArgs e)
+        private void NewBtn_Click(object sender, EventArgs e)
         {
-            _formLogicGUI.NewEditCopyButton(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
+            _isNewEditCopyDelete = IsNewEditCopyDeleteEnum.New;
+            _formLogicGUI.NewEditCopyButtonEnable(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList, stripBtns, ProductsDGV);
 
-            this._newEditCopy = 'n';
+            if (ProductsDGV.SelectedRows.Count > 0)
+            {
+                _selectedRow = ProductsDGV.SelectedRows[0].Index;
+            }
 
             _product = new Product();
-            _product.BrandP = new Brand(); 
-            _product.CategoryObj = new Category(); 
-            _product.SubCategory = new SubCategory(); 
+            _product.BrandP = new Brand();
+            _product.CategoryObj = new Category();
+            _product.SubCategory = new SubCategory();
 
-            ((Product)_product).Attachments = new Dictionary<int, IAttachment>();
-            ((Product)_product).TempAttachments = new Dictionary<int, IAttachment>();
-            ((Product)_product).AttachmentsToDelete = new Dictionary<int, IAttachment>();
+
+            _product.Attachments = new Dictionary<int, IAttachment>();
+            _product.TempAttachments = new Dictionary<int, IAttachment>();
+            _product.AttachmentsToDelete = new Dictionary<int, IAttachment>();
+
+            _selectedSuppliers = _daoProductSupplier.GetSelectedSuppliers(_product, SupplierProductQueries.SELECTSUPPLIERSFORNEWPRODUCT);
+            _selectedSuppliersTemp = new Dictionary<int, SupplierProduct>(_selectedSuppliers);
+            LoadSupplierComboBox();
+
+            _unselectedSuppliers = _daoProductSupplier.GetUnselectedProducts(_product);
+            _unselectedSuppliersTemp = new Dictionary<int, SupplierProduct>(_unselectedSuppliers);
+
+            SupplierCB.SelectedIndex = 0; //-> da spostare
         }
 
 
-        private void editBtn_Click(object sender, EventArgs e)
+        private void EditBtn_Click(object sender, EventArgs e)
         {
-            if (idDGVRows.Count == 1 || productsDGV.SelectedRows.Count == 1)
+            if (ProductsDGV.SelectedRows.Count == 1)
             {
-                /*RowLogic.DisableAllCheckBoxes(productsDGV);
+                _isNewEditCopyDelete = IsNewEditCopyDeleteEnum.Edit;
+                _selectedRow = ProductsDGV.SelectedRows[0].Index;
 
-                selectedRow = productsDGV.SelectedRows[0].Index;*/
-
-                this._newEditCopy = 'e';
-
-                int id = ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"); //ottengo l'id che voglio modificare dal datagridview.
-
+                int id = (int)ProductsDGV.SelectedRows[0].Cells[0].Value;
                 _product = new Product();
-                _product = _productsDictionary[id];
+                _product = _products[id];
 
-                ((Product)_product).TempAttachments = new Dictionary<int, IAttachment>();
-                ((Product)_product).AttachmentsToDelete = new Dictionary<int, IAttachment>();
-                ((Product)_product).Attachments = _daoObjectAttachments.GetAll(id);
 
-                TransferDataFromDictionariesToControls();
-                _formLogicGUI.NewEditCopyButton(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
+                _product.TempAttachments = new Dictionary<int, IAttachment>();
+                _product.AttachmentsToDelete = new Dictionary<int, IAttachment>();
+                _product.Attachments = _daoObjectAttachments.GetAll(id);
+
+                _unselectedSuppliers = _daoProductSupplier.GetUnselectedProducts(_product);
+                _unselectedSuppliersTemp = new Dictionary<int, SupplierProduct>(_unselectedSuppliers);
+
+                _selectedSuppliers = _daoProductSupplier.GetSelectedSuppliers(_product, SupplierProductQueries.SELECTSUPPLIERSFOREXISTINGPRODUCT);
+                _selectedSuppliersTemp = new Dictionary<int, SupplierProduct>(_selectedSuppliers);
+
+                _productPrices = _daoSellPrice.GetAll(_product);
+
+                LoadSupplierComboBox();//lista di tutti i fornitori
+
+                TransferDataFromDictionariesToPanelControls();
+                _formLogicGUI.NewEditCopyButtonEnable(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList, stripBtns, ProductsDGV);
             }
 
-            else if (idDGVRows.Count > 1 || productsDGV.SelectedRows.Count > 1 || idDBRows.Count > 1)
+            else if (ProductsDGV.SelectedRows.Count > 1)
             {
                 MessageBox.Show("Non posso modificare più di un elemento alla volta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -205,133 +228,114 @@ namespace GManagerial.Products
             else
             {
                 _formLogicGUI.SelectElement("prodotto");
+                return;
             }
+            //SupplierCB.SelectedIndex = 0;
+
         }
 
-        private void TransferDataFromDictionariesToControls()
+        private void TransferDataFromDictionariesToPanelControls()
         {
             ProductNameTB.Text = _product.ProductName;
             serialNumberTB.Text = _product.SerialNumber;
             BrandCB.Text = _product.BrandP.Name;
-            categoryCB.Text = _product.CategoryObj.CategoryName;
-            subCategoryCB.Text = _product.SubCategory.SubCategoryName;
+
+            CategoryCB.Text = _product.CategoryObj.CategoryName;
+            SubCategoryCB.Text = _product.SubCategory.SubCategoryName;
             descriptionTB.Text = _product.Description;
             notesTB.Text = _product.Notes;
-            heightTB.Text = _product.Height.ToString();
-            widthTB.Text = _product.Width.ToString();
-            weightTB.Text = _product.Weight.ToString();
-            depthTB.Text = _product.Depth.ToString();
-            energyTB.Text = _product.EnergyClass;
-            energyConsTB.Text = _product.EnergyConsumption.ToString();
-            powerTB.Text = _product.Power.ToString();
 
-            if (_product.ManufacturingDate != null)
-            {
-                manfDateTB.Text = _product.ManufacturingDate.ToString().Substring(0, 10);
-            }
+            heightTB.Text = _product.GetHeight.ToString();
+            widthTB.Text = _product.GetWidth.ToString();
+            weightTB.Text = _product.GetWeight.ToString();
+            depthTB.Text = _product.GetDepth.ToString();
+            energyTB.Text = _product.EnergyClass;
+
+            energyConsTB.Text = _product.GetEnergyConsumption.ToString();
+            powerTB.Text = _product.GetPower.ToString();
+
+            ManufacturingDateTB.Text = (_product.ManufacturingDate == string.Empty) ? string.Empty : _product.ManufacturingDate.Substring(0, 10);
         }
         private void CopyBtn_Click(object sender, EventArgs e)
         {
-            /*
-            {               
-                selectedRow = productsDGV.SelectedRows[0].Index;
-            */
-
-            if (idDGVRows.Count == 1 || productsDGV.SelectedRows.Count == 1)
+            if (ProductsDGV.SelectedRows.Count == 1)
             {
-                _newEditCopy = 'c';
+                _isNewEditCopyDelete = IsNewEditCopyDeleteEnum.Copy;
+                _selectedRow = ProductsDGV.SelectedRows[0].Index;
 
                 _product = new Product();
-                int id = ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"); //ottengo l'id che voglio modificare dal datagridview.              
-                _product = _productsDictionary[id];
 
-                ((Product)_product).TempAttachments = new Dictionary<int, IAttachment>();
-                ((Product)_product).AttachmentsToDelete = new Dictionary<int, IAttachment>();
-                ((Product)_product).Attachments = _daoObjectAttachments.GetAll(id);
+                int id = (int)ProductsDGV.SelectedRows[0].Cells[0].Value;
+                _product = _products[id];
+
+                _product.TempAttachments = new Dictionary<int, IAttachment>();
+                _product.AttachmentsToDelete = new Dictionary<int, IAttachment>();
+                _product.Attachments = _daoObjectAttachments.GetAll(id);
 
                 _formLogicGUI = new FormLogicGUI();
-                TransferDataFromDictionariesToControls();
-                _formLogicGUI.NewEditCopyButton(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
+                TransferDataFromDictionariesToPanelControls();
 
+                _productPrices = _daoSellPrice.GetAll(_product);
+
+                CopyAllSuppliersWithPricesToNewProduct();
+                _unselectedSuppliers = _daoProductSupplier.GetUnselectedProducts(_product);
+                _unselectedSuppliersTemp = new Dictionary<int, SupplierProduct>(_unselectedSuppliers);
+
+                _formLogicGUI.NewEditCopyButtonEnable(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList, stripBtns, ProductsDGV);
+                SupplierCB.SelectedIndex = 0;
             }
         }
 
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            /*if (productsDGV.RowCount > 0)
+            if (ProductsDGV.RowCount > 0 && ProductsDGV.SelectedRows.Count > 0)
             {
-                if (idDGVRows.Count == 0) { RowLogic.HowManyRows(productsDGV, idDGVRows, ref selectedRow, idDBRows); }
-                //quante righe sono state selezionate NON SFRUTTANDO LE CHECKBOX?
-                //RowLogic.moveIDfromDGVToDBList(idDBRows, idDGVRows, productsDGV, "Product_ID");
-                
-                try
-                {
+                _isNewEditCopyDelete = IsNewEditCopyDeleteEnum.Delete;
+                _selectedRow = ProductsDGV.SelectedRows[0].Index;
 
-                    if (productsDGV.CurrentCell.RowIndex != -1 && ObtainIdProduct(productsDGV.SelectedRows[0].Index) != -1)
-                    {
-
-                        DialogResult decimalResult = MessageBox.Show("Sei sicuro di voler cancellare la riga selezionata?", "Conferma cancellazione",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                        if (decimalResult == DialogResult.Yes)
-                        {
-                            if (idDBRows.Count > 0)
-                            {
-                                idDBRows.ForEach(productID => ProductPricesMGM.DeletePrices(productID));
-                                idDBRows.ForEach(productID => ProductsMGM.deleteProduct(productID));
-                            }
-
-                            else
-                            {
-                                ProductPricesMGM.DeletePrices(ObtainID.ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"));
-                                ProductsMGM.deleteProduct(ObtainIdProduct(productsDGV.SelectedRows[0].Index));
-                            }
-                            ProductsForm_Load(sender, e);
-                            RowLogic.DeselectAllCheckBox(idDGVRows, productsDGV, true, selectedRow);
-
-                        }
-                    }
-
-                    idDBRows.Clear();
-                    selectAllRows.Checked = false;
-                    RowLogic.DisableAllCheckBoxes(productsDGV);
-                }
-
-                catch(System.ArgumentOutOfRangeException)
-                {
-                    FormLogicGUI.SelectElement("prodotto");
-                }
+                CheckUserChoice();
             }
 
-            else
-            {
-                FormLogicGUI.SelectElement("prodotto");
-            }*/
 
-            if (productsDGV.RowCount > 0)
+            if (selectAllRows.Checked)
             {
                 CheckUserChoice();
+                selectAllRows.Checked = false;
             }
         }
 
         private void CheckUserChoice() //controllare se l'utente è sicuro di voler cancellare la riga o le righe selezionate
         {
-            if (productsDGV.SelectedRows.Count > 0)
+            if (ProductsDGV.SelectedRows.Count > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Sei sicuro di voler cancellare l'elemento selezionato?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (dialogResult == DialogResult.Yes)
+                DialogResult firstDialog = MessageBox.Show("Attenzione, la cancellazione di un prodotto porterà anche all'eliminazione dei vari movimenti a magazzino, prezzi, ecc.\n\nVuoi proseguire?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (firstDialog == DialogResult.Yes)
                 {
-                    foreach (DataGridViewRow row in productsDGV.SelectedRows)
-                    {
-                        _product = new Product();
-                        int id_product = ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV, "Product_ID"); //ottengo l'id che voglio modificare dal datagridview.
-                        _product = _productsDictionary[id_product];
+                    DialogResult dialogResult = MessageBox.Show("Sei sicuro di voler cancellare l'elemento selezionato?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                        ((Product)_product).AttachmentsToDelete = _daoObjectAttachments.GetAll(id_product); //tutti gli allegati
-                        DeleteAttachments();
-                        DeleteProduct(id_product);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in ProductsDGV.SelectedRows)
+                        {
+                            _product = new Product();
+                            int id_product = (int)row.Cells[0].Value;
+                            _product = _products[id_product];
+
+                            _product.AttachmentsToDelete = _daoObjectAttachments.GetAll(id_product); //tutti gli allegati
+                                                                                                     //DELETE MOVEMENTS
+                                                                                                     //_daoDetailsMovement.Delete(_product);
+                            _daoDetailsMovement.Update(_product);
+                            _daoProduct.Delete(_product, ProductQueries.DELETEWAREHOUSEPRODUCT);
+                            _daoProduct.Delete(_product, ProductQueries.DELETEPRODUCTSUPPLIER);
+                            _daoProduct.Delete(_product, ProductQueries.DELETEPRODUCTPRICES);
+
+                            DeleteAttachments();
+                            DeleteProduct(id_product);
+
+                            _rowLogic.RowToSelectInDataGridView(_isNewEditCopyDelete, _selectedRow);
+                            SelectedRows(_isNewEditCopyDelete);
+                        }
                     }
                 }
             }
@@ -343,10 +347,22 @@ namespace GManagerial.Products
             }
         }
 
+        private void SelectedRows(IsNewEditCopyDeleteEnum command) //per cancellazione
+        {
+            int row = _rowLogic.RowToSelectInDataGridView(command, _selectedRow);
+            UpdateDataGridView();
+
+            if (ProductsDGV.Rows.Count > 0)
+            {
+                ProductsDGV.ClearSelection();
+                ProductsDGV.Rows[row].Selected = true;
+            }
+        }
+
 
         private void DeleteAttachments()
         {
-            foreach (Attachment attachment in ((Product)_product).AttachmentsToDelete.Values)
+            foreach (Attachment attachment in _product.AttachmentsToDelete.Values)
             {
                 _daoObjectAttachments.Delete(attachment, attachment.ObjectID); //cancella gli allegati dalla tabella product_attachment
                 _daoAttachment.Delete(attachment); //cancella gli allegati dalla tabella attachments
@@ -355,73 +371,79 @@ namespace GManagerial.Products
 
         private void DeleteProduct(int id_product)
         {
-            _product = _productsDictionary[id_product];
-            _daoProduct.Delete(_product);
-            _productsDictionary.Remove(id_product);
-            UpdateDataGridView();
+            _product = _products[id_product];
+            _daoProduct.Delete(_product, ProductQueries.DELETEPRODUCT);
+            _products.Remove(_product.ID);
         }
+
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            if (ProductNameTB.Text != string.Empty)
+            if (DataPanelValidate())
             {
                 int id_product; //id per recuperare l'ultima riga inserita
 
-                if (_newEditCopy == 'n' || _newEditCopy == 'c')
+                if (_isNewEditCopyDelete == IsNewEditCopyDeleteEnum.New || _isNewEditCopyDelete == IsNewEditCopyDeleteEnum.Copy)  //if (_newEditCopyDelete == 'n' || _newEditCopyDelete == 'c')
                 {
                     id_product = _daoProduct.Insert(_product); //nuovo inserimento recupero l'id direttamente dalla query
+                    if (!id_product.Equals(0))
+                    {
+                        SupplierRegister(id_product, _isNewEditCopyDelete); //fornitori abbinati al prodotto
+                        InsertPricesIntoDB(id_product);
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Esiste già un prodotto con questo nome", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
 
                 else
                 {
                     _daoProduct.Update(_product); //l'id ce l'ho già, perché sto cercando di modificare un prodotto già esistente
                     id_product = _product.ID;
+                    SupplierRegister(id_product, IsNewEditCopyDeleteEnum.Edit);
+                    InsertPricesIntoDB(id_product);
                 }
 
 
-                foreach (Attachment attachment in ((Product)_product).TempAttachments.Values)
+                foreach (Attachment attachment in _product.TempAttachments.Values)
                 {
-                   int id_attachment = _daoAttachment.Insert(attachment);
-                   _daoObjectAttachments.Insert(id_product, id_attachment);
+                    int id_attachment = _daoAttachment.Insert(attachment);
+                    _daoObjectAttachments.Insert(id_product, id_attachment);
                 }
 
-                   AttachmentForm.TempID = -1; //risetto la variabile TempID che mi serviva per gli allegati temporanei
-                   _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
+                AttachmentForm.TempID = -1; //risetto la variabile TempID che mi serviva per gli allegati temporanei
 
-                   UpdateDataGridView();
-            }
-
-            else
-            {
-                MessageBox.Show("Inserisci il nome del prodotto", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);//formlogicgui
+                _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList, stripBtns, ProductsDGV);
+                CancelSearchBtn_Click(sender, e);//azzera tutti i filtri di ricerca
+                UpdateDataGridView(); //aggiorna datagridview
+                DeletePrices();
+                DictionaryClean();
+                SelectedRows(_isNewEditCopyDelete); //seleziona la riga corretta, per evitare che se si sposti da solo nel primo elemento del datagridview da solo
             }
         }
+
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             if (_formLogicGUI.PrintCancelEdit())
-            {  
-                _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList);
-                /*
-                RowLogic.RowSelected(selectedRow, productsDGV);
-                RowLogic.DeselectAllCheckBox(idDGVRows, productsDGV);
-                */
+            {
+                _isNewEditCopyDelete = IsNewEditCopyDeleteEnum.Cancel;
+                _formLogicGUI.ConfirmAndCancelButtonLogic(AnagrPanelTP, ProductTab, _comboboxes, _textboxes, _buttonList, stripBtns, ProductsDGV);
+                DictionaryClean();
+                CancelSearchBtn_Click(sender, e);//azzera tutti i filtri di ricerca
+                SelectedRows(_isNewEditCopyDelete);
             }
-
-            idDBRows.Clear();   // --> ?????????
             selectAllRows.Checked = false;
+            AttachmentForm.TempID = -1;
         }
 
-        private void attachmentsBtn_Click(object sender, EventArgs e)
+        private void AttachmentsBtn_Click(object sender, EventArgs e)
         {
-            _attachmentForm = new AttachmentForm((Product)_product, _product.ID);
+            _attachmentForm = new AttachmentForm(_product, _product.ID);
             _attachmentForm.ShowDialog();
-        }
-
-
-        private void priceBtn_Click(object sender, EventArgs e)
-        {
-           
         }
 
         private void ImageBtn_Click(object sender, EventArgs e)
@@ -432,9 +454,9 @@ namespace GManagerial.Products
 
 
         private void categoryBtn_Click(object sender, EventArgs e) //*
-        {        
-            Category tempCategoryForStringAttribute = categoryCB.SelectedItem as Category;
-            SubCategory tempSubCategoryForStringAttribute = subCategoryCB.SelectedItem as SubCategory;
+        {
+            Category tempCategoryForStringAttribute = CategoryCB.SelectedItem as Category;
+            SubCategory tempSubCategoryForStringAttribute = SubCategoryCB.SelectedItem as SubCategory;
 
             CategoriesForm categories = new CategoriesForm();
             categories.SetCategoryCallBack(this.OnUpdateCategory);
@@ -443,20 +465,20 @@ namespace GManagerial.Products
 
             if (tempCategoryForStringAttribute != null)
             {
-                categoryCB.Text = tempCategoryForStringAttribute.CategoryName;
+                CategoryCB.Text = tempCategoryForStringAttribute.CategoryName;
             }
 
             if (tempSubCategoryForStringAttribute != null)
             {
-                subCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
+                SubCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
             }
         }
 
 
         private void subCategoryBtn_Click(object sender, EventArgs e) //*
         {
-            Category tempCategoryForStringAttribute = categoryCB.SelectedItem as Category;
-            SubCategory tempSubCategoryForStringAttribute = subCategoryCB.SelectedItem as SubCategory;
+            Category tempCategoryForStringAttribute = CategoryCB.SelectedItem as Category;
+            SubCategory tempSubCategoryForStringAttribute = SubCategoryCB.SelectedItem as SubCategory;
 
             CategoriesForm categories = new CategoriesForm();
             categories.SetCategoryCallBack(this.OnUpdateCategory);
@@ -465,22 +487,21 @@ namespace GManagerial.Products
 
             if (tempCategoryForStringAttribute != null)
             {
-                categoryCB.Text = tempCategoryForStringAttribute.CategoryName;
+                CategoryCB.Text = tempCategoryForStringAttribute.CategoryName;
             }
 
             if (tempSubCategoryForStringAttribute != null)
             {
-                subCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
+                SubCategoryCB.Text = tempSubCategoryForStringAttribute.SubCategoryName;
             }
         }
 
-
-        private void categoryCB_SelectedIndexChanged(object sender, EventArgs e)
+        private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (categoryCB.SelectedItem != null && categoryCB.Text != "-")
+            if (CategoryCB.SelectedItem != null && CategoryCB.Text != "-")
             {
-                _product.CategoryObj = categoryCB.SelectedItem as Category;
-                subCategoryCB.Enabled = true;
+                _product.CategoryObj = CategoryCB.SelectedItem as Category;
+                SubCategoryCB.Enabled = true;
                 subCategoryBtn.Enabled = true;
                 subCategoryLbl.ForeColor = Color.Black;
 
@@ -492,24 +513,22 @@ namespace GManagerial.Products
 
             else
             {
-                categoryCB.SelectedItem = null; 
-                subCategoryCB.Enabled = false;
+                CategoryCB.SelectedItem = null;
+                SubCategoryCB.Enabled = false;
                 subCategoryBtn.Enabled = false;
-                subCategoryLbl.ForeColor = Color.Gray;
-                subCategoryCB.Items.Clear();
+                SubCategoryCB.Items.Clear();
             }
-
         }
 
 
         private void categoryCB_DropDownClosed(object sender, EventArgs e) //*
         {
-            if (categoryCB.SelectedItem == null) 
+            if (CategoryCB.SelectedItem == null)
             {
-                subCategoryCB.Enabled = false;
+                SubCategoryCB.Enabled = false;
                 subCategoryBtn.Enabled = false;
                 subCategoryLbl.ForeColor = Color.Gray;
-                subCategoryCB.Text = null;
+                SubCategoryCB.Text = null;
             }
         }
 
@@ -522,373 +541,68 @@ namespace GManagerial.Products
 
             BrandCB.SelectedIndex = selectedBrandIndex;
         }
-
-        private void subCategoryCB_SelectedIndexChanged(object sender, EventArgs e)
+        private void SubCategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (subCategoryCB.SelectedIndex != 0 && subCategoryCB.SelectedIndex != -1)
+            if (SubCategoryCB.SelectedIndex != 0 && SubCategoryCB.SelectedIndex != -1)
             {
-                _product.SubCategory = (SubCategory)subCategoryCB.SelectedItem;
-
-                /*if (_product.SubCategory.CategoryId == 1)
-                {
-                    subCategoryCB.Text = "-";
-                    return;
-                }*/
+                _product.SubCategory = (SubCategory)SubCategoryCB.SelectedItem;
             }
 
             else
             {
-                subCategoryCB.SelectedItem = null;
+                SubCategoryCB.SelectedItem = null;
             }
-        }
-
-
-        private int ObtainIdProduct(int selectedRowIndex)
-        {
-            return ObtainID.ObtainIDelements.ObtainIdElement(selectedRowIndex, productsDGV, "Product_ID");
-        }
-
-        
-        //-------------------------------------------------------------------------------------------------------------------------------------------//
-
-        private void energyConsTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            checkNumPress(e,',');
-
-            if (e.KeyChar == ',' && energyConsTB.Text.Contains(","))  //controllo per impedire all'utente di inserire più di un punto
-            {
-                e.Handled = true;
-            }
-
-            checkDotsInput(sender, e);
-        }
-
-        private void checkNumPress(KeyPressEventArgs e, char character)  //isdigit
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != character && e.KeyChar != (char)Keys.Back) //se non è un numero, un punto o il backspace
-            {
-                e.Handled = true;  //  controllo per impedire all'utente di inserire caratteri diversi dai numeri
-            }
-        }
-
-        private void powerTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true;
-            }
-            checkDotsInput(sender, e);
-        }
-
-        private void heightTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            checkNumPress(e, ',');
-
-            if (e.KeyChar == ',' && heightTB.Text.Contains(","))
-            {
-                e.Handled = true;
-            }
-
-            checkDotsInput(sender, e);
-        }
-
-        private void checkDotsInput(object sender, KeyPressEventArgs e)
-        {
-            System.Windows.Forms.TextBox textBox = (System.Windows.Forms.TextBox)sender;
-
-            if (textBox.Text.Length == 4 && !textBox.Text.Contains(',') && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
-            {
-                textBox.Text += ',';
-                textBox.SelectionStart = textBox.Text.Length;
-            }
-        }
-
-        private void widthTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            checkNumPress(e, ',');
-
-            if (e.KeyChar == ',' && widthTB.Text.Contains(","))
-            {
-                e.Handled = true;
-            }
-
-            checkDotsInput(sender, e);
-        }
-
-
-        private void depthTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            checkNumPress(e, ',');
-
-            if (e.KeyChar == ',' && depthTB.Text.Contains(","))
-            {
-                e.Handled = true;
-            }
-
-            checkDotsInput(sender, e);
-        }
-
-        private void weightTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            checkNumPress(e,',');
-
-            if (e.KeyChar == ',' && weightTB.Text.Contains(","))
-            {
-                e.Handled = true;
-            }
-
-            checkDotsInput(sender, e);
-        }
-
-        private void unityMisureReset(object sender, EventArgs e)
-        {
-            System.Windows.Forms.ComboBox comboBox = sender as System.Windows.Forms.ComboBox;
-
-            if (comboBox.SelectedItem != null && comboBox.SelectedItem.ToString() == "-")
-            {
-                comboBox.SelectedItem = null;
-            }
-        }
-
-        private void heightCB_SelectedValueChanged(object sender, EventArgs e)
-        {
-            unityMisureReset(sender, e);
-        }
-        private void widthCB_SelectedValueChanged(object sender, EventArgs e)
-        {
-            unityMisureReset(sender, e);
-        }
-
-        private void depthCB_SelectedValueChanged(object sender, EventArgs e)
-        {
-            unityMisureReset(sender, e);
-        }
-
-        private void weightCB_SelectedValueChanged(object sender, EventArgs e)
-        {
-            unityMisureReset(sender, e);
-        }
-
-        private void powerCB_SelectedValueChanged(object sender, EventArgs e)
-        {
-            unityMisureReset(sender, e);
-        }
-
-        private void energy_consCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            unityMisureReset(sender, e);
-        }
-/*-------------------------------------------------------------------------------------------------------------------------*/
-        private void manfDateTB_TextChanged(object sender, EventArgs e)
-        {
-            DateManipulate.IsValiDate(sender, manfDateTB);
-        }
-
-
-        private void manfDateTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            DateManipulate.manfDateTB_KeyPress(sender, e, manfDateTB);
-        }
-
-        
-        private void manfDateTB_KeyDown(object sender, KeyEventArgs e)
-        {
-            DateManipulate.manfDateTB_KeyDown(sender, e, manfDateTB);
-        }
-
-        //-----------------------------------------------------------------------------------------------------------//
-        private void searchBox_Enter(object sender, EventArgs e)
-        {
-            SearchLogic.searchBox_Enter(searchBox);
-        }
-
-        private void searchBox_Leave(object sender, EventArgs e)
-        {
-            SearchLogic.searchBox_Leave(searchBox);
-        }
-
-        private void searchBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            SearchLogic.searchBox_KeyDown(e, searchBox);
-        }
-
-        private void searchBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SearchLogic.searchBox_KeyPress(sender, e);
-        }
-
-        private void searchBox_TextChanged(object sender, EventArgs e)
-        {
-            Dictionary<string, System.Windows.Forms.ComboBox> comboBoxDictionary = new Dictionary<string, System.Windows.Forms.ComboBox> { { "catCB", catCB },
-            { "subCatCB", subCatCB }, { "brandCBsearch", brandCBsearch }};
-            SearchLogic.FormSorting(searchBox, 'p', productsDGV, comboBoxDictionary);
         }
 
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            Dictionary<string, System.Windows.Forms.ComboBox> comboBoxDictionary = new Dictionary<string, System.Windows.Forms.ComboBox> { { "catCB", catCB },
-            { "subCatCB", subCatCB }, { "brandCBsearch", brandCBsearch }};
-
-            SearchLogic.searchBtn_Click(searchPanel, searchBox, 'p', productsDGV, comboBoxDictionary, searchBtn);
-        }
-
-        private void searchbtn2_Click(object sender, EventArgs e)
-        {
-            Dictionary<string, System.Windows.Forms.ComboBox> comboBoxDictionary = new Dictionary<string, System.Windows.Forms.ComboBox> { { "catCB", catCB },
-            { "subCatCB", subCatCB }, { "brandCBsearch", brandCBsearch }};
-            SearchLogic.FormSorting(searchBox, 'p', productsDGV, comboBoxDictionary);
-        }
-
-        private void resetCB_Click(object sender, EventArgs e)
-        {
-            SearchLogic.resetCB_Click(searchPanel);
-        }
-
-        //--------------------------------------------------------PANELSEARCH----------------------------------------------------------------------------//
-        private void catCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-  
-        }
-
-        private void catCB_Click(object sender, EventArgs e)
-        {
-            //catCB.Items.Clear();
-            //ProductsMGM.LoadCategories(catCB);
-        }
-
-        private void catCB_DropDownClosed(object sender, EventArgs e)
-        {
-            if (catCB.SelectedItem == null)
+            if (SearchFilterPanel.Visible.Equals(true))
             {
-                subCatCB.Enabled = false;
-                subCat.ForeColor = Color.Gray;
-                subCatCB.Text = null;
-            }
-
-            subCatCB.Items.Clear();
-        }
-
-        private void subCatCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void subCatCB_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void brandCBsearch_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void brandCBsearch_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //-------------------------------------------------ENDPANELSEARCH---------------------------------------------------------------------------//
-
-        private void productsDGV_CellContentClick(object sender, DataGridViewCellEventArgs e) //onclick di una cella che è una checkbox -> //rowlogic
-        {
-            RowLogic.CellContentClick(idDBRows, idDGVRows, productsDGV, sender, e, "Product_ID");
-        }
-
-        private void productsDGV_CellClick(object sender, DataGridViewCellEventArgs e)  //onclick di una cella che NON sia una checkbox
-        {
-            RowLogic.DGV_CellClick(sender, e);
-        }
-
-        private void selectAllRows_CheckedChanged(object sender, EventArgs e) //ROWLOGIC
-        {
-            
-            if(!selectAllRows.Checked)
-            { 
-                productsDGV.SelectAll();
+                SearchFilterPanel.Visible = false;
+                SearchFilterPanel.Enabled = false;
+                AlertComboBoxSearchValues();
             }
 
             else
             {
-                productsDGV.ClearSelection();
+                SearchFilterPanel.Visible = true;
+                SearchFilterPanel.Enabled = true;
             }
         }
 
-        private void productsDGV_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            //selectAllRows.Location = new Point(productsDGV.Columns[0].Width / 2 - 5, selectAllRows.Location.Y);
-        }
 
-        private void productsDGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void AlertComboBoxSearchValues()
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            foreach (Control control in SearchFilterPanel.Controls)
             {
-                if (productsDGV.Columns[e.ColumnIndex].Name == "image")
-                {  
-                    System.Drawing.Image image = e.Value as System.Drawing.Image;
-
-                    if (image != null)
+                if (control is System.Windows.Forms.ComboBox)
+                {
+                    System.Windows.Forms.ComboBox comboBox = control as System.Windows.Forms.ComboBox;
+                    if (!(comboBox.SelectedItem is null))
                     {
-                        productsDGV.Rows[e.RowIndex].Height = image.Height;
-                        productsDGV.Columns[e.ColumnIndex].Width = image.Width;
+                        //AllertImage.Visible = true;
+                        SearchBtn.Image = Properties.Resources.exclamation;
+                        return;
                     }
                 }
-            }  
-        }
-
-        private void lMerchBtn_Click(object sender, EventArgs e)
-        {
-            if (this._newEditCopy == 'n' || this._newEditCopy == 'c')
-            {
-                MessageBox.Show("Registra il prodotto prima di effettuare dei movimenti");
-                return;
             }
 
+            //AllertImage.Visible = false;
+            SearchBtn.Image = Properties.Resources.hamburger;
+        }       
 
-            else
+        private void selectAllRows_CheckedChanged(object sender, EventArgs e) //ROWLOGIC
+        {            
+            if (selectAllRows.Checked)
             {
-                selectedRow = productsDGV.SelectedRows[0].Index;
-                WareHouse.ChildForms.InsertProdInf insertProdInf = new WareHouse.ChildForms.InsertProdInf(ObtainIdProduct(selectedRow), ProductNameTB.Text);
-                insertProdInf.ShowDialog(); 
-            }
-
-            if (InsertProdInf.isOK)
-            {
-                InsertDataToDB();
-                stockLblValue.Text = WareHouseProductMGM.ShowStock(ObtainID.ObtainIDelements.ObtainIdElement(productsDGV.SelectedRows[0].Index, productsDGV,
-             "Product_ID")).ToString();
-            }
-        }
-
-        private void InsertDataToDB()
-        {
-            int idProduct = (int)InsertProdInf.prodInf["product_id"];
-            int idSupplier = (int)InsertProdInf.prodInf["supplier_id"];
-            int quantity = (int)InsertProdInf.prodInf["quantity"];
-            string productName = InsertProdInf.prodInf["product_name"].ToString();
-            string supplierName = InsertProdInf.prodInf["company_name"].ToString();
-            string um = InsertProdInf.prodInf["um"].ToString();
-            int selectedWareHouseID = (int)InsertProdInf.prodInf["wareHouse_id"];
-
-            int uStock;
-            if (WareHouseProductMGM.checkIfProductExist(idProduct, idSupplier, selectedWareHouseID))
-            {
-                WareHouseProductMGM.LoadMerchInWareHouseDB(idProduct, idSupplier, quantity, selectedWareHouseID, um,
-                'e');
+                ProductsDGV.SelectAll();
             }
 
             else
             {
-                WareHouseProductMGM.LoadMerchInWareHouseDB(idProduct, idSupplier, quantity, selectedWareHouseID, um,
-                'n');
-            }           
-
-        }
-
-        private void WHprodMovements_Click(object sender, EventArgs e)
-        {
-
+                ProductsDGV.ClearSelection();
+            }                 
         }
 
         private void ProductTab_MouseClick(object sender, MouseEventArgs e)
@@ -897,41 +611,31 @@ namespace GManagerial.Products
             this.cancelBtn2.Visible = true;
         }
 
+
         private void confirmBtn2_Click(object sender, EventArgs e)
         {
-            ProductTab.SelectedIndex = 0;   
+            ProductTab.SelectedIndex = 0;
             confirmBtn_Click(sender, e);
         }
+
 
         private void cancelBtn2_Click(object sender, EventArgs e)
         {
             ProductTab.SelectedIndex = 0;
-            cancelBtn_Click(sender ,e);
+            cancelBtn_Click(sender, e);
         }
+
 
         private void uStockTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             IsDigitInput.OnlyNums_KeyPress(sender, e);
         }
 
-        private void undStockBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void codArticleTB_Leave(object sender, EventArgs e)
-        {
-            _product.ProductName = ProductNameTB.Text;
-        }
-
-        private void serialNumberTB_Leave(object sender, EventArgs e)
-        {
-            _product.SerialNumber = serialNumberTB.Text;
-        }
+        /*-------------------------------------------------------------------------------------------------------------------------*/
 
         private void BrandCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(BrandCB.SelectedItem != null)
+            if (BrandCB.SelectedItem != null)
             {
                 _product.BrandP = BrandCB.SelectedItem as Brand;
             }
@@ -942,89 +646,225 @@ namespace GManagerial.Products
             }
         }
 
-        private void descriptionTB_Leave(object sender, EventArgs e)
-        {
-            _product.Description = descriptionTB.Text;
-        }
+        //-----------------------------------------------------------------------------------------------------------//
 
-        private void heightTB_Leave(object sender, EventArgs e)
+        public bool DataPanelValidate()
         {
-            decimal height;
-
-            if (decimal.TryParse(heightTB.Text, out height))
+            try
             {
-                _product.Height = height;
+                _product.ProductName = ProductNameTB.Text;
+                _product.Description = descriptionTB.Text;
+                _product.SerialNumber = serialNumberTB.Text;
+                _product.BrandP = (BrandCB.SelectedItem == null) ? new Brand() : BrandCB.SelectedItem as Brand;
+                _product.CategoryObj = (CategoryCB.SelectedItem == null) ? new Category() : CategoryCB.SelectedItem as Category;
+                _product.SubCategory = (SubCategoryCB.SelectedItem == null) ? new SubCategory() : SubCategoryCB.SelectedItem as SubCategory;
+                _product.ManufacturingDate = ManufacturingDateTB.Text;
+                _product.SetHeight(heightTB.Text);
+                _product.SetWidth(widthTB.Text);
+                _product.SetPower(powerTB.Text);
+                _product.SetWeight(weightTB.Text);
+                _product.SetEnergyConsumption(energyConsTB.Text);
+                _product.SetDepth(depthTB.Text);
+                _product.Notes = notesTB.Text;
+                _product.LastSupplierSelected = SupplierCB.SelectedIndex;
             }
-        }
-
-        private void widthTB_Leave(object sender, EventArgs e)
-        {
-            decimal width;
-
-            if (decimal.TryParse(widthTB.Text, out width))
+            catch (Exception ex)
             {
-                _product.Width = width;
+                MessageBox.Show(ex.Message, "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+            return true;
         }
 
-        private void depthTB_Leave(object sender, EventArgs e)
-        {
-            decimal depth;
 
-            if (decimal.TryParse(depthTB.Text, out depth))
-            {
-                _product.Width = depth;
-            }
+    private void searchBox_TextChanged(object sender, EventArgs e)
+    {
+        if (!SearchTB.Text.Equals("Cerca") && SearchTB.Font.FontFamily.Name != "Times New Roman")
+        {
+            SearchProduct();
         }
+     }
 
-        private void weightTB_Leave(object sender, EventArgs e)
+
+//--------------------------------------------------------PANELSEARCH----------------------------------------------------------------------------//
+
+
+    private void catCB_DropDownClosed(object sender, EventArgs e)
+    {
+        if (!SearchTB.Text.Equals("Cerca") && SearchTB.Font.FontFamily.Name != "Times New Roman")
         {
-            decimal weight;
-
-            if (decimal.TryParse(weightTB.Text, out weight))
-            {
-                _product.Weight = weight;
-            }
-        }
-
-        private void energyTB_Leave(object sender, EventArgs e)
-        {
-            _product.EnergyClass = energyTB.Text;
-        }
-
-        private void powerTB_Leave(object sender, EventArgs e)
-        {
-            decimal power;
-
-            if (decimal.TryParse(powerTB.Text, out power))
-            {
-                _product.Weight = power;
-            }
-        }
-
-        private void energyConsTB_Leave(object sender, EventArgs e)
-        {
-            decimal energyConsumption;
-
-            if (decimal.TryParse(energyConsTB.Text, out energyConsumption))
-            {
-                _product.Weight = energyConsumption;
-            }
-        }
-
-        private void notesTB_Leave(object sender, EventArgs e)
-        {
-            _product.Notes = notesTB.Text;
-        }
-
-        private void manfDateTB_Leave(object sender, EventArgs e)
-        {
-
+            SearchProduct();
         }
     }
+
+
+    private void SearchProduct()
+    {
+        string textToSearch;
+
+        if (SearchTB.Text.Equals("Cerca") && SearchTB.Font.FontFamily.Name.Equals("Times New Roman"))
+        {
+            textToSearch = string.Empty;
+        }
+
+        else
+        {
+            textToSearch = SearchTB.Text;
+        }
+
+        if (CategorySearchCB.SelectedItem is null && SubCategorySearchCB.SelectedItem is null && BrandSearchCB.SelectedItem is null)
+        {
+            _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, ProductQueries.SEARCHPRODUCTS, null);
+        }
+
+        else if (!(CategorySearchCB.SelectedItem is null) && SubCategorySearchCB.SelectedItem is null && BrandSearchCB.SelectedItem is null)
+        {
+            _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, ProductQueries.SEARCHCATEGORIZEDPRODUCTS, null);
+        }
+
+        else if (!(CategorySearchCB.SelectedItem is null) && !(SubCategorySearchCB.SelectedItem is null) && BrandSearchCB.SelectedItem is null)
+        {
+            _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, ProductQueries.SEARCHCATEGORIZEDANDSUBPRODUCTS, null);
+        }
+
+        else if (!(CategorySearchCB.SelectedItem is null) && SubCategorySearchCB.SelectedItem is null && !(BrandSearchCB.SelectedItem is null))
+        {
+            _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, ProductQueries.SEARCHCATEGORIZEDBRANDIZEDPRODUCTS, null);
+        }
+
+        else if (CategorySearchCB.SelectedItem is null && SubCategorySearchCB.SelectedItem is null && !(BrandSearchCB.SelectedItem is null))
+        {
+            _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, ProductQueries.SEARCHBRANDIZEDPRODUCTS, null);
+        }
+
+        else if (!(CategorySearchCB.SelectedItem is null && SubCategorySearchCB.SelectedItem is null && !(BrandSearchCB.SelectedItem is null)))
+        {
+            _products = _daoProduct.GetProductsSearch(textToSearch.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, ProductQueries.SEARCHCATEGORIZEDANDSUBBRANDIZEDPRODUCTS, null);
+        }
+            UpdateDataGridViewFilter();
+     }
+
+//-------------------------------------------------ENDPANELSEARCH---------------------------------------------------------------------------//       
     
+    private void SearchTB_Enter(object sender, EventArgs e)
+    {
+        if (SearchTB.Text.Equals("Cerca"))
+        {
+            SetTextForSearchBox();
+        }
+    }
+
+    private void SearchTB_Leave(object sender, EventArgs e)
+    {
+        if (SearchTB.Text.Equals(string.Empty))
+        {
+            ResetStandardTextForSearchBox();
+        }
+    }
+    private void ResetStandardTextForSearchBox()
+    {
+        SearchTB.Text = "Cerca";
+        SearchTB.ForeColor = System.Drawing.SystemColors.ScrollBar;
+        SearchTB.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+    }
+
+    private void SetTextForSearchBox()
+    {
+        SearchTB.Text = string.Empty;
+        SearchTB.ForeColor = Color.Black;
+        SearchTB.Font = new Font("Arial", 12);
+    }
+
+    private void ProductsDGV_SelectionChanged(object sender, EventArgs e)
+    {       
+        if (!ProductsDGV.Enabled)
+        {
+            ProductsDGV.CurrentCell = null;
+        }
+    }
+
+    private void CancelSearchBtn_Click(object sender, EventArgs e)
+    {
+        foreach (Control control in SearchFilterPanel.Controls)
+        {
+            if (control is System.Windows.Forms.ComboBox)
+            {
+                System.Windows.Forms.ComboBox comboBox = (System.Windows.Forms.ComboBox)control;
+                comboBox.SelectedItem = null;
+            }
+        }
+        //AllertImage.Visible = false;
+        SearchBtn.Image = Properties.Resources.hamburger;
+        SearchFilterPanel.Visible = false;
+        SearchFilterPanel.Enabled = false;
+        ResetStandardTextForSearchBox();
+    }
+
+
+    private void CategorySearchCB_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (CategorySearchCB.SelectedItem != null && CategorySearchCB.Text != "-")
+        {
+            SubCategorySearchCB.Enabled = true;
+            SubCategorySearchLbl.ForeColor = Color.Black;
+            if (CategorySearchCB.SelectedItem != null)
+            {
+               OnUpdateSubCategory(CategorySearchCB.SelectedItem as Category);
+            }
+        }
+
+        else
+        {
+            CategorySearchCB.SelectedItem = null;
+            SubCategorySearchCB.Enabled = false;
+            SubCategorySearchLbl.ForeColor = Color.Gray;
+            SubCategorySearchCB.Items.Clear();
+        }
+        SearchProduct();
+    }
+
+
+    private void SubCategorySearchCB_SelectedIndexChanged(object sender, EventArgs e)
+    {   
+        if (SubCategorySearchCB.Text == "-")
+        {            
+            SubCategorySearchCB.SelectedItem = null;
+        }
+
+        else
+        {             
+            SearchProduct();
+        }
+    }
+
+    private void SearchButton_Click(object sender, EventArgs e)
+    {
+        /* _products = _daoProduct.GetProductsSearch(SearchTB.Text.ToLower(), CategorySearchCB.Text, SubCategorySearchCB.Text, BrandSearchCB.Text, );
+        UpdateDataGridViewFilter();
+
+        if (decimal.TryParse(energyConsTB.Text, out energyConsumption))
+        {
+         _product.Weight = energyConsumption;
+        }
+        SearchFilterPanel.Visible = false;*/
+    }
+
+
+    private void BrandSearchCB_SelectedIndexChanged(object sender, EventArgs e)
+    {
+            if (BrandSearchCB.Text.Equals("-"))
+            {
+                BrandSearchCB.SelectedItem = null;
+            }
+            SearchProduct();
+    }
+    }
 }
 
+
+
+
+        
 
 
 
